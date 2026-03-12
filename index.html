@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Formulaires</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+button {
+  width: 100%;
+  padding: 20px;
+  margin: 10px 0;
+  font-size: 20px;
+}
+form {
+  display: none;
+  margin-top: 20px;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 16px;
+}
+label {
+  font-weight: bold;
+}
+#message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+}
+</style>
+</head>
+<body>
+
+<h2>Choisir un formulaire</h2>
+
+<button onclick="showForm('chantier')">Chantier</button>
+<button onclick="showForm('complements')">Compléments</button>
+
+<!-- FORMULAIRE CHANTIER -->
+<form id="formChantier">
+  <h3>Chantier</h3>
+
+  <label>Nom</label>
+  <input type="text" id="nom">
+
+  <label>Lieu</label>
+  <input type="text" id="lieu">
+
+  <label>Date</label>
+  <input type="date" id="dateChantier">
+
+  <label>Description</label>
+  <textarea id="description"></textarea>
+
+  <label>Volume déchets</label>
+  <input type="text" id="volume">
+
+  <label>Temps utilisation broyeur</label>
+  <input type="text" id="broyeur">
+
+  <label>Temps utilisation machines</label>
+  <input type="text" id="machines">
+
+  <button type="button" onclick="sendChantier()">Envoyer</button>
+</form>
+
+<!-- FORMULAIRE COMPLEMENTS -->
+<form id="formComplements">
+  <h3>Compléments</h3>
+
+  <label>Date</label>
+  <input type="date" id="dateComp">
+
+  <label>Détails</label>
+  <textarea id="details" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
+
+  <button type="button" onclick="sendComplements()">Envoyer</button>
+</form>
+
+<div id="message"></div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbykvRQopqQ5K7ld59MSoxxNqQ8pmhZRaOOXTRAWKg6QEoquoOaS-id2uax3MyQIaXGZ/exec";
+
+function showForm(type) {
+  document.getElementById("formChantier").style.display = "none";
+  document.getElementById("formComplements").style.display = "none";
+
+  if (type === "chantier") {
+    document.getElementById("formChantier").style.display = "block";
+  } else {
+    document.getElementById("formComplements").style.display = "block";
+  }
+}
+
+function sendChantier() {
+  const data = {
+    type: "chantier",
+    nom: document.getElementById("nom").value,
+    lieu: document.getElementById("lieu").value,
+    date: document.getElementById("dateChantier").value,
+    description: document.getElementById("description").value,
+    volume: document.getElementById("volume").value,
+    broyeur: document.getElementById("broyeur").value,
+    machines: document.getElementById("machines").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    document.getElementById("message").innerText = "Enregistré !";
+  });
+}
+
+function sendComplements() {
+  const data = {
+    type: "complements",
+    date: document.getElementById("dateComp").value,
+    details: document.getElementById("details").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    document.getElementById("message").innerText = "Enregistré !";
+  });
+}
+</script>
+
+</body>
+</html>
