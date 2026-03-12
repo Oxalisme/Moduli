@@ -46,28 +46,28 @@ label {
   <h3>Chantier</h3>
 
   <label>Ton nom</label>
-  <input type="text" id="collegue">
+  <input type="text" id="collegue" required>
 
   <label>Nom du client</label>
-  <input type="text" id="client">
+  <input type="text" id="client" required>
 
   <label>Lieu</label>
-  <input type="text" id="lieu">
+  <input type="text" id="lieu" required>
 
   <label>Date</label>
-  <input type="date" id="dateChantier">
+  <input type="date" id="dateChantier" required>
 
   <label>Description</label>
-  <textarea id="description"></textarea>
+  <textarea id="description" required></textarea>
 
   <label>Volume déchets</label>
-  <input type="text" id="volume">
+  <input type="text" id="volume" required>
 
   <label>Temps utilisation broyeur</label>
-  <input type="text" id="broyeur">
+  <input type="text" id="broyeur" required>
 
   <label>Temps utilisation machines</label>
-  <input type="text" id="machines">
+  <input type="text" id="machines" required>
 
   <button type="button" onclick="sendChantier()">Envoyer</button>
 </form>
@@ -77,10 +77,10 @@ label {
   <h3>Compléments</h3>
 
   <label>Date</label>
-  <input type="date" id="dateComp">
+  <input type="date" id="dateComp" required>
 
   <label>Détails</label>
-  <textarea id="details" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
+  <textarea id="details" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
 
   <button type="button" onclick="sendComplements()">Envoyer</button>
 </form>
@@ -104,14 +104,14 @@ function showForm(type) {
 function sendChantier() {
   const data = {
     type: "chantier",
-    nom: document.getElementById("collegue").value,
-    client: document.getElementById("client").value,
-    lieu: document.getElementById("lieu").value,
-    date: document.getElementById("dateChantier").value,
-    description: document.getElementById("description").value,
-    volume: document.getElementById("volume").value,
-    broyeur: document.getElementById("broyeur").value,
-    machines: document.getElementById("machines").value
+    nom: document.getElementById("collegue").value = "";
+    client: document.getElementById("client").value = "";
+    lieu: document.getElementById("lieu").value = "";
+    date: document.getElementById("dateChantier").value = "";
+    description: document.getElementById("description").value = "";
+    volume: document.getElementById("volume").value = "";
+    broyeur: document.getElementById("broyeur").value = "";
+    machines: document.getElementById("machines").value = "";
   };
 
   fetch(scriptURL, {
@@ -125,8 +125,8 @@ function sendChantier() {
 function sendComplements() {
   const data = {
     type: "complements",
-    date: document.getElementById("dateComp").value,
-    details: document.getElementById("details").value
+    date: document.getElementById("dateComp").value = "";
+    details: document.getElementById("details").value = "";
   };
 
   fetch(scriptURL, {
