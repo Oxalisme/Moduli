@@ -45,8 +45,11 @@ label {
 <form id="formChantier">
   <h3>Chantier</h3>
 
-  <label>Nom</label>
-  <input type="text" id="nom">
+  <label>Ton nom</label>
+  <input type="text" id="collegue">
+
+  <label>Nom du client</label>
+  <input type="texte" id="client">
 
   <label>Lieu</label>
   <input type="text" id="lieu">
@@ -101,7 +104,8 @@ function showForm(type) {
 function sendChantier() {
   const data = {
     type: "chantier",
-    nom: document.getElementById("nom").value,
+    nom: document.getElementById("collegue").value,
+    client: document.getElementById("client").value,
     lieu: document.getElementById("lieu").value,
     date: document.getElementById("dateChantier").value,
     description: document.getElementById("description").value,
