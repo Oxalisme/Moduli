@@ -104,14 +104,14 @@ function showForm(type) {
 function sendChantier() {
   const data = {
     type: "chantier",
-    nom: document.getElementById("collegue").value = "";
-    client: document.getElementById("client").value = "";
-    lieu: document.getElementById("lieu").value = "";
-    date: document.getElementById("dateChantier").value = "";
-    description: document.getElementById("description").value = "";
-    volume: document.getElementById("volume").value = "";
-    broyeur: document.getElementById("broyeur").value = "";
-    machines: document.getElementById("machines").value = ""
+    nom: document.getElementById("collegue").value,
+    client: document.getElementById("client").value,
+    lieu: document.getElementById("lieu").value,
+    date: document.getElementById("dateChantier").value,
+    description: document.getElementById("description").value,
+    volume: document.getElementById("volume").value,
+    broyeur: document.getElementById("broyeur").value,
+    machines: document.getElementById("machines").value
   };
 
   fetch(scriptURL, {
@@ -126,8 +126,8 @@ function sendChantier() {
 function sendComplements() {
   const data = {
     type: "complements",
-    date: document.getElementById("dateComp").value = "";
-    details: document.getElementById("details").value = ""
+    date: document.getElementById("dateComp").value,
+    details: document.getElementById("details").value
   };
 
   fetch(scriptURL, {
