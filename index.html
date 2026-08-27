@@ -39,6 +39,7 @@ label {
 <h2>Choisir un formulaire</h2>
 
 <button onclick="showForm('chantier')">Chantier</button>
+<button onclick="showForm('heures')">Heures</button>
 <button onclick="showForm('complements')">Compléments</button>
 
 <!-- FORMULAIRE CHANTIER -->
@@ -46,7 +47,7 @@ label {
   <h3>Chantier</h3>
 
   <label>Ton nom</label>
-  <input type="text" id="collegue" required>
+  <input type="text" id="collegueChant" required>
 
   <label>Nom du client</label>
   <input type="text" id="client" required>
@@ -55,7 +56,7 @@ label {
   <input type="text" id="lieu" required>
 
   <label>Date</label>
-  <input type="date" id="dateChantier" required>
+  <input type="date" id="dateChant" required>
 
   <label>Description</label>
   <textarea id="description" required></textarea>
@@ -71,10 +72,41 @@ label {
 
   <button type="button" onclick="sendChantier()">Envoyer</button>
 </form>
+  
+<!-- FORMULAIRE HEURES -->
+<form id="formChantier">
+  <h3>Heures</h3>
+
+  <label>Ton nom</label>
+  <input type="text" id="collegueHeures" required>
+
+  <label>Date</label>
+  <input type="date" id="dateHeures" required>
+
+  <label>Heure du début (matin)</label>
+  <input type="time" id="debut1" required>
+
+  <label>Heure de fin (matin)</label>
+  <input type="time" id="fin1" required>
+
+  <label>Heure de début (après-midi)</label>
+  <input type="time" id="debut2" required>
+
+  <label>Heure de fin (après-midi)</label>
+  <input type="time" id="fin2" required>
+  
+  <label>Détails</label>
+  <textarea id="detailsHeures" placeholder="temps de pause ou autres" required></textarea>
+
+  <button type="button" onclick="sendHeures()">Envoyer</button>
+</form>
 
 <!-- FORMULAIRE COMPLEMENTS -->
 <form id="formComplements">
   <h3>Compléments</h3>
+
+  <label>Ton nom</label>
+  <input type="nom" id="collegueComp" required>  
 
   <label>Date</label>
   <input type="date" id="dateComp" required>
@@ -92,22 +124,25 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbxq3s16Px_UyfksUMebnA
 
 function showForm(type) {
   document.getElementById("formChantier").style.display = "none";
+  document.getElementById("formHeures").style.display = "none";
   document.getElementById("formComplements").style.display = "none";
-
+  
   if (type === "chantier") {
     document.getElementById("formChantier").style.display = "block";
   } else {
+    if (type === "heures") {
+    document.getElementById("formHeures").style.display = "block";
+    } else {
     document.getElementById("formComplements").style.display = "block";
   }
-}
 
 function sendChantier() {
   const data = {
     type: "chantier",
-    nom: document.getElementById("collegue").value,
+    nom: document.getElementById("collegueChant").value,
     client: document.getElementById("client").value,
     lieu: document.getElementById("lieu").value,
-    date: document.getElementById("dateChantier").value,
+    date: document.getElementById("dateChant").value,
     description: document.getElementById("description").value,
     volume: document.getElementById("volume").value,
     broyeur: document.getElementById("broyeur").value,
@@ -122,10 +157,32 @@ function sendChantier() {
     clearChantier();
   });
 }
+    
+function sendHeures() {
+  const data = {
+    type: "heures",
+    nom: document.getElementById("collegueHeures").value,
+    date: document.getElementById("dateHeurs").value,
+    debut1: document.getElementById("debut1").value,
+    fin1: document.getElementById("fin1").value,
+    debut2: document.getElementById("debut2").value,
+    fin2: document.getElementById("fin2").value,
+    details: document.getElementById("detailsHeures").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    document.getElementById("message").innerText = "Enregistré !";
+    clearHeures();
+  });
+}
 
 function sendComplements() {
   const data = {
     type: "complements",
+    nom: document.getEletementById("collegueComp")
     date: document.getElementById("dateComp").value,
     details: document.getElementById("details").value
   };
@@ -140,17 +197,28 @@ function sendComplements() {
 }
 
 function clearChantier() {
-  document.getElementById("collegue").value = "";
+  document.getElementById("collegueChant").value = "";
   document.getElementById("client").value = "";
   document.getElementById("lieu").value = "";
-  document.getElementById("dateChantier").value = "";
+  document.getElementById("dateChant").value = "";
   document.getElementById("description").value = "";
   document.getElementById("volume").value = "";
   document.getElementById("broyeur").value = "";
   document.getElementById("machines").value = "";
 }
 
+function clearHeures() {
+  document.getElementById("collegueHeures").value = "";
+  document.getElementById("dateHeures").value = "";
+  document.getElementById("debut1").value = "";
+  document.getElementById("fin1").value = "";
+  document.getElementById("debut2").value = "";
+  document.getElementById("fin2").value = "";
+  document.getElementById("detailsHeures").value = "";
+}
+
 function clearComplements() {
+  document.getElementById("collegueComp").value = "";
   document.getElementById("dateComp").value = "";
   document.getElementById("details").value = "";
 }
