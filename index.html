@@ -126,6 +126,7 @@ function showForm(type) {
   document.getElementById("formChantier").style.display = "none";
   document.getElementById("formHeures").style.display = "none";
   document.getElementById("formComplements").style.display = "none";
+}
   
   if (type === "chantier") {
     document.getElementById("formChantier").style.display = "block";
@@ -162,7 +163,7 @@ function sendHeures() {
   const data = {
     type: "heures",
     nom: document.getElementById("collegueHeures").value,
-    date: document.getElementById("dateHeurs").value,
+    date: document.getElementById("dateHeures").value,
     debut1: document.getElementById("debut1").value,
     fin1: document.getElementById("fin1").value,
     debut2: document.getElementById("debut2").value,
@@ -182,7 +183,7 @@ function sendHeures() {
 function sendComplements() {
   const data = {
     type: "complements",
-    nom: document.getEletementById("collegueComp")
+    nom: document.getElementById("collegueComp").value,
     date: document.getElementById("dateComp").value,
     details: document.getElementById("details").value
   };
