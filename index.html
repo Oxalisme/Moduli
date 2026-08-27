@@ -126,7 +126,6 @@ function showForm(type) {
   document.getElementById("formChantier").style.display = "none";
   document.getElementById("formHeures").style.display = "none";
   document.getElementById("formComplements").style.display = "none";
-}
   
   if (type === "chantier") {
     document.getElementById("formChantier").style.display = "block";
@@ -135,7 +134,9 @@ function showForm(type) {
     document.getElementById("formHeures").style.display = "block";
     } else {
     document.getElementById("formComplements").style.display = "block";
+    }
   }
+}
 
 function sendChantier() {
   const data = {
