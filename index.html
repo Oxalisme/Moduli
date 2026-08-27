@@ -36,13 +36,13 @@ label {
 </head>
 <body>
 
+<!--
 <h2>Choisir un formulaire</h2>
 
 <button onclick="showForm('chantier')">Chantier</button>
 <button onclick="showForm('heures')">Heures</button>
 <button onclick="showForm('complements')">Compléments</button>
 
-<!-- FORMULAIRE CHANTIER -->
 <form id="formChantier">
   <h3>Chantier</h3>
 
@@ -73,7 +73,6 @@ label {
   <button type="button" onclick="sendChantier()">Envoyer</button>
 </form>
   
-<!-- FORMULAIRE HEURES -->
 <form id="formHeures">
   <h3>Heures</h3>
 
@@ -101,7 +100,6 @@ label {
   <button type="button" onclick="sendHeures()">Envoyer</button>
 </form>
 
-<!-- FORMULAIRE COMPLEMENTS -->
 <form id="formComplements">
   <h3>Compléments</h3>
 
@@ -225,6 +223,201 @@ function clearComplements() {
   document.getElementById("details").value = "";
 }
 
+</script>
+
+</body>
+</html>
+
+-->
+
+<h2>Choisir un formulaire</h2>
+
+<button onclick="showForm('chantier')">Chantier</button>
+<button onclick="showForm('heures')">Heures</button>
+<button onclick="showForm('complements')">Compléments</button>
+
+<!-- FORMULAIRE CHANTIER -->
+<form id="formChantier">
+  <h3>Chantier</h3>
+
+  <label>Ton nom</label>
+  <input type="text" id="collegueChant" required>
+
+  <label>Nom du client</label>
+  <input type="text" id="client" required>
+
+  <label>Lieu</label>
+  <input type="text" id="lieu" required>
+
+  <label>Date</label>
+  <input type="date" id="dateChant" required>
+
+  <label>Description</label>
+  <textarea id="description" required></textarea>
+
+  <label>Volume déchets</label>
+  <input type="text" id="volume" required>
+
+  <label>Temps utilisation broyeur</label>
+  <input type="text" id="broyeur" required>
+
+  <label>Temps utilisation machines</label>
+  <input type="text" id="machines" required>
+
+  <button type="button" onclick="sendChantier()">Envoyer</button>
+</form>
+  
+<!-- FORMULAIRE HEURES -->
+<form id="formHeures">
+  <h3>Heures</h3>
+
+  <label>Ton nom</label>
+  <input type="text" id="collegueHeures" required>
+
+  <label>Date</label>
+  <input type="date" id="dateHeures" required>
+
+  <label>Heure du début (matin)</label>
+  <input type="time" id="debut1" required>
+
+  <label>Heure de fin (matin)</label>
+  <input type="time" id="fin1" required>
+
+  <label>Heure de début (après-midi)</label>
+  <input type="time" id="debut2" required>
+
+  <label>Heure de fin (après-midi)</label>
+  <input type="time" id="fin2" required>
+  
+  <label>Détails</label>
+  <textarea id="detailsHeures" placeholder="temps de pause ou autres" required></textarea>
+
+  <button type="button" onclick="sendHeures()">Envoyer</button>
+</form>
+
+<!-- FORMULAIRE COMPLEMENTS -->
+<form id="formComplements">
+  <h3>Compléments</h3>
+
+  <label>Ton nom</label>
+  <input type="text" id="collegueComp" required>  
+
+  <label>Date</label>
+  <input type="date" id="dateComp" required>
+
+  <label>Détails</label>
+  <textarea id="details" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
+
+  <button type="button" onclick="sendComplements()">Envoyer</button>
+</form>
+
+<div id="message"></div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbydMchbHUYPGnZj2lKLmdEaYIactTho_XOBvon8FzOHHeHFEWzZ0K-Ii0tlRXGMn3fJ/exec";
+
+function showForm(type) {
+  // Masquage propre de tous les blocs
+  document.getElementById("formChantier").style.display = "none";
+  document.getElementById("formHeures").style.display = "none";
+  document.getElementById("formComplements").style.display = "none";
+  
+  // Structure if/else nettoyée de toute écriture parasite
+  if (type === "chantier") {
+    document.getElementById("formChantier").style.display = "block";
+  } else if (type === "heures") {
+    document.getElementById("formHeures").style.display = "block";
+  } else if (type === "complements") {
+    document.getElementById("formComplements").style.display = "block";
+  }
+}
+
+function sendChantier() {
+  const data = {
+    type: "chantier",
+    nom: document.getElementById("collegueChant").value,
+    client: document.getElementById("client").value,
+    lieu: document.getElementById("lieu").value,
+    date: document.getElementById("dateChant").value,
+    description: document.getElementById("description").value,
+    volume: document.getElementById("volume").value,
+    broyeur: document.getElementById("broyeur").value,
+    machines: document.getElementById("machines").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    document.getElementById("message").innerText = "Enregistré !";
+    clearChantier();
+  });
+}
+    
+function sendHeures() {
+  const data = {
+    type: "heures",
+    nom: document.getElementById("collegueHeures").value,
+    date: document.getElementById("dateHeures").value,
+    debut1: document.getElementById("debut1").value,
+    fin1: document.getElementById("fin1").value,
+    debut2: document.getElementById("debut2").value,
+    fin2: document.getElementById("fin2").value,
+    details: document.getElementById("detailsHeures").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    document.getElementById("message").innerText = "Enregistré !";
+    clearHeures();
+  });
+}
+
+function sendComplements() {
+  const data = {
+    type: "complements",
+    nom: document.getElementById("collegueComp").value,
+    date: document.getElementById("dateComp").value,
+    details: document.getElementById("details").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    document.getElementById("message").innerText = "Enregistré !";
+    clearComplements();
+  });
+}
+
+function clearChantier() {
+  document.getElementById("collegueChant").value = "";
+  document.getElementById("client").value = "";
+  document.getElementById("lieu").value = "";
+  document.getElementById("dateChant").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("volume").value = "";
+  document.getElementById("broyeur").value = "";
+  document.getElementById("machines").value = "";
+}
+
+function clearHeures() {
+  document.getElementById("collegueHeures").value = "";
+  document.getElementById("dateHeures").value = "";
+  document.getElementById("debut1").value = "";
+  document.getElementById("fin1").value = "";
+  document.getElementById("debut2").value = "";
+  document.getElementById("fin2").value = "";
+  document.getElementById("detailsHeures").value = "";
+}
+
+function clearComplements() {
+  document.getElementById("collegueComp").value = "";
+  document.getElementById("dateComp").value = "";
+  document.getElementById("details").value = "";
+}
 </script>
 
 </body>
