@@ -247,22 +247,22 @@ function clearComplements() {
   <input type="text" id="client" required>
 
   <label>Lieu</label>
-  <input type="text" id="lieu" required>
+  <input type="text" id="lieu" placeholder="adresse ou précision p.ex. concernant les 4 maisons de Chloé" required>
 
   <label>Date</label>
   <input type="date" id="dateChant" required>
 
   <label>Description</label>
-  <textarea id="description" required></textarea>
+  <textarea id="description" placeholder="détails des travaux, p.ex: désherbage -hh:mm, tonte -hh:mm, taille du liquidambar -hh:mm" required></textarea>
 
-  <label>Volume déchets</label>
-  <input type="text" id="volume" required>
+  <label>Volume déchets (en litres)</label>
+  <input type="number" id="volume" placeholder="sac noir = 200L, sac blanc = 400L, remorque = 1m³" required>
 
-  <label>Temps utilisation broyeur</label>
-  <input type="text" id="broyeur" required>
+  <label>Temps utilisation broyeur (en heures)</label>
+  <input type="number" id="broyeur" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
-  <label>Temps utilisation machines</label>
-  <input type="text" id="machines" required>
+  <label>Temps utilisation machines (en heures)</label>
+  <input type="number" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
   <button type="button" onclick="sendChantier()">Envoyer</button>
 </form>
