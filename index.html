@@ -49,6 +49,9 @@ label {
   <label>Ton nom</label>
   <input type="text" id="collegueChant" required>
 
+  <label>Avec qui tu étais sur le chantier</label>
+  <input type="text" id="collegueAutreChant" required>
+
   <label>Nom du client</label>
   <input type="text" id="client" required>
 
@@ -140,6 +143,7 @@ function sendChantier() {
   const data = {
     type: "chantier",
     nom: document.getElementById("collegueChant").value,
+    nomAutre: document.getElementById("collegueAutreChant").value,
     client: document.getElementById("client").value,
     lieu: document.getElementById("lieu").value,
     date: document.getElementById("dateChant").value,
@@ -198,6 +202,7 @@ function sendComplements() {
 
 function clearChantier() {
   document.getElementById("collegueChant").value = "";
+  document.getElementById("collegueAutreChant").value = "";
   document.getElementById("client").value = "";
   document.getElementById("lieu").value = "";
   document.getElementById("dateChant").value = "";
@@ -242,6 +247,9 @@ function clearComplements() {
 
   <label>Ton nom</label>
   <input type="text" id="collegueChant" required>
+
+  <label>Avec qui tu as travaillé sur le chantier</label>
+  <input type="text" id="collegueAutreChant" required>
 
   <label>Nom du client</label>
   <input type="text" id="client" required>
@@ -314,7 +322,7 @@ function clearComplements() {
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzdk4sZ1ufCTRw2rQ1cFJJ-VE1LiSlBnwnUNFI9ZraH95J2nCB7TA6bJW6LkmHyKwPd/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbySL7QckAukhuzPanPo62g4qJKiqUOTY_mt2H2O47O8pL_zTFULJ097i7t5x2pdioSN/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -336,6 +344,7 @@ function sendChantier() {
   const data = {
     type: "chantier",
     nom: document.getElementById("collegueChant").value,
+    avec: document.getElementById("collegueAutreChant").value,
     client: document.getElementById("client").value,
     lieu: document.getElementById("lieu").value,
     date: document.getElementById("dateChant").value,
@@ -394,6 +403,7 @@ function sendComplements() {
 
 function clearChantier() {
   document.getElementById("collegueChant").value = "";
+  document.getElementById("collegueAutreChant").value = "";
   document.getElementById("client").value = "";
   document.getElementById("lieu").value = "";
   document.getElementById("dateChant").value = "";
