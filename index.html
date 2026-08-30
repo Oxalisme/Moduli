@@ -35,6 +35,8 @@ input, textarea, select {
 label {
   font-weight: bold;
 
+<!--
+/*NE FONCTIONNE PAS
 /* 🎨 COULEURS DES CHAMPS PAR FORMULAIRE */
 
 /* 1. Formulaire Chantier (Déclinaisons de Bleu) */
@@ -85,7 +87,7 @@ form button {
   border: none;
   margin-top: 15px;
 }
-
+-->
   
 }
 #message {
@@ -134,7 +136,7 @@ form button {
   <input type="text" id="client" style="background-color: #FEF2F2; border: 1px solid #9F0712;" required>
 
   <label>Lieu</label>
-  <input type="text" id="lieu" placeholder="adresse ou précision p.ex. concernant les 4 maisons de Chloé" required>
+  <input type="text" id="lieu" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="adresse ou précision p.ex. concernant les 4 maisons de Chloé" required>
 
   <label>Date</label>
   <input type="date" id="dateChant" style="background-color: #FEF2F2; border: 1px solid #9F0712;" required>
@@ -163,7 +165,7 @@ form button {
   <input type="text" id="collegueHeures" required>
   -->  
   
-  <select id="collegueHeures" name="nom">
+  <select id="collegueHeures" name="nom" style="background-color: #ECFDF5; border: 1px solid #016630;">
     <option value="alu">Alu</option>
     <option value="delphine">Del Fun</option>
     <option value="ellio">Ellio</option>
@@ -177,24 +179,24 @@ form button {
   </select>
 
   <label>Date</label>
-  <input type="date" id="dateHeures" required>
+  <input type="date" id="dateHeures" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
 
   <label>Heure du début (matin)</label>
-  <input type="time" id="debut1" required>
+  <input type="time" id="debut1" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
 
   <label>Heure de fin (matin)</label>
-  <input type="time" id="fin1" required>
+  <input type="time" id="fin1" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
 
   <label>Heure de début (après-midi)</label>
-  <input type="time" id="debut2" required>
+  <input type="time" id="debut2" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
 
   <label>Heure de fin (après-midi)</label>
-  <input type="time" id="fin2" required>
+  <input type="time" id="fin2" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
   
   <label>Détails</label>
-  <textarea id="detailsHeures" placeholder="temps de pause ou autres" required></textarea>
+  <textarea id="detailsHeures" style="background-color: #ECFDF5; border: 1px solid #016630;" placeholder="temps de pause ou autres" required></textarea>
 
-  <button type="button" onclick="sendHeures()">Envoyer</button>
+  <button type="button" style="background-color: #FEFCE8; border: 1px solid #9F0712;" onclick="sendHeures()">Envoyer</button>
 </form>
 
 <!-- FORMULAIRE COMPLEMENTS -->
@@ -206,7 +208,7 @@ form button {
   <input type="text" id="collegueComp" required>
   -->  
   
-  <select id="collegueComp" name="nom">
+  <select id="collegueComp" name="nom" style="background-color: #EFF6FF; border: 1px solid #193CB8;">
     <option value="alu">Alu</option>
     <option value="delphine">Del Fun</option>
     <option value="ellio">Ellio</option>
@@ -220,12 +222,12 @@ form button {
   </select>  
 
   <label>Date</label>
-  <input type="date" id="dateComp" required>
+  <input type="date" id="dateComp" style="background-color: #EFF6FF; border: 1px solid #193CB8;" required>
 
   <label>Détails</label>
-  <textarea id="details" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
+  <textarea id="details" style="background-color: #EFF6FF; border: 1px solid #193CB8;" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
 
-  <button type="button" onclick="sendComplements()">Envoyer</button>
+  <button type="button" style="background-color: #FEFCE8; border: 1px solid #9F0712;" onclick="sendComplements()">Envoyer</button>
 </form>
 
 <div id="message"></div>
