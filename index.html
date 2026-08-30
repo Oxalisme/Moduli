@@ -18,6 +18,7 @@ button {
   padding: 20px;
   margin: 10px 0;
   font-size: 20px;
+  border-radius: 12px;
 }
 form {
   display: none;
@@ -28,6 +29,7 @@ input, textarea, select {
   padding: 10px;
   margin: 8px 0;
   font-size: 16px;
+  border-radius: 12px;
 }
 label {
   font-weight: bold;
@@ -44,9 +46,9 @@ label {
 
 <h2>Choisir un formulaire</h2>
 
-<button onclick="showForm('chantier')" style="background-color: #FFE2E2; border: 1px solid #9F0712;">Chantier</button>
-<button onclick="showForm('heures')" style="background-color: #DCFCE7; border: 1px solid #016630;">Heures</button>
-<button onclick="showForm('complements')" style="background-color: #DBEAFE; border: 1px solid #193CB8;">Compléments</button>
+<button onclick="showForm('chantier')" style="background-color: #FEF2F2; border: 1px solid #9F0712;">Chantier</button>
+<button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
+<button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Compléments</button>
 
 <!-- FORMULAIRE CHANTIER -->
 <form id="formChantier">
@@ -58,7 +60,7 @@ label {
   <input type="text" id="collegueChant" required>
   -->  
   
-  <select id="collegueChant" name="nom" style="background-color: #FFE2E2; border: 1px solid #9F0712;">
+  <select id="collegueChant" name="nom" style="background-color: #FEF2F2; border: 1px solid #9F0712;">
     <option value="alu">Alu</option>
     <option value="delphine">Del Fun</option>
     <option value="ellio">EllioM</option>
