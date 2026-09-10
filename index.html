@@ -466,7 +466,7 @@ function genererRapport() {
 
   alert("Étape 3 : Valeurs lues -> Nom: " + nom + " | Début: " + debut + " | Fin: " + fin);
 
-  zoneRapport.style.display = "block";
+  //zoneRapport.style.display = "block";
   divResultat.innerHTML = "<em>Calcul et génération du rapport quotidien en cours...</em>";
 
   const param = {
@@ -559,8 +559,8 @@ function genererRapport() {
     document.getElementById("formComplements").reset();
     const divResultat = document.getElementById("resultatRapport");
     if(divResultat) divResultat.innerHTML = "";
-    const zoneRapport = document.getElementById("zoneRapport");
-    if(zoneRapport) zoneRapport.style.display = "none";
+    /*const zoneRapport = document.getElementById("zoneRapport");
+    if(zoneRapport) zoneRapport.style.display = "none";*/
   }
   
   document.querySelectorAll('textarea').forEach(textarea => {
