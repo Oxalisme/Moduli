@@ -53,15 +53,42 @@ label {
   font-weight: bold;
   color: green;
 }
+  
+/* 1. THÈME CHANTIER (Rouge / Rose) */
+/* .theme-chantier, */
+.theme-chantier input, 
+.theme-chantier textarea, 
+.theme-chantier select {
+  background-color: #FEF2F2;
+  border: 1px solid #9F0712;
+}
 
-  /* THÈME CHANTIER */
-/*.theme-chantier, */
-  .theme-chantier input, 
-  .theme-chantier textarea, 
-  .theme-chantier select {
-    background-color: #FEF2F2; 
-    border: 1px solid #9F0712;
-  }
+/* 2. THÈME HEURES (Vert) */
+/* .theme-heures, */
+.theme-heures input, 
+.theme-heures textarea, 
+.theme-heures select {
+  background-color: #ECFDF5;
+  border: 1px solid #016630;
+}
+
+/* 3. THÈME COMPLÉMENTS (Bleu) */
+/* .theme-complements, */
+.theme-complements input, 
+.theme-complements textarea, 
+.theme-complements select {
+  background-color: #EFF6FF;
+  border: 1px solid #193CB8;
+}
+
+/* 4. BOUTONS D'ENVOI (Jaune) */
+button.btn-envoyer {
+  background-color: #FEFCE8 !important;
+}
+/* On force la bordure du bouton d'envoi à correspondre à son formulaire parent */
+.theme-chantier button.btn-envoyer { border: 1px solid #9F0712; }
+.theme-heures button.btn-envoyer { border: 1px solid #016630; }
+.theme-complements button.btn-envoyer { border: 1px solid #193CB8; }
 
 </style>
 </head>
@@ -102,27 +129,27 @@ label {
   <input type="text" id="collegueAutreChant" required>
 
   <label>Nom du client</label>
-  <input type="text" id="client" style="background-color: #FEF2F2; border: 1px solid #9F0712;" required>
+  <input type="text" id="client" required>
 
   <label>Lieu</label>
-  <input type="text" id="lieu" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="adresse ou précision p.ex. concernant les 4 maisons de Chloé" required>
+  <input type="text" id="lieu" placeholder="adresse ou précision p.ex. concernant les 4 maisons de Chloé" required>
 
   <label>Date</label>
-  <input type="date" id="dateChant" style="background-color: #FEF2F2; border: 1px solid #9F0712;" required>
+  <input type="date" id="dateChant" required>
 
   <label>Description</label>
-  <textarea id="description" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
+  <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
 
   <label>Volume déchets (en litres)</label>
-  <input type="number" id="volume" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="sac noir = 200L, sac blanc = 400L, remorque = 1m³" required>
+  <input type="number" id="volume" placeholder="sac noir = 200L, sac blanc = 400L, remorque = 1m³" required>
 
   <label>Temps utilisation broyeur (en heures)</label>
   <input type="time" id="broyeur" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
   <label>Temps utilisation machines (en heures)</label>
-  <input type="time" id="machines" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
+  <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
-  <button type="button" style="background-color: #FEFCE8; border: 1px solid #9F0712;" onclick="sendChantier()">Envoyer</button>
+  <button type="button" onclick="sendChantier()">Envoyer</button>
 </form>
   
 <!-- FORMULAIRE HEURES -->
@@ -134,7 +161,7 @@ label {
   <input type="text" id="collegueHeures" required>
   -->  
   
-  <select id="collegueHeures" name="nom" style="background-color: #ECFDF5; border: 1px solid #016630;">
+  <select id="collegueHeures" name="nom">
     <option value="alu">Alu</option>
     <option value="delphine">Delphine</option>
     <option value="ellio">Ellio</option>
@@ -150,27 +177,27 @@ label {
   </select>
 
   <label>Date</label>
-  <input type="date" id="dateHeures" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
+  <input type="date" id="dateHeures" required>
 
   <label>Heure du début (matin)</label>
-  <input type="time" id="debut1" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
+  <input type="time" id="debut1" required>
 
   <label>Heure de fin (matin)</label>
-  <input type="time" id="fin1" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
+  <input type="time" id="fin1" required>
 
   <label>Heure de début (après-midi)</label>
-  <input type="time" id="debut2" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
+  <input type="time" id="debut2" required>
 
   <label>Heure de fin (après-midi)</label>
-  <input type="time" id="fin2" style="background-color: #ECFDF5; border: 1px solid #016630;" required>
+  <input type="time" id="fin2" required>
   
   <label>Détails par rapport aux heures</label>
-  <textarea id="detailsHeures" style="background-color: #ECFDF5; border: 1px solid #016630;" placeholder="temps de pause ou autres" required></textarea>
+  <textarea id="detailsHeures" placeholder="temps de pause ou autres" required></textarea>
 
   <label>Infos complémentaires pour la journée</label>
-  <textarea id="complementsHeures" style="background-color: #ECFDF5; border: 1px solid #016630;" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
+  <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
 
-  <button type="button" style="background-color: #FEFCE8; border: 1px solid #016630;" onclick="sendHeures()">Envoyer</button>
+  <button type="button" onclick="sendHeures()">Envoyer</button>
 </form>
 
 <!-- FORMULAIRE COMPLEMENTS -->
@@ -182,7 +209,7 @@ label {
   <input type="text" id="collegueComp" required>
   -->  
   
-  <select id="collegueComp" name="nom" style="background-color: #EFF6FF; border: 1px solid #193CB8;">
+  <select id="collegueComp" name="nom">
     <option value="alu">Alu Minium</option>
     <option value="delphine">Del Fun</option>
     <option value="ellio">EllioM</option>
@@ -197,12 +224,12 @@ label {
   </select>  
 
   <label>Date</label>
-  <input type="date" id="dateComp" style="background-color: #EFF6FF; border: 1px solid #193CB8;" required>
+  <input type="date" id="dateComp" required>
 
   <label>Détails</label>
-  <textarea id="details" style="background-color: #EFF6FF; border: 1px solid #193CB8;" placeholder="OBSOLÈTE, IL FAUT NOTER DANS LES HEURES" required></textarea>
+  <textarea id="details" placeholder="OBSOLÈTE, IL FAUT NOTER DANS LES HEURES" required></textarea>
 
-  <button type="button" style="background-color: #FEFCE8; border: 1px solid #193CB8;" onclick="sendComplements()">Envoyer</button>
+  <button type="button" onclick="sendComplements()">Envoyer</button>
 </form>
 
 <div id="message"></div>
