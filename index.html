@@ -120,7 +120,10 @@ button.btn-envoyer {
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Compléments OBSOLÈTE</button>
 
 <!-- FORMULAIRE CHANTIER -->
+<!--
 <form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
+-->
+<form id="formChantier" class="theme-chantier">
   <h3>Chantier</h3>
 
   <label>Ton nom</label>
@@ -171,7 +174,10 @@ button.btn-envoyer {
   <label>Temps utilisation machines (en heures)</label>
   <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
-  <button type="submit" class="btn-envoyer">Envoyer</button>
+  <!--
+    <button type="submit" class="btn-envoyer">Envoyer</button>
+-->
+  <button type="button" class="btn-envoyer" onclick="sendChantier()">Envoyer</button>
 </form>
   
 <!-- FORMULAIRE HEURES -->
