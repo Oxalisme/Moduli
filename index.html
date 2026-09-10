@@ -267,17 +267,22 @@ button.btn-envoyer {
   <label>Date de fin de la période</label>
   <input type="date" id="dateFinComp" required>
 
+  <!--
   <label>Détails</label>
   <textarea id="details" placeholder="OBSOLÈTE, IL FAUT NOTER DANS LES HEURES"></textarea>
-
+  -->
+  
   <button type="submit" class="btn-envoyer">Générer le rapport</button>
   <!--
   <button type="button" class="btn-envoyer" onclick="sendComplements()">Envoyer</button>
   -->
 
   <!-- Zone de texte où le Markdown généré va apparaître -->
-  <label style="margin-top: 20px; display: block;">Rapport :</label>
+  <label style="margin-top: 20px; display: block;">Rapport</label>
+  <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." readonly></textarea>
+  <!--
   <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." style="background-color: #fff; border: 1px solid #ccc; min-height: 200px;" readonly></textarea>
+  -->
 </form>
 
 <div id="message"></div>
@@ -406,8 +411,8 @@ function clearComplements() {
   
 function genererRapport() {
   const nom = document.getElementById("collegueComp").value;
-  const dateDebut = document.getElementById("dateDebut").value;
-  const dateFin = document.getElementById("dateFin").value;
+  const dateDebut = document.getElementById("dateDebComp").value;
+  const dateFin = document.getElementById("dateFinComp").value;
   const textareaResultat = document.getElementById("resultatRapport");
   
   if (!nom || !dateDebut || !dateFin) {
