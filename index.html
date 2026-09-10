@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Formulaires</title>
 
+<script src="https://jsdelivr.net"></script>
+  
 <!-- Images du raccourci écran d'accueil et favicon -->
 <link rel="apple-touch-icon" href="https://github.com/Oxalisme/Moduli/blob/main/9a4b02e0-b721-4d43-90f4-cd531697cf13.png">
 <link rel="icon" type="image/png" href="https://github.com/Oxalisme/Moduli/blob/main/9a4b02e0-b721-4d43-90f4-cd531697cf13.png">
@@ -31,7 +33,7 @@ form {
   display: none;
   margin-top: 20px;
 }
-input, textarea, select {
+input, textarea, select, div {
   font-family: Arial, sans-serif;
   width: 100%;
   padding: 10px;
@@ -243,17 +245,18 @@ button.btn-envoyer {
   <select id="collegueComp" name="nom" required>
   <!-- Cette option sert de placeholder -->
     <option value="" disabled selected>Lev Bronstein</option>
-    <option value="alu">Alu Minium</option>
-    <option value="delphine">Del Fun</option>
-    <option value="ellio">EllioM</option>
-    <option value="greg" selected>Grégolo</option>
-    <option value="juan">Juantourloupe</option>
-    <option value="laure">L'or</option>
-    <option value="mickael" selected>Mickaëleagnus</option>
-    <option value="oxa">Oxaperlipopette</option>
+    <option value="alu">Alu</option>
+    <option value="delphine">Delphine</option>
+    <option value="ellio">Ellio</option>
+    <option value="greg" selected>Greg</option>
+    <option value="juan">Juan</option>
+    <option value="laura">Laura</option>
+    <option value="laure">Laure</option>
+    <option value="mickael" selected>Mickaël</option>
+    <option value="oxa">Oxa</option>
     <option value="sam_hannes">Sam Lebelge</option>
-    <option value="sam_eve">Sam Well</option>
-    <option value="other">AUTRE (précise cette info dans le champs Détails)</option>
+    <option value="sam_eve">Sam E.</option>
+    <option value="other">AUTRE (il n'y a malheureusement pas de solution pour voir tes heures actuellement...)</option>
   </select>  
   <!--
   disabled : L'utilisateur ne peut pas recliquer dessus dans la liste.
@@ -279,7 +282,7 @@ button.btn-envoyer {
 
   <!-- Zone de texte où le Markdown généré va apparaître -->
   <label style="margin-top: 20px; display: block;">Rapport</label>
-  <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." readonly></textarea>
+  <div id="resultatRapport" placeholder="Le rapport s'affichera ici..." readonly></div>
   <!--
   <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." style="background-color: #fff; border: 1px solid #ccc; min-height: 200px;" readonly></textarea>
   -->
@@ -413,15 +416,15 @@ function genererRapport() {
   const nom = document.getElementById("collegueComp").value;
   const dateDebut = document.getElementById("dateDebComp").value;
   const dateFin = document.getElementById("dateFinComp").value;
-  const textareaResultat = document.getElementById("resultatRapport");
+  const divResultat = document.getElementById("resultatRapport");
   
   if (!nom || !dateDebut || !dateFin) {
     alert("Veuillez remplir le nom et les deux dates.");
     return;
   }
 
-  textareaResultat.value = "Calcul et génération du rapport en cours...";
-
+  divResultat.innerHTML = "<em>Calcul et génération du rapport en cours...</em>";
+  
   // Préparation des données à envoyer
   const param = {
     action: "genererRapport",
@@ -438,12 +441,13 @@ function genererRapport() {
   .then(response => response.json())
   .then(data => {
     if (data.status === "success") {
-      textareaResultat.value = data.markdown;
-      // Force l'auto-agrandissement du textarea après l'insertion du texte
+      // traduire le Md en joli HTML
+      divResultat.innerHTML = marked.parse(data.markdown);
+/*      // Force l'auto-agrandissement du textarea après l'insertion du texte
       textareaResultat.style.height = 'auto';
-      textareaResultat.style.height = textareaResultat.scrollHeight + 'px';
+      textareaResultat.style.height = textareaResultat.scrollHeight + 'px';   */
     } else {
-      textareaResultat.value = "Erreur : " + data.message;
+      divResultat.innerHTML = "<span style='color:red;'>Erreur : " + data.message + "</span>";
     }
   })
   .catch(error => {
