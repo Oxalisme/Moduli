@@ -32,7 +32,7 @@ form {
   margin-top: 20px;
 }
 input, textarea, select {
-  font-family: Arial, sans-serif; /* Vous pouvez remplacer Arial par une autre police si nécessaire */
+  font-family: Arial, sans-serif;
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -44,24 +44,19 @@ input, textarea, select {
 textarea {
   min-height: 100px;
 }
-/* Force la même police et le même style pour TOUS les placeholders (le texte d'aide) */
+/* Force la même police et le même style pour TOUS les placeholders */
 input::placeholder, 
 textarea::placeholder {
   font-family: monospace;
-/*  font-style: italic; /* Optionnel : met en italique pour bien les différencier du texte saisi */
-/*  opacity: 0.7;       /* Optionnel : rend le texte du placeholder légèrement plus discret */
 }
 /* Grise le texte du select UNIQUEMENT quand l'option par défaut (vide) est sélectionnée */
 select:invalid {
-  color: rgba(0, 0, 0, 0.4); /* Même transparence que vos autres placeholders */
-/*  font-style: italic; */
+  color: rgba(0, 0, 0, 0.4); /* Même transparence que les autres placeholders */
   font-family: monospace;
 }
-
 /* Remet le texte en noir normal dès qu'une vraie option est choisie */
 select:valid {
   color: black;
-/*  font-style: normal; */
   font-family: Arial, sans-serif;
 }  
 label {
@@ -75,7 +70,6 @@ label {
 }
   
 /* 1. THÈME CHANTIER (Rouge / Rose) */
-/* .theme-chantier, */
 .theme-chantier input, 
 .theme-chantier textarea, 
 .theme-chantier select {
@@ -84,7 +78,6 @@ label {
 }
 
 /* 2. THÈME HEURES (Vert) */
-/* .theme-heures, */
 .theme-heures input, 
 .theme-heures textarea, 
 .theme-heures select {
@@ -93,7 +86,6 @@ label {
 }
 
 /* 3. THÈME COMPLÉMENTS (Bleu) */
-/* .theme-complements, */
 .theme-complements input, 
 .theme-complements textarea, 
 .theme-complements select {
@@ -121,7 +113,7 @@ button.btn-envoyer {
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Compléments OBSOLÈTE</button>
 
 <!-- FORMULAIRE CHANTIER -->
-<form id="formChantier" class="theme-chantier">
+<form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
   <h3>Chantier</h3>
 
   <label>Ton nom</label>
@@ -149,7 +141,7 @@ button.btn-envoyer {
   -->
 
   <label>Avec qui tu as travaillé sur le chantier</label>
-  <input type="text" id="collegueAutreChant" required>
+  <input type="text" id="collegueAutreChant">
 
   <label>Nom du client</label>
   <input type="text" id="client" required>
@@ -172,7 +164,7 @@ button.btn-envoyer {
   <label>Temps utilisation machines (en heures)</label>
   <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
-  <button type="button" class="btn-envoyer" onclick="sendChantier()">Envoyer</button>
+  <button type="submit" class="btn-envoyer">Envoyer</button>
 </form>
   
 <!-- FORMULAIRE HEURES -->
