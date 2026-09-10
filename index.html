@@ -347,14 +347,13 @@ function sendChantier() {
     broyeur: document.getElementById("broyeur").value,
     machines: document.getElementById("machines").value
   };
-
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
     .then(res => res.json())
-    .then(data => {
+    .then(() => {
       document.getElementById("message").innerText = "Chantier enregistré avec succès !";
       document.getElementById("formChantier").reset();
     })
-    .catch(err => alert("Erreur d'enregistrement"));
+    .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
 }
     
 function sendHeures() {
@@ -370,14 +369,13 @@ function sendHeures() {
     details: document.getElementById("detailsHeures").value,
     complements: document.getElementById("complementsHeures").value
   };
-
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
     .then(res => res.json())
-    .then(data => {
+    .then(() => {
       document.getElementById("message").innerText = "Heures enregistrées avec succès !";
       document.getElementById("formHeures").reset();
     })
-    .catch(err => alert("Erreur d'enregistrement"));
+    .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
 }
 
   /*
