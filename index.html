@@ -41,7 +41,7 @@ button {
   cursor: pointer;
 }
   
-input, textarea, select, div {
+input, textarea, select, div, #resultatRapport {
   font-family: Arial, sans-serif;
   width: 100%;
   padding: 10px;
@@ -51,9 +51,12 @@ input, textarea, select, div {
   resize: none; /* Désactive la poignée manuelle pour laisser le script gérer la hauteur */
   overflow-y: hidden; 
 }
-textarea {
+textarea, #resultatRapport {
   min-height: 100px;
 }
+/* Optionnel : Donne un style sympa aux titres et listes générés à l'intérieur du rapport */
+#resultatRapport h3, #resultatRapport h4 { margin: 10px 0 5px 0; color: #193CB8; }
+#resultatRapport ul, #resultatRapport ol { margin: 5px 0; padding-left: 25px; }
   
 /* Force la même police et le même style pour TOUS les placeholders */
 input::placeholder, 
@@ -72,8 +75,7 @@ select:valid {
   font-family: Arial, sans-serif;
 }  
   
-/* Surligne en rouge le champ obligatoire non rempli ou mal rempli
-  NE MARCHE PAS <- mais je l'avais mis dans Label */
+/* Surligne en rouge le champ obligatoire non rempli ou mal rempli */
 input:user-invalid, 
 textarea:user-invalid, 
 select:user-invalid {
@@ -108,7 +110,8 @@ select:user-invalid {
   /* .theme-complements, */
 .theme-complements input, 
 .theme-complements textarea, 
-.theme-complements select {
+.theme-complements select,
+#resultatRapport {
   background-color: #EFF6FF;
   border: 1px solid #193CB8;
 }
@@ -182,7 +185,7 @@ button.btn-envoyer, button.btn-effacer {
   <input type="number" id="volume" placeholder="sac noir = 200L, sac blanc = 400L, remorque = 1m³" required>
 
   <label>Temps utilisation broyeur (en heures)</label>
-  <input type="time" id="broyeur" style="background-color: #FEF2F2; border: 1px solid #9F0712;" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
+  <input type="time" id="broyeur" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
   <label>Temps utilisation machines (en heures)</label>
   <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
