@@ -444,10 +444,60 @@ function genererRapport() {
   }
 
   divResultat.innerHTML = "<em>Calcul et génération du rapport en cours...</em>"; */
+  alert("Étape 1 : Le bouton a bien détecté le clic !");
   
   const divResultat = document.getElementById("resultatRapport");
   const zoneRapport = document.getElementById("zoneRapport");
   
+  if (!divResultat) {
+    alert("ERREUR : L'élément HTML 'resultatRapport' est introuvable dans la page !");
+    return;
+  }
+  if (!zoneRapport) {
+    alert("ERREUR : L'élément HTML 'zoneRapport' est introuvable dans la page !");
+    return;
+  }
+
+  alert("Étape 2 : Les boîtes d'affichage existent bien dans la page.");
+
+  const nom = document.getElementById("collegueComp").value;
+  const debut = document.getElementById("dateDebComp").value;
+  const fin = document.getElementById("dateFinComp").value;
+
+  alert("Étape 3 : Valeurs lues -> Nom: " + nom + " | Début: " + debut + " | Fin: " + fin);
+
+  zoneRapport.style.display = "block";
+  divResultat.innerHTML = "<em>Calcul et génération du rapport quotidien en cours...</em>";
+
+  const param = {
+    action: "genererRapport",
+    nom: nom,
+    debut: debut,
+    fin: fin
+  };
+
+  alert("Étape 4 : Connexion au Google Sheet en cours via : " + scriptURL);
+
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+  .then(res => {
+    alert("Étape 5 : Le serveur Google Sheet a répondu ! Traitement des données...");
+    return res.json();
+  })
+  .then(data => {
+    alert("Étape 6 : Données reçues avec le statut : " + data.status);
+    if (data.status === "success") {
+      divResultat.innerHTML = data.html; 
+    } else {
+      divResultat.innerHTML = "<span style='color:red;'>Erreur retournée par Google : " + data.message + "</span>";
+    }
+  })
+  .catch((erreur) => {
+    alert("Étape ÉCHEC : La connexion a échoué. Détails : " + erreur.message);
+    divResultat.innerHTML = "<span style='color:red;'>Erreur de connexion. Vérifiez le réseau.</span>";
+  });
+}
+
+/*  
   if (!divResultat || !zoneRapport) return;
 
   zoneRapport.style.display = "block";
@@ -461,7 +511,7 @@ function genererRapport() {
     debut: dateDebut,
     fin: dateFin
   }; */
-    
+    /*
     nom: document.getElementById("collegueComp").value,
     debut: document.getElementById("dateDebComp").value,
     fin: document.getElementById("dateFinComp").value
