@@ -9,6 +9,12 @@
 <link rel="icon" type="image/png" href="https://github.com/Oxalisme/Moduli/blob/main/9a4b02e0-b721-4d43-90f4-cd531697cf13.png">
 
 <style>
+  
+/* CORRECTION LARGEUR : Force tous les éléments à respecter strictement les 100% */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -31,7 +37,9 @@ input, textarea, select {
   margin: 10px 0;
   font-size: 24px;
   border-radius: 12px;
-  resize: vertical !important;
+  resize: none; /* Désactive la poignée manuelle pour laisser le script gérer la hauteur */
+  min-height: 100px;
+  overflow-y: hidden; 
 }
 label {
   font-weight: bold;
@@ -42,6 +50,15 @@ label {
   font-weight: bold;
   color: green;
 }
+
+  /* THÈME CHANTIER */
+.theme-chantier, 
+  .theme-chantier input, 
+  .theme-chantier textarea, 
+  .theme-chantier select {
+    background-color: #FEF2F2; 
+    border: 1px solid #9F0712;
+  }
 
 </style>
 </head>
@@ -54,7 +71,7 @@ label {
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Compléments OBSOLÈTE</button>
 
 <!-- FORMULAIRE CHANTIER -->
-<form id="formChantier">
+<form id="formChantier" class="theme-chantier">
   <h3>Chantier</h3>
 
   <label>Ton nom</label>
@@ -63,7 +80,7 @@ label {
   <input type="text" id="collegueChant" required>
   -->  
   
-  <select id="collegueChant" name="nom" style="background-color: #FEF2F2; border: 1px solid #9F0712;">
+  <select id="collegueChant" name="nom">
     <option value="alu">Alu</option>
     <option value="delphine">Delphine</option>
     <option value="ellio">Ellio</option>
@@ -79,7 +96,7 @@ label {
   </select>
 
   <label>Avec qui tu as travaillé sur le chantier</label>
-  <input type="text" id="collegueAutreChant" style="background-color: #FEF2F2; border: 1px solid #9F0712;" required>
+  <input type="text" id="collegueAutreChant" required>
 
   <label>Nom du client</label>
   <input type="text" id="client" style="background-color: #FEF2F2; border: 1px solid #9F0712;" required>
@@ -205,6 +222,14 @@ function showForm(type) {
     document.getElementById("formComplements").style.display = "block";
   }
 }
+
+  // SCRIPT D'AUTO-AGRANDISSEMENT DES TEXTAREA
+document.querySelectorAll('textarea').forEach(textarea => {
+  textarea.addEventListener('input', function() {
+    this.style.height = 'auto'; // Réinitialise la hauteur
+    this.style.height = this.scrollHeight + 'px'; // Applique la hauteur réelle du contenu inséré
+  });
+});
 
 function sendChantier() {
   const data = {
