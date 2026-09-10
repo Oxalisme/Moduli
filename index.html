@@ -335,7 +335,7 @@ document.querySelectorAll('textarea').forEach(textarea => {
 
 function sendChantier() {
   document.getElementById("message").innerText = "Envoi du chantier en cours...";
-  const data = {
+  const param = {
     type: "chantier",
     nom: document.getElementById("collegueChant").value,
     avec: document.getElementById("collegueAutreChant").value,
@@ -358,7 +358,7 @@ function sendChantier() {
     
 function sendHeures() {
   document.getElementById("message").innerText = "Envoi des heures en cours...";
-  const data = {
+  const param = {
     type: "heures",
     nom: document.getElementById("collegueHeures").value,
     date: document.getElementById("dateHeures").value,
