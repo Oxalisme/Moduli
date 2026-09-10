@@ -19,6 +19,18 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
 }
+
+form {
+  display: none;
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 15px;
+}
+  
 /*style de base pour TOUS les boutons*/
 button {
   width: 100%;
@@ -26,10 +38,9 @@ button {
   margin: 10px 0;
   font-size: 30px;
   border-radius: 12px;
+  cursor: pointer;
 }
-form {
-  display: none;
-  margin-top: 20px;
+  
 }
 input, textarea, select, div {
   font-family: Arial, sans-serif;
@@ -44,6 +55,7 @@ input, textarea, select, div {
 textarea {
   min-height: 100px;
 }
+  
 /* Force la même police et le même style pour TOUS les placeholders */
 input::placeholder, 
 textarea::placeholder {
@@ -60,18 +72,15 @@ select:valid {
   color: black;
   font-family: Arial, sans-serif;
 }  
-label {
-  font-weight: bold;
   
 /* Surligne en rouge le champ obligatoire non rempli ou mal rempli
-  NE MARCHE PAS */
+  NE MARCHE PAS <- mais je l'avais mis dans Label */
 input:user-invalid, 
 textarea:user-invalid, 
 select:user-invalid {
   border: 3px solid #DC2626 !important; /* Rouge vif d'alerte */
 }
   
-}
 #message {
   margin-top: 20px;
   font-weight: bold;
@@ -79,6 +88,7 @@ select:user-invalid {
 }
   
 /* 1. THÈME CHANTIER (Rouge / Rose) */
+  /* .theme-chantier, */
 .theme-chantier input, 
 .theme-chantier textarea, 
 .theme-chantier select {
@@ -87,6 +97,7 @@ select:user-invalid {
 }
 
 /* 2. THÈME HEURES (Vert) */
+  /* .theme-heures, */
 .theme-heures input, 
 .theme-heures textarea, 
 .theme-heures select {
@@ -95,6 +106,7 @@ select:user-invalid {
 }
 
 /* 3. THÈME COMPLÉMENTS (Bleu) */
+  /* .theme-complements, */
 .theme-complements input, 
 .theme-complements textarea, 
 .theme-complements select {
@@ -103,7 +115,7 @@ select:user-invalid {
 }
 
 /* 4. BOUTONS D'ENVOI (Jaune) */
-button.btn-envoyer {
+button.btn-envoyer, button.btn-effacer {
   background-color: #FEFCE8 !important;
 }
 /* On force la bordure du bouton d'envoi à correspondre à son formulaire parent */
@@ -285,6 +297,9 @@ button.btn-envoyer {
   <!--
   <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." style="background-color: #fff; border: 1px solid #ccc; min-height: 200px;" readonly></textarea>
   -->
+  
+  <button type="button" class="btn-effacer" onclick="effacerRapport()">Tout effacer</button>
+
 </form>
 
 <div id="message"></div>
@@ -454,6 +469,20 @@ function genererRapport() {
     console.error(error);
   });
 }
+
+  function effacerRapport() {
+    document.getElementById("formComplements").reset();
+    document.getElementById("resultatRapport").innerHTML = "";
+    document.getElementById("zoneRapport").style.display = "none";
+  }
+  
+  // Auto-agrandissement des textarea restants
+  document.querySelectorAll('textarea').forEach(textarea => {
+    textarea.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+  });
 
   
 </script>
