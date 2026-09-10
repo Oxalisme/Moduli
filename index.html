@@ -51,7 +51,19 @@ textarea::placeholder {
 /*  font-style: italic; /* Optionnel : met en italique pour bien les différencier du texte saisi */
 /*  opacity: 0.7;       /* Optionnel : rend le texte du placeholder légèrement plus discret */
 }
-  
+/* Grise le texte du select UNIQUEMENT quand l'option par défaut (vide) est sélectionnée */
+select:invalid {
+  color: rgba(0, 0, 0, 0.4); /* Même transparence que vos autres placeholders */
+/*  font-style: italic; */
+  font-family: monospace;
+}
+
+/* Remet le texte en noir normal dès qu'une vraie option est choisie */
+select:valid {
+  color: black;
+/*  font-style: normal; */
+  font-family: Arial, sans-serif;
+}  
 label {
   font-weight: bold;
   
