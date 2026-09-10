@@ -133,7 +133,7 @@ button.btn-envoyer, button.btn-effacer {
 
 <button onclick="showForm('chantier')" style="background-color: #FEF2F2; border: 1px solid #9F0712;">Chantier</button>
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
-<button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">NE PAS UTILISER</button>
+<button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Rapport des heures</button>
 
 <!-- FORMULAIRE CHANTIER -->
 <form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
@@ -259,7 +259,7 @@ button.btn-envoyer, button.btn-effacer {
   
   <select id="collegueComp" name="nom" required>
   <!-- Cette option sert de placeholder -->
-    <option value="" disabled selected>Lev Bronstein</option>
+    <option value="" disabled selected>Friedrich Engels</option>
     <option value="alu">Alu</option>
     <option value="delphine">Delphine</option>
     <option value="ellio">Ellio</option>
@@ -304,7 +304,7 @@ button.btn-envoyer, button.btn-effacer {
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbz0t1_2aR4-HdYrdK-mQHeBUIp49ZsvcJbfF3p-R01hQjkA42B_7kPIqYxmjKbIBpH4/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzwsg6saue8uhJ_HFnaxy6Wh7yMkiH-eXXzMGE-eZ4CFs1QN3ZLPeS9-QZF4nHjrUAt/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
