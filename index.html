@@ -304,7 +304,7 @@ button.btn-envoyer, button.btn-effacer {
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwMO_k7vfrBjVSW9zAw7Q4Gn8lqJtwG1za1H1-oR3QgUvcU19QhNzeLDvypaRb6dWO5/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyKsDmyDP5s_Axh-7nohwmTWzxTO3eOCkUpeN2cyKebqPEEUOyGCERX_Yjl4OtXStn9/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -457,10 +457,11 @@ function genererRapport() {
   //alert("Étape 4 : Connexion au Google Sheet en cours via : " + scriptURL);
 
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-  .then(res => {
-    //alert("Étape 5 : Le serveur Google Sheet a répondu ! Traitement des données...");
+  /*.then(res => {
+    alert("Étape 5 : Le serveur Google Sheet a répondu ! Traitement des données...");
     return res.json();
-  })
+  })*/
+  .then(res => res.json())
   .then(data => {
     //alert("Étape 6 : Données reçues avec le statut : " + data.status);
     if (data.status === "success") {
