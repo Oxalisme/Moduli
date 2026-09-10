@@ -153,7 +153,7 @@ button.btn-envoyer {
   <label>Temps utilisation machines (en heures)</label>
   <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
-  <button type="button" onclick="sendChantier()">Envoyer</button>
+  <button type="button" class="btn-envoyer" onclick="sendChantier()">Envoyer</button>
 </form>
   
 <!-- FORMULAIRE HEURES -->
@@ -198,7 +198,7 @@ button.btn-envoyer {
   <label>Infos complémentaires pour la journée</label>
   <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
 
-  <button type="button" onclick="sendHeures()">Envoyer</button>
+  <button type="button" class="btn-envoyer" onclick="sendHeures()">Envoyer</button>
 </form>
 
 <!-- FORMULAIRE COMPLEMENTS -->
@@ -227,7 +227,7 @@ button.btn-envoyer {
   <label>Détails</label>
   <textarea id="details" placeholder="OBSOLÈTE, IL FAUT NOTER DANS LES HEURES" required></textarea>
 
-  <button type="button" onclick="sendComplements()">Envoyer</button>
+  <button type="button" class="btn-envoyer" onclick="sendComplements()">Envoyer</button>
 </form>
 
 <div id="message"></div>
