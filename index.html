@@ -133,10 +133,10 @@ button.btn-envoyer, button.btn-effacer {
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">NE PAS UTILISER</button>
 
 <!-- FORMULAIRE CHANTIER -->
-<!--
 <form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
--->
+<!--
 <form id="formChantier" class="theme-chantier">
+-->
   <h3>Chantier</h3>
 
   <label>Ton nom</label>
@@ -187,14 +187,14 @@ button.btn-envoyer, button.btn-effacer {
   <label>Temps utilisation machines (en heures)</label>
   <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
 
+  <button type="submit" class="btn-envoyer">Envoyer</button>
   <!--
-    <button type="submit" class="btn-envoyer">Envoyer</button>
--->
   <button type="button" class="btn-envoyer" onclick="sendChantier()">Envoyer</button>
+  -->
 </form>
   
 <!-- FORMULAIRE HEURES -->
-<form id="formHeures" class="theme-heures">
+<form id="formHeures" class="theme-heures" onsubmit="event.preventDefault(); sendChantier();">
   <h3>Heures</h3>
 
   <label>Ton nom</label>
@@ -225,24 +225,27 @@ button.btn-envoyer, button.btn-effacer {
   <input type="date" id="dateHeures" required>
 
   <label>Heure du début (matin)</label>
-  <input type="time" id="debut1" required>
+  <input type="time" id="debut1">
 
   <label>Heure de fin (matin)</label>
-  <input type="time" id="fin1" required>
+  <input type="time" id="fin1">
 
   <label>Heure de début (après-midi)</label>
-  <input type="time" id="debut2" required>
+  <input type="time" id="debut2">
 
   <label>Heure de fin (après-midi)</label>
-  <input type="time" id="fin2" required>
+  <input type="time" id="fin2">
   
   <label>Détails par rapport aux heures</label>
-  <textarea id="detailsHeures" placeholder="temps de pause ou autres" required></textarea>
+  <textarea id="detailsHeures" placeholder="temps de pause ou autres"></textarea>
 
   <label>Infos complémentaires pour la journée</label>
-  <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers" required></textarea>
+  <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
 
+  <button type="submit" class="btn-envoyer">Envoyer</button>
+  <!--
   <button type="button" class="btn-envoyer" onclick="sendHeures()">Envoyer</button>
+  -->
 </form>
 
 <!-- FORMULAIRE COMPLEMENTS -->
