@@ -306,10 +306,11 @@ button.btn-envoyer, button.btn-effacer {
 <script src="https://jsdelivr.net"></script>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbyYpK7LcEZYkXkMCuim56X7x95aBAuvGSpK0kcZkMqV33z5Kb-Li_m02Ey1BRgXo1ii/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxCiKUlUaWCbEXIaHndIUKUd2HwGEYWJYhy9dseSpsuM4gV1elj60kJoK5Hpgkal_c9/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
+  document.getElementById("message").innerText = "";
   document.getElementById("formChantier").style.display = "none";
   document.getElementById("formHeures").style.display = "none";
   document.getElementById("formComplements").style.display = "none";
@@ -333,6 +334,7 @@ document.querySelectorAll('textarea').forEach(textarea => {
 });
 
 function sendChantier() {
+  document.getElementById("message").innerText = "Envoi du chantier en cours...";
   const data = {
     type: "chantier",
     nom: document.getElementById("collegueChant").value,
@@ -356,6 +358,7 @@ function sendChantier() {
 }
     
 function sendHeures() {
+  document.getElementById("message").innerText = "Envoi des heures en cours...";
   const data = {
     type: "heures",
     nom: document.getElementById("collegueHeures").value,
@@ -428,24 +431,39 @@ function clearComplements() {
   */
   
 function genererRapport() {
-  const nom = document.getElementById("collegueComp").value;
+  /* const nom = document.getElementById("collegueComp").value;
   const dateDebut = document.getElementById("dateDebComp").value;
   const dateFin = document.getElementById("dateFinComp").value;
   const divResultat = document.getElementById("resultatRapport");
+  
   
   if (!nom || !dateDebut || !dateFin) {
     alert("Veuillez remplir le nom et les deux dates.");
     return;
   }
 
-  divResultat.innerHTML = "<em>Calcul et génération du rapport en cours...</em>";
+  divResultat.innerHTML = "<em>Calcul et génération du rapport en cours...</em>"; */
   
+  const divResultat = document.getElementById("resultatRapport");
+  const zoneRapport = document.getElementById("zoneRapport");
+  
+  if (!divResultat || !zoneRapport) return;
+
+  zoneRapport.style.display = "block";
+  divResultat.innerHTML = "<em>Calcul et génération du rapport quotidien en cours...</em>";
+
   // Préparation des données à envoyer
   const param = {
     action: "genererRapport",
+    /*
     nom: nom,
     debut: dateDebut,
     fin: dateFin
+  }; */
+    
+    nom: document.getElementById("collegueComp").value,
+    debut: document.getElementById("dateDebComp").value,
+    fin: document.getElementById("dateFinComp").value
   };
 
   // Envoi de la requête au Google Script
@@ -453,14 +471,29 @@ function genererRapport() {
     method: "POST",
     body: JSON.stringify(param)
   })
-  .then(response => response.json())
+  .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        // Insertion directe du code HTML envoyé par le Google Sheet
+        divResultat.innerHTML = data.html;
+      } else {
+        divResultat.innerHTML = "Erreur : " + data.message + "";
+      }
+    })
+    .catch(() => {
+      divResultat.innerHTML = "Erreur de connexion. Vérifiez le réseau.";
+    });
+}
+
+    
+/*  .then(response => response.json())
   .then(data => {
     if (data.status === "success") {
       // traduire le Md en joli HTML
       divResultat.innerHTML = marked.parse(data.markdown);
-/*      // Force l'auto-agrandissement du textarea après l'insertion du texte
+      // Force l'auto-agrandissement du textarea après l'insertion du texte
       textareaResultat.style.height = 'auto';
-      textareaResultat.style.height = textareaResultat.scrollHeight + 'px';   */
+      textareaResultat.style.height = textareaResultat.scrollHeight + 'px';  
     } else {
       divResultat.innerHTML = "<span style='color:red;'>Erreur : " + data.message + "</span>";
     }
@@ -469,15 +502,16 @@ function genererRapport() {
     textareaResultat.value = "Erreur de connexion au serveur.";
     console.error(error);
   });
-}
+} */
 
   function effacerRapport() {
     document.getElementById("formComplements").reset();
-    document.getElementById("resultatRapport").innerHTML = "";
-    document.getElementById("zoneRapport").style.display = "none";
+    const divResultat = document.getElementById("resultatRapport");
+    if(divResultat) divResultat.innerHTML = "";
+    const zoneRapport = document.getElementById("zoneRapport");
+    if(zoneRapport) zoneRapport.style.display = "none";
   }
   
-  // Auto-agrandissement des textarea restants
   document.querySelectorAll('textarea').forEach(textarea => {
     textarea.addEventListener('input', function() {
       this.style.height = 'auto';
