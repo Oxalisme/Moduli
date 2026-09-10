@@ -48,11 +48,12 @@ textarea {
 input::placeholder, 
 textarea::placeholder {
   font-family: monospace;
+  color: rgba(0, 0, 0, 0.4);
 }
 /* Grise le texte du select UNIQUEMENT quand l'option par défaut (vide) est sélectionnée */
 select:invalid {
-  color: rgba(0, 0, 0, 0.4); /* Même transparence que les autres placeholders */
   font-family: monospace;
+  color: rgba(0, 0, 0, 0.4);
 }
 /* Remet le texte en noir normal dès qu'une vraie option est choisie */
 select:valid {
@@ -62,7 +63,8 @@ select:valid {
 label {
   font-weight: bold;
   
-/* Surligne en rouge le champ obligatoire non rempli ou mal rempli */
+/* Surligne en rouge le champ obligatoire non rempli ou mal rempli
+  NE MARCHE PAS */
 input:user-invalid, 
 textarea:user-invalid, 
 select:user-invalid {
