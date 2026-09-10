@@ -62,6 +62,14 @@ select:valid {
 label {
   font-weight: bold;
   
+/* Surligne en rouge le champ obligatoire non rempli ou mal rempli */
+input:user-invalid, 
+textarea:user-invalid, 
+select:user-invalid {
+  border: 2px solid #DC2626 !important; /* Rouge vif d'alerte */
+/*  background-color: #FEF2F2 !important; /* Fond rose/rouge très léger */
+}
+  
 }
 #message {
   margin-top: 20px;
