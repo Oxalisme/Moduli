@@ -115,6 +115,8 @@ button.btn-envoyer {
   <label>Ton nom</label>
   
   <select id="collegueChant" name="nom">
+  <!-- Cette option sert de placeholder -->
+    <option value="" disabled selected hidden>Le Pape ?</option>
     <option value="alu">Alu</option>
     <option value="delphine">Delphine</option>
     <option value="ellio">Ellio</option>
@@ -128,6 +130,11 @@ button.btn-envoyer {
     <option value="sam_eve">Sam E.</option>
     <option value="other">AUTRE (précise cette info dans le champs ci-dessous)</option>
   </select>
+  /*
+  disabled : L'utilisateur ne peut pas recliquer dessus dans la liste.
+  selected : Elle s'affiche en premier à l'ouverture de la page.
+  hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
+  */
 
   <label>Avec qui tu as travaillé sur le chantier</label>
   <input type="text" id="collegueAutreChant" required>
@@ -163,6 +170,8 @@ button.btn-envoyer {
   <label>Ton nom</label>
   
   <select id="collegueHeures" name="nom">
+  <!-- Cette option sert de placeholder -->
+    <option value="" disabled selected hidden>Le Pape ?</option>
     <option value="alu">Alu</option>
     <option value="delphine">Delphine</option>
     <option value="ellio">Ellio</option>
@@ -176,6 +185,11 @@ button.btn-envoyer {
     <option value="sam_eve">Sam E.</option>
     <option value="other">AUTRE (précise cette info dans le champs Détails)</option>
   </select>
+  /*
+  disabled : L'utilisateur ne peut pas recliquer dessus dans la liste.
+  selected : Elle s'affiche en premier à l'ouverture de la page.
+  hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
+  */
 
   <label>Date</label>
   <input type="date" id="dateHeures" required>
@@ -208,6 +222,8 @@ button.btn-envoyer {
   <label>Ton nom</label>
   
   <select id="collegueComp" name="nom">
+  <!-- Cette option sert de placeholder -->
+    <option value="" disabled selected hidden>Le Pape ?</option>
     <option value="alu">Alu Minium</option>
     <option value="delphine">Del Fun</option>
     <option value="ellio">EllioM</option>
@@ -220,6 +236,11 @@ button.btn-envoyer {
     <option value="sam_eve">Sam Well</option>
     <option value="other">AUTRE (précise cette info dans le champs Détails)</option>
   </select>  
+  /*
+  disabled : L'utilisateur ne peut pas recliquer dessus dans la liste.
+  selected : Elle s'affiche en premier à l'ouverture de la page.
+  hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
+  */
 
   <label>Date</label>
   <input type="date" id="dateComp" required>
