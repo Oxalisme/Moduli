@@ -119,7 +119,7 @@ button.btn-envoyer {
 
 <button onclick="showForm('chantier')" style="background-color: #FEF2F2; border: 1px solid #9F0712;">Chantier</button>
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
-<button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Compléments OBSOLÈTE</button>
+<button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">NE PAS UTILISER</button>
 
 <!-- FORMULAIRE CHANTIER -->
 <!--
@@ -235,14 +235,14 @@ button.btn-envoyer {
 </form>
 
 <!-- FORMULAIRE COMPLEMENTS -->
-<form id="formComplements" class="theme-complements">
-  <h3>Compléments</h3>
+<form id="formComplements" class="theme-complements" onsubmit="event.preventDefault(); genererRapport();">
+  <h3>Rapports</h3>
 
   <label>Ton nom</label>
   
   <select id="collegueComp" name="nom" required>
   <!-- Cette option sert de placeholder -->
-    <option value="" disabled selected hidden>Le Pape ?</option>
+    <option value="" disabled selected>Lev Bronstein</option>
     <option value="alu">Alu Minium</option>
     <option value="delphine">Del Fun</option>
     <option value="ellio">EllioM</option>
@@ -261,19 +261,29 @@ button.btn-envoyer {
   hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
   -->
 
-  <label>Date</label>
-  <input type="date" id="dateComp" required>
+  <label>Date de début de la période</label>
+  <input type="date" id="dateDebComp" required>
+
+  <label>Date de fin de la période</label>
+  <input type="date" id="dateFinComp" required>
 
   <label>Détails</label>
-  <textarea id="details" placeholder="OBSOLÈTE, IL FAUT NOTER DANS LES HEURES" required></textarea>
+  <textarea id="details" placeholder="OBSOLÈTE, IL FAUT NOTER DANS LES HEURES"></textarea>
 
+  <button type="submit" class="btn-envoyer">Générer le rapport</button>
+  <!--
   <button type="button" class="btn-envoyer" onclick="sendComplements()">Envoyer</button>
+  -->
+
+  <!-- Zone de texte où le Markdown généré va apparaître -->
+  <label style="margin-top: 20px; display: block;">Rapport :</label>
+  <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." style="background-color: #fff; border: 1px solid #ccc; min-height: 200px;" readonly></textarea>
 </form>
 
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxf_gEV5HoJO3zRZkrWQz6fnvMKmOYFvTcqf4S-gD-XkBfucw7tHjwyuwtE3PHXqrIS/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyYpK7LcEZYkXkMCuim56X7x95aBAuvGSpK0kcZkMqV33z5Kb-Li_m02Ey1BRgXo1ii/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -313,13 +323,13 @@ function sendChantier() {
     machines: document.getElementById("machines").value
   };
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(() => {
-    document.getElementById("message").innerText = "Enregistré !";
-    clearChantier();
-  });
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("message").innerText = "Chantier enregistré avec succès !";
+      document.getElementById("formChantier").reset();
+    })
+    .catch(err => alert("Erreur d'enregistrement"));
 }
     
 function sendHeures() {
@@ -335,15 +345,16 @@ function sendHeures() {
     complements: document.getElementById("complementsHeures").value
   };
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(() => {
-    document.getElementById("message").innerText = "Enregistré !";
-    clearHeures();
-  });
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("message").innerText = "Heures enregistrées avec succès !";
+      document.getElementById("formHeures").reset();
+    })
+    .catch(err => alert("Erreur d'enregistrement"));
 }
 
+  /*
 function sendComplements() {
   const data = {
     type: "complements",
@@ -387,9 +398,56 @@ document.getElementById("complementsHeures").value = "";
 
 function clearComplements() {
   document.getElementById("collegueComp").value = "";
-  document.getElementById("dateComp").value = "";
+  document.getElementById("dateDebComp").value = "";
+  document.getElementById("dateFinComp").value = "";
   document.getElementById("details").value = "";
 }
+  */
+  
+function genererRapport() {
+  const nom = document.getElementById("collegueComp").value;
+  const dateDebut = document.getElementById("dateDebut").value;
+  const dateFin = document.getElementById("dateFin").value;
+  const textareaResultat = document.getElementById("resultatRapport");
+  
+  if (!nom || !dateDebut || !dateFin) {
+    alert("Veuillez remplir le nom et les deux dates.");
+    return;
+  }
+
+  textareaResultat.value = "Calcul et génération du rapport en cours...";
+
+  // Préparation des données à envoyer
+  const param = {
+    action: "genererRapport",
+    nom: nom,
+    debut: dateDebut,
+    fin: dateFin
+  };
+
+  // Envoi de la requête au Google Script
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(param)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === "success") {
+      textareaResultat.value = data.markdown;
+      // Force l'auto-agrandissement du textarea après l'insertion du texte
+      textareaResultat.style.height = 'auto';
+      textareaResultat.style.height = textareaResultat.scrollHeight + 'px';
+    } else {
+      textareaResultat.value = "Erreur : " + data.message;
+    }
+  })
+  .catch(error => {
+    textareaResultat.value = "Erreur de connexion au serveur.";
+    console.error(error);
+  });
+}
+
+  
 </script>
 
 </body>
