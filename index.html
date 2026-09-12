@@ -224,12 +224,15 @@ button.btn-envoyer, button.btn-effacer {
   /* Calcule la hauteur exacte : taille texte (24px) + padding haut/bas (20px) + bordures (2px) */
   height: 46px !important; 
   min-height: 46px !important;
-  line-height: 24px;
+  line-height: 24px !important;
 }
 
 /* Force l'input time à ne pas avoir de marge du tout pour rester aligné */
 .ligne-description .bloc-heure input.champ-heure {
   margin: 0 !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  padding: 10px !important; /* Identique à vos autres inputs */
 }
 
 /* Style du petit label "Temps" */
