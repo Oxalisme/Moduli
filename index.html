@@ -292,15 +292,11 @@ button.btn-envoyer, button.btn-effacer {
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
-      <textarea class="champ-texte" placeholder="Ex: Tonte de pelouse" oninput="gererLignesDescription()"></textarea>
+      <textarea class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)"></textarea>
       <div class="bloc-heure">
-        <label class="label-heure">Temps</label>
-        <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+        <label class="label-heure">jusqu'à</label>
+        <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
       </div>
-      <!--
-      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription()">
-      <input type="time" class="champ-heure" oninput="gererLignesDescription()">
-      -->
     </div>
   </div>
 
@@ -639,7 +635,18 @@ function gererLignesDescription() {
   }
 }*/
   
-function gererLignesDescription() {
+// Fonction magique qui ajuste la hauteur du textarea selon son contenu
+function ajusterHauteur(textarea) {
+  textarea.style.height = 'auto'; // Réinitialise la hauteur
+  textarea.style.height = textarea.scrollHeight + 'px'; // Applique la hauteur du texte contenu
+}
+
+function gererLignesDescription(event) {
+  // Si la fonction est déclenchée par l'écriture dans un textarea, on ajuste sa hauteur
+  if (event && event.target && event.target.tagName === 'TEXTAREA') {
+    ajusterHauteur(event.target);
+  }
+
   const zone = document.getElementById('zoneDescription');
   const lignes = zone.getElementsByClassName('ligne-description');
   const derniereLigne = lignes[lignes.length - 1];
@@ -652,16 +659,15 @@ function gererLignesDescription() {
     const nouvelleLigne = document.createElement('div');
     nouvelleLigne.className = 'ligne-description';
     nouvelleLigne.innerHTML = `
-      <textarea class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription()"></textarea>
+      <textarea class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription(event)"></textarea>
       <div class="bloc-heure">
         <label class="label-heure">Temps</label>
-        <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+        <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
       </div>
     `;
     zone.appendChild(nouvelleLigne);
   }
 }
-
 
 // 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
 function compilerDescription() {
