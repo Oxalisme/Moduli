@@ -161,7 +161,7 @@ button.btn-envoyer, button.btn-effacer {
   display: block;
 }
   
-/* Styles pour la description dynamique */
+/* Conteneur global de la zone de description */
 .conteneur-description-dynamique {
   width: 100% !important;
   padding: 0 !important;
@@ -169,28 +169,28 @@ button.btn-envoyer, button.btn-effacer {
   background: none !important;
   overflow: visible !important;
 }
-/* ligne flexible */
+/* Ligne flexible */
 .ligne-description {
   display: flex;
-  align-items: flex-end; /* Aligne le bas du textarea avec le bas de l'input time */
+  align-items: flex-end; /* Aligne le bas de l'input et du time */
   gap: 15px;
   width: 100% !important;
   padding: 0 !important;
   border: none !important;
   background: none !important;
   overflow: visible !important;
-  margin: 0 0 10px 0 !important; /* Petit espace sous chaque ligne */
+  margin: 0 0 10px 0 !important;
 }
 
-/* Le textarea prend 80% de l'espace disponible (flex: 4) */
+/* Répartition 80% / 20% */
 .ligne-description .champ-texte {
   flex: 4; 
-  min-width: 0; /* CORRECTION : Empêche le textarea de déborder et le force à écouter le Flexbox */
+  min-width: 0;
 }
 
 .ligne-description .bloc-heure {
   flex: 1;
-  min-width: 110px; /* Sécurité pour mobile */
+  min-width: 110px;
   display: flex;
   flex-direction: column;
   padding: 0 !important;
@@ -208,36 +208,22 @@ button.btn-envoyer, button.btn-effacer {
   width: 100%;
   margin: 0; /* Annule la marge globale pour éviter les décalages */
 }
-/* Force le textarea à faire EXACTEMENT la même hauteur initiale que les autres inputs */
+/* Force les inputs de la description à respecter le thème sans marges gênantes */
+.theme-chantier .ligne-description input.champ-texte,
 .theme-chantier .ligne-description textarea.champ-texte {
   background-color: #FEF2F2;
   border: 1px solid #9F0712;
   width: 100%;
-  margin: 0 !important; /* Annule le margin global qui décalait tout */
-  padding: 10px !important;
-  font-size: 24px;
-  border-radius: 12px;
-  font-family: 'Ubuntu Sans', regular;
-  resize: none;
-  overflow-y: hidden;
-  display: block;
-  /* Calcule la hauteur exacte : taille texte (24px) + padding haut/bas (20px) + bordures (2px) */
-  height: 46px !important; 
-  min-height: 46px !important;
-  line-height: 24px !important;
+  margin: 0 !important; /* Supprime le margin global de 10px qui brise l'alignement flex */
 }
 
-/* Force l'input time à ne pas avoir de marge du tout pour rester aligné */
 .ligne-description .bloc-heure input.champ-heure {
   margin: 0 !important;
-  height: 46px !important;
-  min-height: 46px !important;
-  padding: 10px !important; /* Identique à vos autres inputs */
 }
 
 /* Style du petit label "Temps" */
 .ligne-description .bloc-heure .label-heure {
-  margin: 0 0 5px 0 !important; /* Petite marge sous le label */
+  margin: 0 0 5px 0 !important;
   display: block;
 }
 
@@ -317,9 +303,9 @@ button.btn-envoyer, button.btn-effacer {
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
-      <textarea class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)"></textarea>
+      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)">
       <div class="bloc-heure">
-        <label class="label-heure">jusqu'à</label>
+        <label class="label-heure">Temps</label>
         <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
       </div>
     </div>
@@ -670,7 +656,8 @@ function ajusterHauteur(textarea) {
     textarea.style.setProperty('height', textarea.scrollHeight + 'px', 'important');
   }
 }
-  
+
+  /*
 function gererLignesDescription(event) {
   if (event && event.target && event.target.tagName === 'TEXTAREA') {
     ajusterHauteur(event.target);
@@ -695,8 +682,62 @@ function gererLignesDescription(event) {
     `;
     zone.appendChild(nouvelleLigne);
   }
+}*/
+
+function gererLignesDescription(event) {
+  const el = event.target;
+
+  // Si l'utilisateur tape du texte dans un input classique
+  if (el && el.tagName === 'INPUT' && el.classList.contains('champ-texte')) {
+    // Si le texte commence à déborder de la largeur visible du champ
+    if (el.scrollWidth > el.clientWidth) {
+      // On crée un textarea à la volée avec exactement le même contenu
+      const textarea = document.createElement('textarea');
+      textarea.className = el.className;
+      textarea.placeholder = el.placeholder;
+      textarea.value = el.value;
+      textarea.setAttribute('oninput', 'gererLignesDescription(event)');
+      
+      // On remplace l'input par le textarea
+      el.parentNode.replaceChild(textarea, el);
+      textarea.focus();
+      // On force le curseur à la fin du texte
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+      
+      // On applique directement l'ajustement de hauteur
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+  } 
+  // Si c'est déjà un textarea, on gère son agrandissement classique
+  else if (el && el.tagName === 'TEXTAREA') {
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+  }
+
+  // LOGIQUE DE CRÉATION DE NOUVELLE LIGNE À L'INFINI
+  const zone = document.getElementById('zoneDescription');
+  const lignes = zone.getElementsByClassName('ligne-description');
+  const derniereLigne = lignes[lignes.length - 1];
+  
+  const inputTexte = derniereLigne.querySelector('.champ-texte');
+  const inputHeure = derniereLigne.querySelector('.champ-heure');
+
+  if (inputTexte.value.trim() !== "" || inputHeure.value !== "") {
+    const nouvelleLigne = document.createElement('div');
+    nouvelleLigne.className = 'ligne-description';
+    nouvelleLigne.innerHTML = `
+      <input type="text" class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription(event)">
+      <div class="bloc-heure">
+        <label class="label-heure">Temps</label>
+        <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
+      </div>
+    `;
+    zone.appendChild(nouvelleLigne);
+  }
 }
 
+  
 // 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
 function compilerDescription() {
   const lignes = document.getElementsByClassName('ligne-description');
