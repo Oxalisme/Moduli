@@ -160,6 +160,43 @@ button.btn-envoyer, button.btn-effacer {
   margin-top: 15px;
   display: block;
 }
+  
+/* Styles pour la description dynamique */
+.conteneur-description-dynamique {
+  width: 100% !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  overflow: visible !important;
+}
+
+.ligne-description {
+  display: flex;
+  gap: 15px;
+  width: 100% !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  overflow: visible !important;
+  margin: 0 0 10px 0 !important; /* Petit espace sous chaque ligne */
+}
+
+/* Le champ texte prend 75% de la largeur, le champ heure prend 25% */
+.ligne-description .champ-texte {
+  flex: 3; 
+}
+.ligne-description .champ-heure {
+  flex: 1;
+}
+
+/* Force les inputs de la description dynamique à respecter le thème */
+.theme-chantier .ligne-description input {
+  background-color: #FEF2F2;
+  border: 1px solid #9F0712;
+  width: 100%;
+  margin: 0; /* Annule la marge globale pour éviter les décalages */
+}
+
 
 </style>
 </head>
@@ -230,6 +267,15 @@ button.btn-envoyer, button.btn-effacer {
 
   <label>Description</label>
   <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
+  
+  <label>Description des travaux (NE PAS ENCORE REMPLIR)</label>
+  <div id="zoneDescription" class="conteneur-description-dynamique">
+    <!-- La première ligne de description -->
+    <div class="ligne-description">
+      <input type="text" class="champ-texte" placeholder="Ex: Tonte de pelouse" oninput="gererLignesDescription()">
+      <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+    </div>
+  </div>
 
   <label>Volume déchets (en litres)</label>
   <input type="number" id="volume" placeholder="sac noir = 200L, sac blanc = 400L, remorque = 3m³" required>
@@ -381,6 +427,9 @@ document.querySelectorAll('textarea').forEach(textarea => {
   });
 });
 
+/*  POUR AJOUTER LA DESCRIPTION LE CHAMPS MULTIPLE LÀ, IL FAUT REMPLACER ET METTRE
+  const description = compilerDescription();
+*/
 function sendChantier() {
   document.getElementById("message").innerText = "Envoi du chantier en cours...";
   const param = {
@@ -540,6 +589,47 @@ function genererRapport() {
       this.style.height = this.scrollHeight + 'px';
     });
   });
+  
+// 1. Fonction qui ajoute une ligne automatiquement dès qu'on remplit la dernière
+function gererLignesDescription() {
+  const zone = document.getElementById('zoneDescription');
+  const lignes = zone.getElementsByClassName('ligne-description');
+  const derniereLigne = lignes[lignes.length - 1];
+  
+  const inputTexte = derniereLigne.querySelector('.champ-texte');
+  const inputHeure = derniereLigne.querySelector('.champ-heure');
+
+  // Si l'un des deux champs de la dernière ligne est rempli, on en crée une nouvelle
+  if (inputTexte.value.trim() !== "" || inputHeure.value !== "") {
+    const nouvelleLigne = document.createElement('div');
+    nouvelleLigne.className = 'ligne-description';
+    nouvelleLigne.innerHTML = `
+      <input type="text" class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription()">
+      <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+    `;
+    zone.appendChild(nouvelleLigne);
+  }
+}
+
+// 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
+function compilerDescription() {
+  const lignes = document.getElementsByClassName('ligne-description');
+  let descriptionTotale = "";
+
+  for (let i = 0; i < lignes.length; i++) {
+    const texte = lignes[i].querySelector('.champ-texte').value.trim();
+    const heure = lignes[i].querySelector('.champ-heure').value;
+
+    // On ne prend la ligne que si elle n'est pas vide
+    if (texte !== "" || heure !== "") {
+      // Format : Texte + Tabulation + Heure + Retour à la ligne
+      descriptionTotale += `${texte}\t${heure}\n`;
+    }
+  }
+  
+  // Enlève le dernier retour à la ligne inutile
+  return descriptionTotale.trim();
+}
 
   
 </script>
