@@ -172,7 +172,7 @@ button.btn-envoyer, button.btn-effacer {
 /* Ligne flexible */
 .ligne-description {
   display: flex;
-  align-items: flex-start; /* Aligne le bas de l'input et du time */
+  align-items: flex-start; /* Aligne le haut de l'input et du time */
   gap: 15px;
   width: 100% !important;
   padding: 0 !important;
@@ -186,6 +186,15 @@ button.btn-envoyer, button.btn-effacer {
 .ligne-description .champ-texte {
   flex: 4; 
   min-width: 0;
+  /* après j'ai copié */
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
 }
 
 .ligne-description .bloc-heure {
