@@ -134,6 +134,7 @@ button.btn-envoyer, button.btn-effacer {
   border: none !important;
   background: none !important;
   font-size: unset !important; /* Annule la taille de police globale pour ce div */
+  overflow: visible !important; /* CORRECTION : Empêche de couper l'outline du focus */
 }
 
 .ligne-champs-cote-cote .groupe-champ {
@@ -145,6 +146,7 @@ button.btn-envoyer, button.btn-effacer {
   border: none !important;
   background: none !important;
   font-size: unset !important; /* Empêche le label d'hériter des 24px du div */
+  overflow: visible !important; /* CORRECTION : Empêche de couper l'outline du focus */
 }
 
 /* Force la taille et les marges des inputs dans la ligne flex */
@@ -388,6 +390,8 @@ function sendChantier() {
     client: document.getElementById("client").value,
     lieu: document.getElementById("lieu").value,
     date: document.getElementById("dateChant").value,
+    date: document.getElementById("heureDebChant").value,
+    date: document.getElementById("heureFinChant").value,
     description: document.getElementById("description").value,
     volume: document.getElementById("volume").value,
     broyeur: document.getElementById("broyeur").value,
