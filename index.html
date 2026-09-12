@@ -127,6 +127,39 @@ button.btn-envoyer, button.btn-effacer {
 .theme-complements button.btn-envoyer, 
 .theme-complements button.btn-effacer { border: 1px solid #193CB8; }
 
+/* Permet de mettre deux champs côte à côte */
+.ligne-champs-cote-cote {
+  display: flex;
+  gap: 15px; /* Espace entre les deux blocs */
+  width: 100%;
+  margin: 10px 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.ligne-champs-cote-cote .groupe-champ {
+  flex: 1; /* Donne la même largeur aux deux colonnes */
+  display: flex;
+  flex-direction: column; /* Aligne le label au-dessus de l'input */
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* Annule les marges et force la largeur totale pour les inputs dans la ligne flex */
+.ligne-champs-cote-cote .groupe-champ input {
+  width: 100%;
+  margin: 5px 0 0 0;
+}
+
+/* Style spécifique pour les labels à l'intérieur de la ligne */
+.ligne-champs-cote-cote .groupe-champ label {
+  margin-top: 0;
+}
+
+
 </style>
 </head>
 <body>
@@ -179,6 +212,20 @@ button.btn-envoyer, button.btn-effacer {
 
   <label>Date</label>
   <input type="date" id="dateChant" required>
+
+  <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
+  <div class="ligne-champs-cote-cote">
+    <div class="groupe-champ">
+      <label for="heureDebut">De (heure)</label>
+      <input type="time" id="heureDebChant" placeholder="NE PAS ENCORE REMPLIR" required>
+    </div>
+    
+    <div class="groupe-champ">
+      <label for="heureFin">À (heure)</label>
+      <input type="time" id="heureFinChant" placeholder="NE PAS ENCORE REMPLIR" required>
+    </div>
+  </div>
+  <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
 
   <label>Description</label>
   <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
