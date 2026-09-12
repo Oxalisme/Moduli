@@ -181,12 +181,18 @@ button.btn-envoyer, button.btn-effacer {
   margin: 0 0 10px 0 !important; /* Petit espace sous chaque ligne */
 }
 
-/* Le champ texte prend 75% de la largeur, le champ heure prend 25% */
+/* Le textarea prend 80% de l'espace disponible (flex: 4) */
 .ligne-description .champ-texte {
-  flex: 3; 
+  flex: 4; 
+  min-width: 0; /* CORRECTION : Empêche le textarea de déborder et le force à écouter le Flexbox */
 }
-.ligne-description .champ-heure {
+
+/* Le bloc d'heures prend 20% de l'espace disponible (flex: 1) */
+.ligne-description .bloc-heure {
   flex: 1;
+  min-width: 90px; /* Sécurité pour éviter que le champ d'heures ne devienne trop petit sur mobile */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Force les inputs de la description dynamique à respecter le thème 
