@@ -169,9 +169,10 @@ button.btn-envoyer, button.btn-effacer {
   background: none !important;
   overflow: visible !important;
 }
-
+/* ligne flexible */
 .ligne-description {
   display: flex;
+  align-items: flex-end; /* Aligne le bas du textarea avec le bas de l'input time */
   gap: 15px;
   width: 100% !important;
   padding: 0 !important;
@@ -187,12 +188,17 @@ button.btn-envoyer, button.btn-effacer {
   min-width: 0; /* CORRECTION : Empêche le textarea de déborder et le force à écouter le Flexbox */
 }
 
-/* Le bloc d'heures prend 20% de l'espace disponible (flex: 1) */
 .ligne-description .bloc-heure {
   flex: 1;
-  min-width: 90px; /* Sécurité pour éviter que le champ d'heures ne devienne trop petit sur mobile */
+  min-width: 110px; /* Sécurité pour mobile */
   display: flex;
   flex-direction: column;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
 }
 
 /* Force les inputs de la description dynamique à respecter le thème 
@@ -202,25 +208,36 @@ button.btn-envoyer, button.btn-effacer {
   width: 100%;
   margin: 0; /* Annule la marge globale pour éviter les décalages */
 }
-/* Force le style et la hauteur du textarea de description */
+/* Force le textarea à faire EXACTEMENT la même hauteur initiale que les autres inputs */
 .theme-chantier .ligne-description textarea.champ-texte {
   background-color: #FEF2F2;
   border: 1px solid #9F0712;
   width: 100%;
-  margin: 0;
-  
-  /* FORCE LA HAUTEUR SUR UNE SEULE LIGNE (identique au champ temps) */
-  height: calc(24px + 20px + 2px) !important; /* Police (24px) + Padding haut/bas (20px) + Bordures (2px) */
-  min-height: calc(24px + 20px + 2px) !important;
-  
+  margin: 0 !important; /* Annule le margin global qui décalait tout */
+  padding: 10px !important;
   font-size: 24px;
   border-radius: 12px;
   font-family: 'Ubuntu Sans', regular;
-  padding: 10px;
   resize: none;
   overflow-y: hidden;
-  line-height: 24px; /* Force le texte à tenir sur la hauteur de la police */
+  display: block;
+  /* Calcule la hauteur exacte : taille texte (24px) + padding haut/bas (20px) + bordures (2px) */
+  height: 46px !important; 
+  min-height: 46px !important;
+  line-height: 24px;
 }
+
+/* Force l'input time à ne pas avoir de marge du tout pour rester aligné */
+.ligne-description .bloc-heure input.champ-heure {
+  margin: 0 !important;
+}
+
+/* Style du petit label "Temps" */
+.ligne-description .bloc-heure .label-heure {
+  margin: 0 0 5px 0 !important; /* Petite marge sous le label */
+  display: block;
+}
+
 
 
 </style>
@@ -642,12 +659,16 @@ function gererLignesDescription() {
   
 // Fonction magique qui ajuste la hauteur du textarea selon son contenu
 function ajusterHauteur(textarea) {
-  textarea.style.height = 'auto'; // Réinitialise la hauteur
-  textarea.style.height = textarea.scrollHeight + 'px'; // Applique la hauteur du texte contenu
+  textarea.style.setProperty('height', 'auto', 'important');
+  // Si le contenu est plus petit ou égal à une ligne, on le force à rester à 46px
+  if (textarea.scrollHeight <= 46) {
+    textarea.style.setProperty('height', '46px', 'important');
+  } else {
+    textarea.style.setProperty('height', textarea.scrollHeight + 'px', 'important');
+  }
 }
-
+  
 function gererLignesDescription(event) {
-  // Si la fonction est déclenchée par l'écriture dans un textarea, on ajuste sa hauteur
   if (event && event.target && event.target.tagName === 'TEXTAREA') {
     ajusterHauteur(event.target);
   }
@@ -659,14 +680,13 @@ function gererLignesDescription(event) {
   const inputTexte = derniereLigne.querySelector('.champ-texte');
   const inputHeure = derniereLigne.querySelector('.champ-heure');
 
-  // Si l'un des deux champs de la dernière ligne est rempli, on en crée une nouvelle
   if (inputTexte.value.trim() !== "" || inputHeure.value !== "") {
     const nouvelleLigne = document.createElement('div');
     nouvelleLigne.className = 'ligne-description';
     nouvelleLigne.innerHTML = `
-      <textarea class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription(event)"></textarea>
+      <textarea class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)"></textarea>
       <div class="bloc-heure">
-        <label class="label-heure">Temps</label>
+        <label class="label-heure">jusqu'à (2)</label>
         <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
       </div>
     `;
