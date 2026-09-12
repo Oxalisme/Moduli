@@ -172,7 +172,7 @@ button.btn-envoyer, button.btn-effacer {
 /* Ligne flexible */
 .ligne-description {
   display: flex;
-  align-items: flex-end; /* Aligne le bas de l'input et du time */
+  align-items: flex-start; /* Aligne le bas de l'input et du time */
   gap: 15px;
   width: 100% !important;
   padding: 0 !important;
@@ -727,9 +727,8 @@ function gererLignesDescription(event) {
     const nouvelleLigne = document.createElement('div');
     nouvelleLigne.className = 'ligne-description';
     nouvelleLigne.innerHTML = `
-      <input type="text" class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription(event)">
+      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)">
       <div class="bloc-heure">
-        <label class="label-heure">Temps</label>
         <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
       </div>
     `;
