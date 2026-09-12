@@ -183,20 +183,32 @@ button.btn-envoyer, button.btn-effacer {
 
 /* Le champ texte prend 75% de la largeur, le champ heure prend 25% */
 .ligne-description .champ-texte {
-  flex: 3; 
+  flex: 4; 
 }
 .ligne-description .champ-heure {
   flex: 1;
 }
 
-/* Force les inputs de la description dynamique à respecter le thème */
+/* Force les inputs de la description dynamique à respecter le thème 
 .theme-chantier .ligne-description input {
   background-color: #FEF2F2;
   border: 1px solid #9F0712;
   width: 100%;
   margin: 0; /* Annule la marge globale pour éviter les décalages */
 }
-
+/* Force le style et la hauteur du textarea de description */
+.theme-chantier .ligne-description textarea.champ-texte {
+  background-color: #FEF2F2;
+  border: 1px solid #9F0712;
+  width: 100%;
+  margin: 0;
+  min-height: 60px; /* Hauteur initiale plus compacte pour une ligne */
+  font-size: 24px;
+  border-radius: 12px;
+  font-family: 'Ubuntu Sans', regular;
+  padding: 10px;
+  resize: none; /* Désactive l'agrandissement manuel */
+}
 
 </style>
 </head>
@@ -268,12 +280,19 @@ button.btn-envoyer, button.btn-effacer {
   <label>Description</label>
   <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
   
-  <label>Description des travaux (NE PAS ENCORE REMPLIR)</label>
+  <label>Description (NE PAS ENCORE REMPLIR)</label>
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
-      <input type="text" class="champ-texte" placeholder="Ex: Tonte de pelouse" oninput="gererLignesDescription()">
+      <textarea class="champ-texte" placeholder="Ex: Tonte de pelouse" oninput="gererLignesDescription()"></textarea>
+      <div class="bloc-heure">
+        <label class="label-heure">Temps</label>
+        <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+      </div>
+      <!--
+      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription()">
       <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+      -->
     </div>
   </div>
 
@@ -589,7 +608,8 @@ function genererRapport() {
       this.style.height = this.scrollHeight + 'px';
     });
   });
-  
+
+  /*
 // 1. Fonction qui ajoute une ligne automatiquement dès qu'on remplit la dernière
 function gererLignesDescription() {
   const zone = document.getElementById('zoneDescription');
@@ -609,7 +629,31 @@ function gererLignesDescription() {
     `;
     zone.appendChild(nouvelleLigne);
   }
+}*/
+  
+function gererLignesDescription() {
+  const zone = document.getElementById('zoneDescription');
+  const lignes = zone.getElementsByClassName('ligne-description');
+  const derniereLigne = lignes[lignes.length - 1];
+  
+  const inputTexte = derniereLigne.querySelector('.champ-texte');
+  const inputHeure = derniereLigne.querySelector('.champ-heure');
+
+  // Si l'un des deux champs de la dernière ligne est rempli, on en crée une nouvelle
+  if (inputTexte.value.trim() !== "" || inputHeure.value !== "") {
+    const nouvelleLigne = document.createElement('div');
+    nouvelleLigne.className = 'ligne-description';
+    nouvelleLigne.innerHTML = `
+      <textarea class="champ-texte" placeholder="Autre tâche..." oninput="gererLignesDescription()"></textarea>
+      <div class="bloc-heure">
+        <label class="label-heure">Temps</label>
+        <input type="time" class="champ-heure" oninput="gererLignesDescription()">
+      </div>
+    `;
+    zone.appendChild(nouvelleLigne);
+  }
 }
+
 
 // 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
 function compilerDescription() {
