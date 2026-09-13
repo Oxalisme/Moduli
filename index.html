@@ -159,6 +159,7 @@ button.btn-envoyer, button.btn-effacer {
 .ligne-champs-cote-cote .groupe-champ label {
   margin-top: 15px;
   display: block;
+  font-size: unset !important;
 }
   
 /* Conteneur global de la zone de description */
@@ -234,6 +235,7 @@ button.btn-envoyer, button.btn-effacer {
   display: flex !important; /* Active le mode en ligne flexible */
   width: 100%;
   margin-top: 15px;
+  margin-down: 0px
   font-family: 'Ubuntu Sans', regular;
   font-weight: bold;
 }
@@ -247,7 +249,7 @@ button.btn-envoyer, button.btn-effacer {
   flex: 0 0 50%; /* Force la suite à occuper les 50% restants */
   box-sizing: border-box;
   /* Optionnel : vous pouvez ajouter un padding-left si vous voulez décoller légèrement le texte du milieu */
-  padding-left: 5px; 
+  padding-left: 10px; 
 }
 
 
@@ -306,7 +308,7 @@ button.btn-envoyer, button.btn-effacer {
 
   <label class="label-deux-parties">
   <span class="partie-gauche">De (NE PAS ENCORE UTILISER)</span>
-  <span class="partie-droite">À (NE PAS ENCORE UTILISER)</span>
+  <span class="partie-droite">À (NE PAS ENCORE UTILISER) (laleb1)</span>
   </label>
 
   <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
@@ -318,6 +320,19 @@ button.btn-envoyer, button.btn-effacer {
     
     <div class="groupe-champ">
       <!--<label for="heureFin">À (NE PAS ENCORE REMPLIR)</label>-->
+      <input type="time" id="heureFinChant" required>
+    </div>
+  </div>
+  <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
+  <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
+  <div class="ligne-champs-cote-cote">
+    <div class="groupe-champ">
+      <label for="heureDebut">De (NE PAS ENCORE REMPLIR)</label>
+      <input type="time" id="heureDebChant" required>
+    </div>
+    
+    <div class="groupe-champ">
+      <label for="heureFin">À (NE PAS ENCORE REMPLIR)</label>
       <input type="time" id="heureFinChant" required>
     </div>
   </div>
