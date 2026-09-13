@@ -307,13 +307,8 @@ button.btn-envoyer, button.btn-effacer {
     </div>
   </div>
   <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
-
-  <!--
-  <label>Description</label>
-  <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
-  -->
   
-  <label>Description du travail par activités</label>
+  <label>Description du chantier par activités</label>
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
@@ -328,11 +323,11 @@ button.btn-envoyer, button.btn-effacer {
   <label>Volume déchets (en litres)</label>
   <input type="number" id="volume" placeholder="sac noir = 200L, sac blanc = 400L, remorque = 3m³" required>
 
-  <label>Temps utilisation broyeur (en heures)</label>
-  <input type="time" id="broyeur" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
+  <label>Temps utilisation broyeur (en minutes)</label>
+  <input type="number" id="broyeur" placeholder="de préférence arrondi au quart d'heure" required>
 
   <label>Temps utilisation machines (en heures)</label>
-  <input type="time" id="machines" placeholder="mettre en quart d'heure: p.ex. 1.25 pour 1h15min" required>
+  <input type="number" id="machines" placeholder="de préférence arrondi au quart d'heure" required>
 
   <button type="submit" class="btn-envoyer">Envoyer</button>
   <!--
@@ -491,8 +486,11 @@ function sendChantier() {
     heureFin: document.getElementById("heureFinChant").value,
     description: compilerDescription(),
     volume: document.getElementById("volume").value,
+    broyeur: convertirMinutesEnHeures("broyeur"),
+    machines: convertirMinutesEnHeures("machines")
+    /*
     broyeur: document.getElementById("broyeur").value,
-    machines: document.getElementById("machines").value
+    machines: document.getElementById("machines").value*/
   };
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
     .then(res => res.json())
@@ -732,6 +730,19 @@ function reinitialiserZoneDescription() {
       </div>
     </div>
   `;
+}
+
+// Convertit une valeur en minutes (nombre) en heures décimales
+function convertirMinutesEnHeures(idElement) {
+  const valeur = document.getElementById(idElement).value;
+  
+  // Si le champ est vide ou n'est pas un nombre, on renvoie 0
+  if (!valeur || isNaN(valeur)) {
+    return 0;
+  }
+  
+  // Divise les minutes par 60 et arrondit à 2 décimales (ex: 1.25)
+  return parseFloat((parseFloat(valeur) / 60).toFixed(2));
 }
 
   
