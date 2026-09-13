@@ -500,7 +500,7 @@ function sendChantier() {
       document.getElementById("message").innerText = "Chantier enregistré avec succès !";
       document.getElementById("formChantier").reset();
       // OPTIONNEL : Nettoyer la zone de description dynamique pour ne laisser qu'une seule ligne vide
-      reinitialiserZoneDescription();
+      //reinitialiserZoneDescription();
     })
     .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
 }
