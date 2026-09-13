@@ -259,6 +259,33 @@ button.btn-envoyer, button.btn-effacer {
   margin: 0; /* ensure text field doesn't add extra top/bottom spacing */
 }
 
+/* Uniformise l'espacement après les blocs flex dans le thème Chantier */
+.theme-chantier .ligne-champs-cote-cote,
+.theme-chantier .conteneur-description-dynamique,
+.theme-chantier .ligne-description {
+  margin-top: 10px !important;
+  margin-bottom: 18px !important; /* augmente la marge bas pour correspondre aux autres champs */
+}
+
+/* Supprime les margins internes qui créaient des différences (les champs gèrent l'espacement via le conteneur) */
+.ligne-champs-cote-cote .groupe-champ input,
+.ligne-champs-cote-cote .groupe-champ label,
+.conteneur-description-dynamique .ligne-description .champ-texte,
+.conteneur-description-dynamique .ligne-description .bloc-heure {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Assure une distance cohérente label -> contrôle */
+.theme-chantier label {
+  margin: 12px 0 6px !important;
+}
+.theme-chantier input,
+.theme-chantier textarea,
+.theme-chantier select {
+  margin: 0 0 12px 0 !important; /* contrôle l'espacement bas des inputs */
+}
+  
 </style>
 </head>
 <body>
