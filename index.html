@@ -13,6 +13,11 @@
 /* CORRECTION LARGEUR : Force tous les éléments à respecter strictement les 100% */
 *, *::before, *::after {
   box-sizing: border-box;
+  
+  /* FORCE LE SMARTPHONE À RESPECTER STRICTEMENT VOS TAILLES DE POLICE */
+  -webkit-text-size-adjust: none; /* Pour Safari / iOS */
+  -moz-text-size-adjust: none;    /* Pour Firefox mobile */
+  text-size-adjust: none;         /* Règle standard */
 }
 
 body {
@@ -30,6 +35,7 @@ label {
   font-weight: bold;
   display: block;
   margin-top: 15px;
+  font-size: 24px !important;
 }
   
 /*style de base pour TOUS les boutons*/
@@ -159,7 +165,7 @@ button.btn-envoyer, button.btn-effacer {
 .ligne-champs-cote-cote .groupe-champ label {
   margin-top: 15px;
   display: block;
-  font-size: unset !important;
+  font-size: 24px !important;
 }
   
 /* Conteneur global de la zone de description */
@@ -229,6 +235,7 @@ button.btn-envoyer, button.btn-effacer {
 .ligne-description .bloc-heure .label-heure {
   margin: 0 0 5px 0 !important;
   display: block;
+  font-size: 24px !important;
 }
 
 .label-deux-parties {
@@ -238,6 +245,7 @@ button.btn-envoyer, button.btn-effacer {
   margin-down: 0px
   font-family: 'Ubuntu Sans', regular;
   font-weight: bold;
+  font-size: 24px !important;
 }
 
 .label-deux-parties .partie-gauche {
