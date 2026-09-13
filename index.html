@@ -297,21 +297,23 @@ button.btn-envoyer, button.btn-effacer {
   <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
   <div class="ligne-champs-cote-cote">
     <div class="groupe-champ">
-      <label for="heureDebut">De (NE PAS ENCORE REMPLIR)</label>
+      <label for="heureDebut">Début du chantier (NE FONCTIONNE PAS ENCORE)</label>
       <input type="time" id="heureDebChant" required>
     </div>
     
     <div class="groupe-champ">
-      <label for="heureFin">À (NE PAS ENCORE REMPLIR)</label>
+      <label for="heureFin">Fin du chantier (NE FONCTIONNE PAS ENCORE)</label>
       <input type="time" id="heureFinChant" required>
     </div>
   </div>
   <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
 
+  <!--
   <label>Description</label>
   <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
+  -->
   
-  <label>Description du travail, jusqu'à (NE PAS ENCORE UTILISER) (currently on test)</label>
+  <label>Description du travail par activités</label>
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
@@ -446,7 +448,7 @@ button.btn-envoyer, button.btn-effacer {
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzwsg6saue8uhJ_HFnaxy6Wh7yMkiH-eXXzMGE-eZ4CFs1QN3ZLPeS9-QZF4nHjrUAt/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxgt_D3HxtjaBzHMrMlB7eCKYkyGTxp9ddOC9iRmIUulonJTRgthWvbwufOcQqoj979/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -485,10 +487,8 @@ function sendChantier() {
     client: document.getElementById("client").value,
     lieu: document.getElementById("lieu").value,
     date: document.getElementById("dateChant").value,
-    /*
     heureDeb: document.getElementById("heureDebChant").value,
     heureFin: document.getElementById("heureFinChant").value,
-    /*description: document.getElementById("description").value,*/
     description: compilerDescription(),
     volume: document.getElementById("volume").value,
     broyeur: document.getElementById("broyeur").value,
