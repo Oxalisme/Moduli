@@ -723,14 +723,14 @@ function compilerDescription() {
 function reinitialiserZoneDescription() {
   const zone = document.getElementById('zoneDescription');
   // Remet le HTML d'origine avec une seule ligne propre
-  zone.innerHTML = `
+  zone.innerHTML = '
     <div class="ligne-description">
       <input type="text" class="champ-texte" placeholder="Ex: Tonte de pelouse" oninput="gererLignesDescription(event)">
       <div class="bloc-heure">
         <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
       </div>
     </div>
-  ;
+  ';
 }
 
   
