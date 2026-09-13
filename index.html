@@ -35,7 +35,7 @@ label {
   font-weight: bold;
   display: block;
   margin-top: 15px;
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
   
 /*style de base pour TOUS les boutons*/
@@ -165,7 +165,7 @@ button.btn-envoyer, button.btn-effacer {
 .ligne-champs-cote-cote .groupe-champ label {
   margin-top: 15px;
   display: block;
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
   
 /* Conteneur global de la zone de description */
@@ -208,14 +208,6 @@ button.btn-envoyer, button.btn-effacer {
   font-size: unset !important;
   overflow: visible !important;
 }
-
-/* Force les inputs de la description dynamique à respecter le thème 
-.theme-chantier .ligne-description input {
-  background-color: #FEF2F2;
-  border: 1px solid #9F0712;
-  width: 100%;
-  margin: 0; /* Annule la marge globale pour éviter les décalages */
-}
 /* Force les inputs de la description à respecter le thème sans marges gênantes */
 .theme-chantier .ligne-description input.champ-texte,
 .theme-chantier .ligne-description textarea.champ-texte {
@@ -229,35 +221,6 @@ button.btn-envoyer, button.btn-effacer {
 .ligne-description .bloc-heure input.champ-heure {
   margin: 0 !important;
   align-self: center; /* S'assure qu'il s'aligne sur le milieu vertical de la zone initiale */
-}
-
-/* Style du petit label "Temps" */
-.ligne-description .bloc-heure .label-heure {
-  margin: 0 0 5px 0 !important;
-  display: block;
-  font-size: 24px !important;
-}
-
-.label-deux-parties {
-  display: flex !important; /* Active le mode en ligne flexible */
-  width: 100%;
-  margin-top: 15px;
-  margin-down: 0px
-  font-family: 'Ubuntu Sans', regular;
-  font-weight: bold;
-  font-size: 24px !important;
-}
-
-.label-deux-parties .partie-gauche {
-  flex: 0 0 50%; /* Force cette partie à occuper EXACTEMENT 50% de la largeur */
-  box-sizing: border-box;
-}
-
-.label-deux-parties .partie-droite {
-  flex: 0 0 50%; /* Force la suite à occuper les 50% restants */
-  box-sizing: border-box;
-  /* Optionnel : vous pouvez ajouter un padding-left si vous voulez décoller légèrement le texte du milieu */
-  padding-left: 10px; 
 }
 
 
@@ -314,24 +277,23 @@ button.btn-envoyer, button.btn-effacer {
   <label>Date</label>
   <input type="date" id="dateChant" required>
 
+  <!--
   <label class="label-deux-parties">
   <span class="partie-gauche">De (NE PAS ENCORE UTILISER)</span>
   <span class="partie-droite">À (NE PAS ENCORE UTILISER) (laleb1)</span>
   </label>
 
-  <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
   <div class="ligne-champs-cote-cote">
     <div class="groupe-champ">
-      <!--<label for="heureDebut">De (NE PAS ENCORE REMPLIR)</label>-->
       <input type="time" id="heureDebChant" required>
     </div>
     
     <div class="groupe-champ">
-      <!--<label for="heureFin">À (NE PAS ENCORE REMPLIR)</label>-->
       <input type="time" id="heureFinChant" required>
     </div>
   </div>
-  <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
+  -->
+  
   <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
   <div class="ligne-champs-cote-cote">
     <div class="groupe-champ">
@@ -349,7 +311,7 @@ button.btn-envoyer, button.btn-effacer {
   <label>Description</label>
   <textarea id="description" placeholder="détails des travaux, p.ex:&#10désherbage -hh:mm,&#10tonte -hh:mm,&#10taille du liquidambar -hh:mm" required></textarea>
   
-  <label>Description (NE PAS ENCORE REMPLIR)</label>
+  <label>Description de l'activité, jusqu'à (NE PAS ENCORE UTILISER)</label>
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
