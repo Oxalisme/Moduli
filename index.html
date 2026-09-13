@@ -173,7 +173,7 @@ button.btn-envoyer, button.btn-effacer {
 /* Ligne flexible */
 .ligne-description {
   display: flex;
-  align-items: flex-start; /* Aligne le haut de l'input et du time */
+  align-items: center; /* Aligne le milieu de l'input et du time */
   gap: 15px;
   width: 100% !important;
   padding: 0 !important;
@@ -230,6 +230,25 @@ button.btn-envoyer, button.btn-effacer {
   display: block;
 }
 
+.label-deux-parties {
+  display: flex !important; /* Active le mode en ligne flexible */
+  width: 100%;
+  margin-top: 15px;
+  font-family: 'Ubuntu Sans', regular;
+  font-weight: bold;
+}
+
+.label-deux-parties .partie-gauche {
+  flex: 0 0 50%; /* Force cette partie à occuper EXACTEMENT 50% de la largeur */
+  box-sizing: border-box;
+}
+
+.label-deux-parties .partie-droite {
+  flex: 0 0 50%; /* Force la suite à occuper les 50% restants */
+  box-sizing: border-box;
+  /* Optionnel : vous pouvez ajouter un padding-left si vous voulez décoller légèrement le texte du milieu */
+  padding-left: 5px; 
+}
 
 
 </style>
@@ -285,16 +304,21 @@ button.btn-envoyer, button.btn-effacer {
   <label>Date</label>
   <input type="date" id="dateChant" required>
 
+  <label class="label-deux-parties">
+  <span class="partie-gauche">De (NE PAS ENCORE UTILISER)</span>
+  <span class="partie-droite">À (NE PAS ENCORE UTILISER)</span>
+  </label>
+
   <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
   <div class="ligne-champs-cote-cote">
     <div class="groupe-champ">
-      <label for="heureDebut">De (NE PAS ENCORE REMPLIR)</label>
-      <input type="time" id="heureDebChant" placeholder="NE PAS ENCORE REMPLIR" required>
+      <!--<label for="heureDebut">De (NE PAS ENCORE REMPLIR)</label>-->
+      <input type="time" id="heureDebChant" required>
     </div>
     
     <div class="groupe-champ">
-      <label for="heureFin">À (NE PAS ENCORE REMPLIR)</label>
-      <input type="time" id="heureFinChant" placeholder="NE PAS ENCORE REMPLIR" required>
+      <!--<label for="heureFin">À (NE PAS ENCORE REMPLIR)</label>-->
+      <input type="time" id="heureFinChant" required>
     </div>
   </div>
   <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
