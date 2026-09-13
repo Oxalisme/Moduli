@@ -222,69 +222,6 @@ button.btn-envoyer, button.btn-effacer {
   margin: 0 !important;
   align-self: center; /* S'assure qu'il s'aligne sur le milieu vertical de la zone initiale */
 }
-
-  /* COPILOT HELPS */
-
-/* ---- Chantier: consistent vertical rhythm between label and field ---- */
-/* Use a fixed bottom margin on labels and reset inputs' top margin so
-   spacing is controlled in one place (label -> control). */
-.theme-chantier label {
-  margin: 12px 0 6px; /* top 12px (keeps spacing from previous element), bottom 6px to separate from the control */
-}
-
-/* Ensure inputs/textarea/select/containers in chantier don't add extra top margin */
-.theme-chantier input,
-.theme-chantier textarea,
-.theme-chantier select,
-.theme-chantier .conteneur-description-dynamique,
-.theme-chantier .ligne-champs-cote-cote {
-  margin-top: 0;
-  margin-bottom: 12px; /* consistent spacing after controls */
-}
-
-/* For the two-column time group, make label/control spacing consistent */
-.ligne-champs-cote-cote .groupe-champ label {
-  margin: 0 0 6px; /* label sits directly above its input with same bottom gap */
-}
-.ligne-champs-cote-cote .groupe-champ input {
-  margin: 0; /* remove the extra 10px top margin that caused mismatch */
-}
-
-/* Fine tune description lines so they line up visually with other fields */
-.conteneur-description-dynamique .ligne-description {
-  margin: 6px 0; /* small vertical gap between activity rows */
-  padding: 0;
-}
-.conteneur-description-dynamique .ligne-description .champ-texte {
-  margin: 0; /* ensure text field doesn't add extra top/bottom spacing */
-}
-
-/* Uniformise l'espacement après les blocs flex dans le thème Chantier */
-.theme-chantier .ligne-champs-cote-cote,
-.theme-chantier .conteneur-description-dynamique,
-.theme-chantier .ligne-description {
-  margin-top: 10px !important;
-  margin-bottom: 18px !important; /* augmente la marge bas pour correspondre aux autres champs */
-}
-
-/* Supprime les margins internes qui créaient des différences (les champs gèrent l'espacement via le conteneur) */
-.ligne-champs-cote-cote .groupe-champ input,
-.ligne-champs-cote-cote .groupe-champ label,
-.conteneur-description-dynamique .ligne-description .champ-texte,
-.conteneur-description-dynamique .ligne-description .bloc-heure {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* Assure une distance cohérente label -> contrôle */
-.theme-chantier label {
-  margin: 12px 0 6px !important;
-}
-.theme-chantier input,
-.theme-chantier textarea,
-.theme-chantier select {
-  margin: 0 0 12px 0 !important; /* contrôle l'espacement bas des inputs */
-}
   
 </style>
 </head>
