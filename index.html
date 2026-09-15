@@ -300,10 +300,10 @@ button.btn-envoyer, button.btn-effacer {
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
-      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)">
+      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)" required>
       <div class="bloc-heure">
         <!--<label class="label-heure">Temps</label>-->
-        <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
+        <input type="time" class="champ-heure" oninput="gererLignesDescription(event)" required>
       </div>
     </div>
   </div>
