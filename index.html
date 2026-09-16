@@ -702,7 +702,7 @@ function compilerDescription() {
     // On ne prend la ligne que si elle n'est pas vide
     if (texte !== "" || heure !== "") {
       // Format : Texte + Tabulation + Heure + Retour à la ligne
-      descriptionTotale += `${texte}\t${heure}\n`;
+      descriptionTotale += `${texte}\t-${heure}\n`;
     }
   }
   
