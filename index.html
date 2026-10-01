@@ -423,43 +423,17 @@ button.btn-envoyer, button.btn-effacer {
 <form id="formComplements" class="theme-complements" onsubmit="event.preventDefault(); genererRapport();">
   <h3>Rapports</h3>
 
-  <label>Ton nom</label>
   
-  <select id="collegueComp" name="nom" required>
-  <!-- Cette option sert de placeholder -->
-    <option value="" disabled selected>Friedrich Engels</option>
-    <option value="alu">Alu</option>
-    <option value="delphine">Delphine</option>
-    <option value="ellio">Ellio</option>
-    <option value="gabriel">Gabriel</option>
-    <option value="greg">Greg</option>
-    <option value="juan">Juan</option>
-    <option value="laura">Laura</option>
-    <option value="laure">Laure</option>
-    <option value="mickael">Mickaël</option>
-    <option value="nico">Nico</option>
-    <option value="oxa">Oxa</option>
-    <option value="sam_hannes">Sam Lebelge</option>
-    <option value="sam_eve">Sam E.</option>
-    <option value="other">AUTRE (il n'y a malheureusement pas de solution pour voir tes heures actuellement...)</option>
-  </select>  
-  <!--
-  disabled : L'utilisateur ne peut pas recliquer dessus dans la liste.
-  selected : Elle s'affiche en premier à l'ouverture de la page.
-  hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
-  -->
-
-  
-  <label>NE FONCTIONNE PAS ENCORE</label>
+  <label>Choisir ce que tu veux consulter</label>
 
   <div class="groupe-client" style="background-color: transparent; border: 1px solid #193CB8;">
+    <!-- Option 1 : Consulter tes heures -->
     <div style="margin-bottom: 10px;">
       <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
-        <input type="radio" name="typeClientComp" value="select" onchange="gererTypeClientComplements()" style="width: auto; margin: 0 10px 0 0;">
+        <input type="radio" name="typeRapport" value="collegue" onchange="gererTypeRapport()" style="width: auto; margin: 0 10px 0 0;">
         Ton nom
       </label>
-      
-      <select id="collegueCompSelect" name="nom" required>
+      <select id="collegueCompSelect" name="nom" style="display: none;" required>
       <!-- Cette option sert de placeholder -->
         <option value="" disabled selected>Friedrich Engels</option>
         <option value="alu">Alu</option>
@@ -475,16 +449,16 @@ button.btn-envoyer, button.btn-effacer {
         <option value="oxa">Oxa</option>
         <option value="sam_hannes">Sam Lebelge</option>
         <option value="sam_eve">Sam E.</option>
-        <option value="other">AUTRE (il n'y a malheureusement pas de solution pour voir tes heures actuellement...)</option>
       </select>
     </div>
   
+    <!-- Option 2 : Consulter les heures d'un client -->
     <div style="margin-bottom: 10px;">
       <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
-        <input type="radio" name="typeClientComp" value="text" onchange="gererTypeClientComplements()" style="width: auto; margin: 0 10px 0 0;">
-        Client régulier
+        <input type="radio" name="typeRapport" value="client" onchange="gererTypeRapport()" style="width: auto; margin: 0 10px 0 0;">
+        Nom du client régulier
       </label>
-      <select id="clientSelect" name="client" style="display: none;" required>
+      <select id="clientCompSelect" name="client" style="display: none;" required>
         <option value="" disabled selected>Nom du client</option>
         <option value="depot">Dépôt</option>
         <option value="gauthey">Gauthey</option>
@@ -500,6 +474,8 @@ button.btn-envoyer, button.btn-effacer {
       </select>
     </div>
   </div>
+  
+
 
   <label>Date de début de la période</label>
   <input type="date" id="dateDebComp" required>
@@ -714,17 +690,17 @@ function genererRapport() {
   const divResultat = document.getElementById("resultatRapport");
   
   // Récupère le type sélectionné (collegue ou client)
-  const typeChoisi = document.querySelector('input[name="typeClientComp"]:checked')?.value;
+  const typeChoisi = document.querySelector('input[name="typeRapport"]:checked')?.value;
   let nom = "";
   let typeRapport = "";
   
-  if (typeChoisi === 'select') {
+  if (typeChoisi === 'collegue') {
     // C'est un collegue
-    nom = document.getElementById("collegueComp").value;
+    nom = document.getElementById("collegueCompSelect").value;
     typeRapport = "collegue";
-  } else if (typeChoisi === 'text') {
+  } else if (typeChoisi === 'client') {
     // C'est un client
-    nom = document.getElementById('clientSelect').value;
+    nom = document.getElementById('clientCompSelect').value;
     typeRapport = "client";
   }
   
@@ -742,23 +718,24 @@ function genererRapport() {
   };
 
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "success") {
-        divResultat.innerHTML = data.html; 
-      } else {
-        divResultat.innerHTML = "<span style='color:red;'>Erreur retournée par Google : " + data.message + "</span>";
-      }
-    })
-    .catch((erreur) => {
-      divResultat.innerHTML = "<span style='color:red;'>Erreur de connexion. Vérifiez le réseau.</span>";
-    });
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === "success") {
+      divResultat.innerHTML = data.html; 
+    } else {
+      divResultat.innerHTML = "<span style='color:red;'>Erreur retournée par Google : " + data.message + "</span>";
+    }
+  })
+  .catch((erreur) => {
+    divResultat.innerHTML = "<span style='color:red;'>Erreur de connexion. Vérifiez le réseau.</span>";
+  });
 }
 
   function effacerRapport() {
     document.getElementById("formComplements").reset();
     const divResultat = document.getElementById("resultatRapport");
     if(divResultat) divResultat.innerHTML = "";
+    gererTypeRapport(); // Réinitialise aussi l'affichage des selects
   }
   
   document.querySelectorAll('textarea').forEach(textarea => {
@@ -894,26 +871,27 @@ function gererTypeClient() {
   }
 }
 
-  // Gère l'affichage/masquage des champs dans la section "groupe-client" du formulaire Compléments
-function gererTypeClientComplements() {
-  const typeChoisi = document.querySelector('input[name="typeClientComp"]:checked');
-  const selectCollegue = document.querySelectorAll('#collegueComp')[0]; // Le premier select (collegues)
-  const selectClient = document.getElementById('clientSelect');
+// Gère l'affichage/masquage des selects du formulaire Compléments selon le choix des radio buttons
+function gererTypeRapport() {
+  const typeChoisi = document.querySelector('input[name="typeRapport"]:checked');
+  const selectCollegue = document.getElementById('collegueCompSelect');
+  const selectClient = document.getElementById('clientCompSelect');
   
-  if (typeChoisi && typeChoisi.value === 'select') {
-    // Affiche les collegues, masque les clients
+  if (typeChoisi && typeChoisi.value === 'collegue') {
+    // Affiche le select des collègues, masque celui des clients
     selectCollegue.style.display = 'block';
     selectCollegue.removeAttribute('disabled');
     selectClient.style.display = 'none';
     selectClient.setAttribute('disabled', true);
-  } else if (typeChoisi && typeChoisi.value === 'text') {
-    // Affiche les clients, masque les collegues
+  } else if (typeChoisi && typeChoisi.value === 'client') {
+    // Affiche le select des clients, masque celui des collègues
     selectClient.style.display = 'block';
     selectClient.removeAttribute('disabled');
     selectCollegue.style.display = 'none';
     selectCollegue.setAttribute('disabled', true);
   }
 }
+
 
 // Modifie la fonction sendChantier pour récupérer le bon client
 function sendChantier() {
