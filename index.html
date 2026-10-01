@@ -449,6 +449,61 @@ button.btn-envoyer, button.btn-effacer {
   hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
   -->
 
+  
+  <label>NE FONCTIONNE PAS ENCORE</label>
+
+  <div class="groupe-client" style="background-color: transparent; border: 1px solid #9F0712;">
+    <!-- Option 1 : Choisir parmi une liste -->
+    <div style="margin-bottom: 10px;">
+      <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
+        <input type="radio" name="typeClient" value="select" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
+        Ton nom
+      </label>
+      
+      <select id="collegueComp" name="nom" required>
+      <!-- Cette option sert de placeholder -->
+        <option value="" disabled selected>Friedrich Engels</option>
+        <option value="alu">Alu</option>
+        <option value="delphine">Delphine</option>
+        <option value="ellio">Ellio</option>
+        <option value="gabriel">Gabriel</option>
+        <option value="greg">Greg</option>
+        <option value="juan">Juan</option>
+        <option value="laura">Laura</option>
+        <option value="laure">Laure</option>
+        <option value="mickael">Mickaël</option>
+        <option value="nico">Nico</option>
+        <option value="oxa">Oxa</option>
+        <option value="sam_hannes">Sam Lebelge</option>
+        <option value="sam_eve">Sam E.</option>
+        <option value="other">AUTRE (il n'y a malheureusement pas de solution pour voir tes heures actuellement...)</option>
+      </select>
+    </div>
+  
+    <div style="margin-bottom: 10px;">
+      <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
+        <input type="radio" name="typeClient" value="text" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
+        Client régulier
+      </label>
+      <select id="clientSelect" name="client" style="display: none;" required>
+        <option value="" disabled selected>Nom du client</option>
+        <option value="depot">Dépôt</option>
+        <option value="gauthey">Gauthey</option>
+        <option value="godelle">Godelle</option>
+        <option value="imhof">Imhof</option>
+        <option value="maye">Maye (Branche 10)</option>
+        <option value="miauton">Miauton</option>
+        <option value="morard">Morard</option>
+        <option value="perret">Perret</option>
+        <option value="perreten">Perreten</option>
+        <option value="sylvie">Sylvie</option>
+        <option value="vuffray">Vuffray</option>
+      </select>
+    </div>
+  </div>
+  
+
+
   <label>Date de début de la période</label>
   <input type="date" id="dateDebComp" required>
 
