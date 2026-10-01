@@ -453,14 +453,13 @@ button.btn-envoyer, button.btn-effacer {
   <label>NE FONCTIONNE PAS ENCORE</label>
 
   <div class="groupe-client" style="background-color: transparent; border: 1px solid #193CB8;">
-    <!-- Option 1 : Choisir parmi une liste -->
     <div style="margin-bottom: 10px;">
       <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
-        <input type="radio" name="typeClient" value="select" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
+        <input type="radio" name="typeClient" value="select" onchange="gererTypeClientComplements()" style="width: auto; margin: 0 10px 0 0;">
         Ton nom
       </label>
       
-      <select id="collegueComp" name="nom" required>
+      <select id="collegueCompSelect" name="nom" required>
       <!-- Cette option sert de placeholder -->
         <option value="" disabled selected>Friedrich Engels</option>
         <option value="alu">Alu</option>
@@ -482,7 +481,7 @@ button.btn-envoyer, button.btn-effacer {
   
     <div style="margin-bottom: 10px;">
       <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
-        <input type="radio" name="typeClient" value="text" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
+        <input type="radio" name="typeClientComp" value="text" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
         Client régulier
       </label>
       <select id="clientSelect" name="client" style="display: none;" required>
@@ -501,8 +500,6 @@ button.btn-envoyer, button.btn-effacer {
       </select>
     </div>
   </div>
-  
-
 
   <label>Date de début de la période</label>
   <input type="date" id="dateDebComp" required>
@@ -660,17 +657,18 @@ function clearComplements() {
   document.getElementById("details").value = "";
 }
   */
-  
+
+  /*
 function genererRapport() {
   
   //alert("Étape 1 : Le bouton a bien détecté le clic !");
   
   const divResultat = document.getElementById("resultatRapport");
   
-  /*if (!divResultat) {
+  if (!divResultat) {
     alert("ERREUR : L'élément HTML 'resultatRapport' est introuvable dans la page !");
     return;
-  }*/
+  }
 
   //alert("Étape 2 : Les boîtes d'affichage existent bien dans la page.");
 
@@ -692,10 +690,10 @@ function genererRapport() {
   //alert("Étape 4 : Connexion au Google Sheet en cours via : " + scriptURL);
 
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-  /*.then(res => {
+  .then(res => {
     alert("Étape 5 : Le serveur Google Sheet a répondu ! Traitement des données...");
     return res.json();
-  })*/
+  })
   .then(res => res.json())
   .then(data => {
     //alert("Étape 6 : Données reçues avec le statut : " + data.status);
@@ -709,6 +707,52 @@ function genererRapport() {
     //alert("Étape ÉCHEC : La connexion a échoué. Détails : " + erreur.message);
     divResultat.innerHTML = "<span style='color:red;'>Erreur de connexion. Vérifiez le réseau.</span>";
   });
+}
+*/
+
+function genererRapport() {
+  const divResultat = document.getElementById("resultatRapport");
+  
+  // Récupère le type sélectionné (collegue ou client)
+  const typeChoisi = document.querySelector('input[name="typeClientComp"]:checked')?.value;
+  let nom = "";
+  let typeRapport = "";
+  
+  if (typeChoisi === 'select') {
+    // C'est un collegue
+    nom = document.getElementById("collegueComp").value;
+    typeRapport = "collegue";
+  } else if (typeChoisi === 'text') {
+    // C'est un client
+    nom = document.getElementById('clientSelect').value;
+    typeRapport = "client";
+  }
+  
+  const debut = document.getElementById("dateDebComp").value;
+  const fin = document.getElementById("dateFinComp").value;
+
+  divResultat.innerHTML = "<em>Calcul et génération du rapport quotidien en cours...</em>";
+
+  const param = {
+    action: "genererRapport",
+    nom: nom,
+    typeRapport: typeRapport, // Nouveau paramètre pour différencier
+    debut: debut,
+    fin: fin
+  };
+
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        divResultat.innerHTML = data.html; 
+      } else {
+        divResultat.innerHTML = "<span style='color:red;'>Erreur retournée par Google : " + data.message + "</span>";
+      }
+    })
+    .catch((erreur) => {
+      divResultat.innerHTML = "<span style='color:red;'>Erreur de connexion. Vérifiez le réseau.</span>";
+    });
 }
 
   function effacerRapport() {
@@ -847,6 +891,27 @@ function gererTypeClient() {
     textClient.removeAttribute('disabled');
     selectClient.style.display = 'none';
     selectClient.setAttribute('disabled', true);
+  }
+}
+
+  // Gère l'affichage/masquage des champs dans la section "groupe-client" du formulaire Compléments
+function gererTypeClientComplements() {
+  const typeChoisi = document.querySelector('input[name="typeClientComp"]:checked');
+  const selectCollegue = document.querySelectorAll('#collegueComp')[0]; // Le premier select (collegues)
+  const selectClient = document.getElementById('clientSelect');
+  
+  if (typeChoisi && typeChoisi.value === 'select') {
+    // Affiche les collegues, masque les clients
+    selectCollegue.style.display = 'block';
+    selectCollegue.removeAttribute('disabled');
+    selectClient.style.display = 'none';
+    selectClient.setAttribute('disabled', true);
+  } else if (typeChoisi && typeChoisi.value === 'text') {
+    // Affiche les clients, masque les collegues
+    selectClient.style.display = 'block';
+    selectClient.removeAttribute('disabled');
+    selectCollegue.style.display = 'none';
+    selectCollegue.setAttribute('disabled', true);
   }
 }
 
