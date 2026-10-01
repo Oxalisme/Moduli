@@ -275,6 +275,31 @@ button.btn-envoyer, button.btn-effacer {
   <input type="text" id="collegueAutreChant">
 
   <label>Nom du client</label>
+  
+  <!-- Option 1 : Choisir parmi une liste -->
+  <div style="margin-bottom: 10px;">
+    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
+      <input type="radio" name="typeClient" value="select" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
+      Client régulier
+    </label>
+    <select id="clientSelect" name="client" style="display: none;" required>
+      <option value="" disabled selected>Nom du client</option>
+      <option value="gauthey">Gauthey</option>
+      <option value="godelle">Godelle</option>
+      <option value="vuffray">Vuffray</option>
+    </select>
+  </div>
+
+  <!-- Option 2 : Entrer manuellement -->
+  <div style="margin-bottom: 10px;">
+    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
+      <input type="radio" name="typeClient" value="text" onchange="gererTypeClient()" style="width: auto; margin: 0 10px 0 0;">
+      Autre client
+    </label>
+    <input type="text" id="clientText" style="display: none;" placeholder="Nom du client">
+  </div>
+
+  <label>Nom du client</label>
   <input type="text" id="client" required>
 
   <label>Lieu</label>
