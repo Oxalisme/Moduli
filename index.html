@@ -489,6 +489,8 @@ document.querySelectorAll('textarea').forEach(textarea => {
 /*  POUR AJOUTER LA DESCRIPTION LE CHAMPS MULTIPLE LÀ, IL FAUT REMPLACER ET METTRE
   const description = compilerDescription();
 */
+
+  /*
 function sendChantier() {
   document.getElementById("message").innerText = "Envoi du chantier en cours...";
   const param = {
@@ -504,9 +506,6 @@ function sendChantier() {
     volume: document.getElementById("volume").value,
     broyeur: convertirMinutesEnHeures("broyeur"),
     machines: convertirMinutesEnHeures("machines")
-    /*
-    broyeur: document.getElementById("broyeur").value,
-    machines: document.getElementById("machines").value*/
   };
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
     .then(res => res.json())
@@ -518,6 +517,7 @@ function sendChantier() {
     })
     .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
 }
+*/
     
 function sendHeures() {
   document.getElementById("message").innerText = "Envoi des heures en cours...";
@@ -759,6 +759,65 @@ function convertirMinutesEnHeures(idElement) {
   
   // Divise les minutes par 60 et arrondit à 2 décimales (ex: 1.25)
   return parseFloat((parseFloat(valeur) / 60).toFixed(2));
+}
+  
+  // Gère l'affichage/masquage des champs client selon le choix
+function gererTypeClient() {
+  const typeChoisi = document.querySelector('input[name="typeClient"]:checked');
+  const selectClient = document.getElementById('clientSelect');
+  const textClient = document.getElementById('clientText');
+  
+  if (typeChoisi && typeChoisi.value === 'select') {
+    selectClient.style.display = 'block';
+    selectClient.removeAttribute('disabled');
+    textClient.style.display = 'none';
+    textClient.setAttribute('disabled', true);
+  } else if (typeChoisi && typeChoisi.value === 'text') {
+    textClient.style.display = 'block';
+    textClient.removeAttribute('disabled');
+    selectClient.style.display = 'none';
+    selectClient.setAttribute('disabled', true);
+  }
+}
+
+// Modifie la fonction sendChantier pour récupérer le bon client
+function sendChantier() {
+  document.getElementById("message").innerText = "Envoi du chantier en cours...";
+  
+  // Récupère le client selon ce qui est coché
+  const typeClient = document.querySelector('input[name="typeClient"]:checked')?.value;
+  let client = "";
+  
+  if (typeClient === 'select') {
+    client = document.getElementById('clientSelect').value;
+  } else if (typeClient === 'text') {
+    client = document.getElementById('clientText').value;
+  }
+  
+  const param = {
+    type: "chantier",
+    nom: document.getElementById("collegueChant").value,
+    avec: document.getElementById("collegueAutreChant").value,
+    client: client, // C'est maintenant dynamique !
+    lieu: document.getElementById("lieu").value,
+    date: document.getElementById("dateChant").value,
+    heureDeb: document.getElementById("heureDebChant").value,
+    heureFin: document.getElementById("heureFinChant").value,
+    description: compilerDescription(),
+    volume: document.getElementById("volume").value,
+    broyeur: convertirMinutesEnHeures("broyeur"),
+    machines: convertirMinutesEnHeures("machines")
+  };
+  
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+    .then(res => res.json())
+    .then(() => {
+      document.getElementById("message").innerText = "Chantier enregistré avec succès !";
+      document.getElementById("formChantier").reset();
+      gererTypeClient(); // Réinitialise aussi les champs client
+      reinitialiserZoneDescription();
+    })
+    .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
 }
 
   
