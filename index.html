@@ -292,11 +292,17 @@ button.btn-envoyer, button.btn-effacer {
         <option value="imhof">Imhof</option>
         <option value="maye">Maye (Branche 10)</option>
         <option value="miauton">Miauton</option>
+        <option value="mundler">Mundler</option>
         <option value="morard">Morard</option>
         <option value="perret">Perret</option>
         <option value="perreten">Perreten</option>
         <option value="sylvie">Sylvie</option>
         <option value="vuffray">Vuffray</option>
+        <option value="burenoz3">Chloé NICO</option>
+        <option value="crinoline">Chloé CRINO</option>
+        <option value="paquis4">Chloé ROSIERS</option>
+        <option value="sallin">Chloé SALLIN</option>
+        <option value="chloe">Chloé CHARDONNE</option>
       </select>
     </div>
   
@@ -316,7 +322,7 @@ button.btn-envoyer, button.btn-effacer {
   -->
 
   <label>Lieu</label>
-  <input type="text" id="lieu" placeholder="adresse ou précision p.ex. concernant les 4 maisons de Chloé" required>
+  <input type="text" id="lieu" placeholder="adresse ou précision" required>
 
   <label>Date</label>
   <input type="date" id="dateChant" required>
@@ -335,11 +341,11 @@ button.btn-envoyer, button.btn-effacer {
   </div>
   <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
   
-  <label>Description du chantier par activités</label>
+  <label>Description du chantier par activités (marquer l'heure de fin de l'activité)</label>
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
-      <input type="text" class="champ-texte" placeholder="Détails de l'activité" oninput="gererLignesDescription(event)" required>
+      <input type="text" class="champ-texte" placeholder="Détails de l'activité, ci-après l'heure de fin" oninput="gererLignesDescription(event)" required>
       <div class="bloc-heure">
         <!--<label class="label-heure">Temps</label>-->
         <input type="time" class="champ-heure" oninput="gererLignesDescription(event)" required>
@@ -408,9 +414,9 @@ button.btn-envoyer, button.btn-effacer {
   <input type="time" id="fin2">
   
   <label>Détails par rapport aux heures</label>
-  <textarea id="detailsHeures" placeholder="temps de pause ou autres"></textarea>
+  <textarea id="detailsHeures" placeholder="temps de pause ou détails du jour"></textarea>
 
-  <label>Infos complémentaires pour la journée</label>
+  <label>Infos complémentaires pour la journée (frais)</label>
   <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
 
   <button type="submit" class="btn-envoyer">Envoyer</button>
@@ -466,11 +472,17 @@ button.btn-envoyer, button.btn-effacer {
         <option value="imhof">Imhof</option>
         <option value="maye">Maye (Branche 10)</option>
         <option value="miauton">Miauton</option>
+        <option value="mundler">Mundler</option>
         <option value="morard">Morard</option>
         <option value="perret">Perret</option>
         <option value="perreten">Perreten</option>
         <option value="sylvie">Sylvie</option>
         <option value="vuffray">Vuffray</option>
+        <option value="burenoz3">Chloé NICO</option>
+        <option value="crinoline">Chloé CRINO</option>
+        <option value="paquis4">Chloé ROSIERS</option>
+        <option value="sallin">Chloé SALLIN</option>
+        <option value="chloe">Chloé CHARDONNE</option>
       </select>
     </div>
   </div>
