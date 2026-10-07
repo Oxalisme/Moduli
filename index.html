@@ -552,21 +552,21 @@ button.btn-envoyer, button.btn-effacer {
   <label>Infos complémentaires pour la journée (frais)</label>
   <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
   
-  <label>Frais de la journée NE PAS REMPLI!!!!!</label>
-  <div class="conteneur-frais-journaliers"style="background-color: transparent; border: 1px solid #016630;">
+  <label>Frais de la journée NE PAS REMPLIR !!!!!</label>
+  <div class="conteneur-frais-journaliers" style="background-color: transparent; border: 1px solid #016630;">
     <!-- PREMIÈRE LIGNE : km, ticket repas, pique-nique -->
     <div class="frais-ligne-1">
       <div class="groupe-frais-km">
         <label for="champKm">Kilométrage</label>
-        <input type="number" id="champKm" placeholder="kilomètres">
+        <input type="number" id="champKm" placeholder="km">
       </div>
       
       <div class="groupe-frais-ticket">
-        <label for="champTicketRepas">Ticket repas (CHF)</label>
-        <input type="number" id="champTicketRepas" placeholder="montant exact" step="0.01">
+        <label for="champTicketRepas">Ticket repas</label>
+        <input type="number" id="champTicketRepas" placeholder="CHF" step="0.01">
       </div>
       
-      <div class="groupe-frais-picnic">
+      <div class="groupe-frais-picnic" style="background-color: transparent; border: 1px solid #016630;">
         <label for="champPicnic">
           <input type="checkbox" id="champPicnic">
           Pique-nique
