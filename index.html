@@ -257,7 +257,6 @@ button.btn-envoyer, button.btn-effacer {
   font-size: unset !important;
   overflow: visible !important;
   margin-bottom: 10px !important;
-  align-items: flex-start;
 }
 
 .frais-ligne-1 .groupe-frais-km,
@@ -283,39 +282,8 @@ button.btn-envoyer, button.btn-effacer {
 
 .frais-ligne-1 .groupe-frais-picnic {
   flex: 0.8;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.frais-ligne-1 .groupe-frais-picnic > label:first-of-type {
-  margin-top: 15px;
-  padding-top: 0.1px;
-  display: block;
-  font-size: 16px !important;
-  font-weight: bold;
-  margin-bottom: 0 !important;
-}
-
-.frais-ligne-1 .groupe-frais-picnic > div {
-  padding: 10px !important;
-  border: 1px solid #016630 !important;
-  background-color: transparent !important;
-  border-radius: 12px;
-  margin: 10px 0 0 0 !important;
-  display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px !important;
-  font-weight: normal;
-  height: 44px;
-}
-
-.frais-ligne-1 .groupe-frais-picnic input[type="checkbox"] {
-  width: auto;
-  height: auto;
-  margin: 0 !important;
-  padding: 0 !important;
+  justify-content: flex-end;
 }
 
 .frais-ligne-1 label {
@@ -331,7 +299,14 @@ button.btn-envoyer, button.btn-effacer {
   margin: 10px 0 0 0 !important;
 }
 
-/* Deuxième ligne pour "achats autres" avec ligne dynamique */
+.frais-ligne-1 input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Deuxième ligne pour "achat autre" avec son champ texte */
 .frais-ligne-2 {
   display: flex;
   flex-direction: column;
@@ -344,84 +319,41 @@ button.btn-envoyer, button.btn-effacer {
   overflow: visible !important;
 }
 
-.frais-ligne-2 label {
-  margin-top: 15px;
-  padding-top: 0.1px;
-  display: block;
-  font-size: 16px !important;
-  font-weight: bold;
-}
-
-/* Zone contenant les lignes d'achats autres dynamiques */
-.conteneur-achats-autres {
-  width: 100% !important;
-  padding: 0 !important;
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
-  border: none !important;
-  background: none !important;
-  overflow: visible !important;
-}
-
-/* Une ligne d'achat autre */
-.ligne-achat-autre {
-  display: inline-flex;
+.frais-ligne-2 .groupe-achat-autre {
+  display: flex;
+  align-items: center;
   gap: 15px;
-  width: 100% !important;
+  margin: 0 !important;
   padding: 0 !important;
   border: none !important;
   background: none !important;
   font-size: unset !important;
-  overflow: visible !important;
-  margin: 0 0 10px 0 !important;
-  align-items: flex-start;
 }
 
-.ligne-achat-autre .bloc-montant {
-  flex: 1;
+.frais-ligne-2 .groupe-achat-autre label {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 16px !important;
+  font-weight: normal;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.frais-ligne-2 .groupe-achat-autre input[type="checkbox"] {
+  width: auto;
+  height: auto;
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
-  background: none !important;
-  font-size: unset !important;
-  overflow: visible !important;
 }
 
-.ligne-achat-autre .bloc-description {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  background: none !important;
-  font-size: unset !important;
-  overflow: visible !important;
-}
-
-.ligne-achat-autre .bloc-montant input[type="number"] {
+.frais-ligne-2 #champAchatAutre {
+  display: none;
   width: 100%;
-  margin: 0 !important;
-  padding: 10px;
-  font-size: 24px;
-  background-color: #ECFDF5;
-  border: 1px solid #016630;
-  border-radius: 12px;
+  margin: 10px 0 0 0 !important;
 }
 
-.ligne-achat-autre .bloc-description input[type="text"],
-.ligne-achat-autre .bloc-description textarea {
-  width: 100%;
-  margin: 0 !important;
-  padding: 10px;
-  font-size: 24px;
-  background-color: #ECFDF5;
-  border: 1px solid #016630;
-  border-radius: 12px;
-}
-
+  
 </style>
 </head>
 <body>
@@ -634,27 +566,23 @@ button.btn-envoyer, button.btn-effacer {
         <input type="number" id="champTicketRepas" placeholder="CHF" step="0.01">
       </div>
       
-      <div class="groupe-frais-picnic">
-        <label>Pique-nique</label>
-        <div>
+      <div class="groupe-frais-picnic" style="background-color: transparent; border: 1px solid #016630;">
+        <label for="champPicnic">
           <input type="checkbox" id="champPicnic">
-          <span>Oui</span>
-        </div>
+          Pique-nique
+        </label>
       </div>
     </div>
     
-    <!-- DEUXIÈME LIGNE : achats autres dynamiques -->
-    <label>Achats autres</label>
-    <div id="zoneAchatsAutres" class="conteneur-achats-autres">
-      <!-- La première ligne d'achat autre -->
-      <div class="ligne-achat-autre">
-        <div class="bloc-montant">
-          <input type="number" class="champ-montant" placeholder="CHF" step="0.01" oninput="gererLignesAchatsAutres(event)">
-        </div>
-        <div class="bloc-description">
-          <input type="text" class="champ-description" placeholder="Description" oninput="gererLignesAchatsAutres(event)">
-        </div>
+    <!-- DEUXIÈME LIGNE : achat autre avec champ texte -->
+    <div class="frais-ligne-2">
+      <div class="groupe-achat-autre">
+        <label for="checkboxAchatAutre">
+          <input type="checkbox" id="checkboxAchatAutre" onchange="gererAchatAutre()">
+          Achat autre
+        </label>
       </div>
+      <input type="text" id="champAchatAutre" placeholder="Détails des achats">
     </div>
   </div>
 
@@ -770,36 +698,6 @@ function showForm(type) {
     document.getElementById("formHeures").style.display = "block";
   } else if (type === "complements") {
     document.getElementById("formComplements").style.display = "block";
-  }
-}
-
-/* Fonction pour gérer le choix entre client régulier ou autre */
-function gererTypeClient() {
-  const typeClient = document.querySelector('input[name="typeClient"]:checked')?.value;
-  const selectClient = document.getElementById("clientSelect");
-  const inputClient = document.getElementById("clientText");
-  
-  if (typeClient === "select") {
-    selectClient.style.display = "block";
-    inputClient.style.display = "none";
-  } else if (typeClient === "text") {
-    selectClient.style.display = "none";
-    inputClient.style.display = "block";
-  }
-}
-
-/* Fonction pour gérer le choix du type de rapport */
-function gererTypeRapport() {
-  const typeRapport = document.querySelector('input[name="typeRapport"]:checked')?.value;
-  const selectCollegue = document.getElementById("collegueCompSelect");
-  const selectClient = document.getElementById("clientCompSelect");
-  
-  if (typeRapport === "collegue") {
-    selectCollegue.style.display = "block";
-    selectClient.style.display = "none";
-  } else if (typeRapport === "client") {
-    selectCollegue.style.display = "none";
-    selectClient.style.display = "block";
   }
 }
 
@@ -1087,58 +985,148 @@ function gererLignesDescription(event) {
   }
 }
 
-/* FONCTION POUR GÉRER LES LIGNES D'ACHATS AUTRES */
-function gererLignesAchatsAutres(event) {
-  const el = event.target;
+  
+// 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
+function compilerDescription() {
+  const lignes = document.getElementsByClassName('ligne-description');
+  let descriptionTotale = "";
 
-  // Si l'utilisateur tape du texte dans un input classique
-  if (el && el.tagName === 'INPUT' && el.classList.contains('champ-description')) {
-    // Si le texte commence à déborder de la largeur visible du champ
-    if (el.scrollWidth > el.clientWidth) {
-      const textarea = document.createElement('textarea');
-      textarea.className = el.className;
-      textarea.placeholder = el.placeholder;
-      textarea.value = el.value;
-      textarea.setAttribute('oninput', 'gererLignesAchatsAutres(event)');
-      
-      el.parentNode.replaceChild(textarea, el);
-      textarea.focus();
-      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
-      
-      // Force le comportement fluide immédiatement
-      textarea.style.setProperty('height', 'auto', 'important');
-      textarea.style.setProperty('height', textarea.scrollHeight + 'px', 'important');
+  for (let i = 0; i < lignes.length; i++) {
+    const texte = lignes[i].querySelector('.champ-texte').value.trim();
+    const heure = lignes[i].querySelector('.champ-heure').value;
+
+    // On ne prend la ligne que si elle n'est pas vide
+    if (texte !== "" || heure !== "") {
+      // Format : Texte + Tabulation + Heure + Retour à la ligne
+      descriptionTotale += `${texte}\t${heure}\n`;
     }
   }
-  // Si c'est déjà un textarea, on gère son agrandissement classique
-  else if (el && el.tagName === 'TEXTAREA') {
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
-  }
-
-  // LOGIQUE DE CRÉATION DE NOUVELLE LIGNE À L'INFINI
-  const zone = document.getElementById('zoneAchatsAutres');
-  const lignes = zone.getElementsByClassName('ligne-achat-autre');
-  const derniereLigne = lignes[lignes.length - 1];
   
-  const inputMontant = derniereLigne.querySelector('.champ-montant');
-  const inputDescription = derniereLigne.querySelector('.champ-description');
+  // Enlève le dernier retour à la ligne inutile
+  return descriptionTotale.trim();
+}
+  
+function reinitialiserZoneDescription() {
+  const zone = document.getElementById('zoneDescription');
+  // Remet le HTML d'origine avec une seule ligne propre
+  zone.innerHTML = `
+    <div class="ligne-description">
+      <input type="text" class="champ-texte" placeholder="Ex: Tonte de pelouse" oninput="gererLignesDescription(event)">
+      <div class="bloc-heure">
+        <input type="time" class="champ-heure" oninput="gererLignesDescription(event)">
+      </div>
+    </div>
+  `;
+}
 
-  if (inputMontant.value.trim() !== "" || inputDescription.value.trim() !== "") {
-    const nouvelleLigne = document.createElement('div');
-    nouvelleLigne.className = 'ligne-achat-autre';
-    nouvelleLigne.innerHTML = `
-      <div class="bloc-montant">
-        <input type="number" class="champ-montant" placeholder="CHF" step="0.01" oninput="gererLignesAchatsAutres(event)">
-      </div>
-      <div class="bloc-description">
-        <input type="text" class="champ-description" placeholder="Description" oninput="gererLignesAchatsAutres(event)">
-      </div>
-    `;
-    zone.appendChild(nouvelleLigne);
+// Convertit une valeur en minutes (nombre) en heures décimales
+function convertirMinutesEnHeures(idElement) {
+  const valeur = document.getElementById(idElement).value;
+  
+  // Si le champ est vide ou n'est pas un nombre, on renvoie 0
+  if (!valeur || isNaN(valeur)) {
+    return 0;
+  }
+  
+  // Divise les minutes par 60 et arrondit à 2 décimales (ex: 1.25)
+  return parseFloat((parseFloat(valeur) / 60).toFixed(2));
+}
+  
+  // Gère l'affichage/masquage des champs client selon le choix
+function gererTypeClient() {
+  const typeChoisi = document.querySelector('input[name="typeClient"]:checked');
+  const selectClient = document.getElementById('clientSelect');
+  const textClient = document.getElementById('clientText');
+  
+  if (typeChoisi && typeChoisi.value === 'select') {
+    selectClient.style.display = 'block';
+    selectClient.removeAttribute('disabled');
+    textClient.style.display = 'none';
+    textClient.setAttribute('disabled', true);
+  } else if (typeChoisi && typeChoisi.value === 'text') {
+    textClient.style.display = 'block';
+    textClient.removeAttribute('disabled');
+    selectClient.style.display = 'none';
+    selectClient.setAttribute('disabled', true);
   }
 }
 
+// Gère l'affichage/masquage des selects du formulaire Compléments selon le choix des radio buttons
+function gererTypeRapport() {
+  const typeChoisi = document.querySelector('input[name="typeRapport"]:checked');
+  const selectCollegue = document.getElementById('collegueCompSelect');
+  const selectClient = document.getElementById('clientCompSelect');
+  
+  if (typeChoisi && typeChoisi.value === 'collegue') {
+    // Affiche le select des collègues, masque celui des clients
+    selectCollegue.style.display = 'block';
+    selectCollegue.removeAttribute('disabled');
+    selectClient.style.display = 'none';
+    selectClient.setAttribute('disabled', true);
+  } else if (typeChoisi && typeChoisi.value === 'client') {
+    // Affiche le select des clients, masque celui des collègues
+    selectClient.style.display = 'block';
+    selectClient.removeAttribute('disabled');
+    selectCollegue.style.display = 'none';
+    selectCollegue.setAttribute('disabled', true);
+  }
+}
+
+  
+// Gère l'affichage du champ texte "achat autre" selon si la case est cochée
+function gererAchatAutre() {
+  const checkbox = document.getElementById('checkboxAchatAutre');
+  const champTexte = document.getElementById('champAchatAutre');
+  
+  if (checkbox.checked) {
+    champTexte.style.display = 'block';
+  } else {
+    champTexte.style.display = 'none';
+  }
+}
+
+// Modifie la fonction sendChantier pour récupérer le bon client
+function sendChantier() {
+  document.getElementById("message").innerText = "Envoi du chantier en cours...";
+  
+  // Récupère le client selon ce qui est coché
+  const typeClient = document.querySelector('input[name="typeClient"]:checked')?.value;
+  let client = "";
+  
+  if (typeClient === 'select') {
+    client = document.getElementById('clientSelect').value;
+  } else if (typeClient === 'text') {
+    client = document.getElementById('clientText').value;
+  }
+  
+  const param = {
+    type: "chantier",
+    nom: document.getElementById("collegueChant").value,
+    avec: document.getElementById("collegueAutreChant").value,
+    client: client, // C'est maintenant dynamique !
+    lieu: document.getElementById("lieu").value,
+    date: document.getElementById("dateChant").value,
+    heureDeb: document.getElementById("heureDebChant").value,
+    heureFin: document.getElementById("heureFinChant").value,
+    description: compilerDescription(),
+    volume: document.getElementById("volume").value,
+    broyeur: convertirMinutesEnHeures("broyeur"),
+    machines: convertirMinutesEnHeures("machines")
+  };
+  
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+    .then(res => res.json())
+    .then(() => {
+      document.getElementById("message").innerText = "Chantier enregistré avec succès !";
+      document.getElementById("formChantier").reset();
+      gererTypeClient(); // Réinitialise aussi les champs client
+      reinitialiserZoneDescription();
+    })
+    .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
+}
+
+  
 </script>
+
 </body>
 </html>
