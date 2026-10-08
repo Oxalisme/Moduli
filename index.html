@@ -282,12 +282,37 @@ button.btn-envoyer, button.btn-effacer {
 
 .frais-ligne-1 .groupe-frais-picnic {
   flex: 0.8;
-  align-items: center;
-  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.frais-ligne-1 .groupe-frais-picnic > label:first-of-type {
+  margin-top: 15px;
+  padding-top: 0.1px;
+  display: block;
+  font-size: 16px !important;
+  font-weight: bold;
+  margin-bottom: 0 !important;
+}
+
+.frais-ligne-1 .groupe-frais-picnic > div {
   padding: 10px !important;
   border: 1px solid #016630 !important;
   background-color: transparent !important;
   border-radius: 12px;
+  margin: 10px 0 0 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px !important;
+  font-weight: normal;
+}
+
+.frais-ligne-1 .groupe-frais-picnic input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .frais-ligne-1 label {
@@ -297,28 +322,10 @@ button.btn-envoyer, button.btn-effacer {
   font-size: 16px !important;
 }
 
-.frais-ligne-1 .groupe-frais-picnic label {
-  margin-top: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-weight: normal;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px !important;
-}
-
 .frais-ligne-1 input[type="number"],
 .frais-ligne-1 input[type="text"] {
   width: 100%;
   margin: 10px 0 0 0 !important;
-}
-
-.frais-ligne-1 input[type="checkbox"] {
-  width: auto;
-  height: auto;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 /* Deuxième ligne pour "achats autres" avec ligne dynamique */
@@ -625,10 +632,11 @@ button.btn-envoyer, button.btn-effacer {
       </div>
       
       <div class="groupe-frais-picnic">
-        <label for="champPicnic">
+        <label>Pique-nique</label>
+        <div>
           <input type="checkbox" id="champPicnic">
-          Oui
-        </label>
+          <span>Oui</span>
+        </div>
       </div>
     </div>
     
