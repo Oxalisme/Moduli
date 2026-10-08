@@ -257,6 +257,7 @@ button.btn-envoyer, button.btn-effacer {
   font-size: unset !important;
   overflow: visible !important;
   margin-bottom: 10px !important;
+  align-items: flex-start;
 }
 
 .frais-ligne-1 .groupe-frais-km,
@@ -284,6 +285,7 @@ button.btn-envoyer, button.btn-effacer {
   flex: 0.8;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .frais-ligne-1 .groupe-frais-picnic > label:first-of-type {
@@ -306,6 +308,7 @@ button.btn-envoyer, button.btn-effacer {
   gap: 10px;
   font-size: 16px !important;
   font-weight: normal;
+  height: 44px;
 }
 
 .frais-ligne-1 .groupe-frais-picnic input[type="checkbox"] {
@@ -767,6 +770,36 @@ function showForm(type) {
     document.getElementById("formHeures").style.display = "block";
   } else if (type === "complements") {
     document.getElementById("formComplements").style.display = "block";
+  }
+}
+
+/* Fonction pour gérer le choix entre client régulier ou autre */
+function gererTypeClient() {
+  const typeClient = document.querySelector('input[name="typeClient"]:checked')?.value;
+  const selectClient = document.getElementById("clientSelect");
+  const inputClient = document.getElementById("clientText");
+  
+  if (typeClient === "select") {
+    selectClient.style.display = "block";
+    inputClient.style.display = "none";
+  } else if (typeClient === "text") {
+    selectClient.style.display = "none";
+    inputClient.style.display = "block";
+  }
+}
+
+/* Fonction pour gérer le choix du type de rapport */
+function gererTypeRapport() {
+  const typeRapport = document.querySelector('input[name="typeRapport"]:checked')?.value;
+  const selectCollegue = document.getElementById("collegueCompSelect");
+  const selectClient = document.getElementById("clientCompSelect");
+  
+  if (typeRapport === "collegue") {
+    selectCollegue.style.display = "block";
+    selectClient.style.display = "none";
+  } else if (typeRapport === "client") {
+    selectCollegue.style.display = "none";
+    selectClient.style.display = "block";
   }
 }
 
