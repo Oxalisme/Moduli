@@ -1177,8 +1177,8 @@ function compilerFrais() {
   let descriptionTotale = "";
 
   for (let i = 0; i < lignes.length; i++) {
-    const texte = lignes[i].querySelector('champ-description').value.trim();
-    const montant = lignes[i].querySelector('champ-montant').value.trim();
+    const texte = lignes[i].querySelector('.champ-description').value.trim();
+    const montant = lignes[i].querySelector('.champ-montant').value.trim();
 
     if (texte !== "" || montant !== "") {
       descriptionTotale += `${texte}\tCHF${montant}\n`;
