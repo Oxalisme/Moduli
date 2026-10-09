@@ -1173,7 +1173,7 @@ function gererLignesAchatsAutres(event) {
 }
 
 function compilerFrais() {
-  const lignes = document.getElementByClassName('ligne-achat-autre');
+  const lignes = document.getElementsByClassName('ligne-achat-autre');
   let descriptionTotale = "";
 
   for (let i = 0; i < lignes.length; i++) {
@@ -1188,7 +1188,7 @@ function compilerFrais() {
 }
   
 function compterFrais() {
-  const lignes = document.getElementByClassName('ligne-achat-autre');
+  const lignes = document.getElementsByClassName('ligne-achat-autre');
   let montant = 0;
 
   for (let i = 0; i < lignes.length; i++) {
