@@ -830,7 +830,7 @@ function sendHeures() {
     complements: document.getElementById("complementsHeures").value,
     km: document.getElementById("champKm").value,
     repas: document.getElementById("champTicketRepas").value,
-    picnic: document.getElementById("champPicnic").value,
+    picnic: document.getElementById("champPicnic").checked ? 1 : 0,
     tickets: compilerFrais(),
     montant: compterFrais()
   };
