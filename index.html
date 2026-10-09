@@ -1196,7 +1196,7 @@ function compterFrais() {
     const montant = lignes[i].querySelector('.champ-montant').value.trim();
 
     if (texte !== "" || montant !== "") {
-      amount += montant;
+      amount += parseFloat(montant);
     }
   }
   return amount;
