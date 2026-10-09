@@ -260,7 +260,28 @@ button.btn-envoyer, button.btn-effacer {
   align-items: flex-start;
 }
 
-.frais-ligne-1 .groupe-frais-km,{
+.frais-ligne-1 .groupe-frais-km,
+.frais-ligne-1 .groupe-frais-ticket,
+.frais-ligne-1 .groupe-frais-picnic {
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
+}
+
+.frais-ligne-1 .groupe-frais-km {
+  flex: 1;
+}
+
+.frais-ligne-1 .groupe-frais-ticket {
+  flex: 1;
+}
+
+.frais-ligne-1 .groupe-frais-picnic {
   flex: 0.8;
   display: flex;
   flex-direction: column;
@@ -268,6 +289,22 @@ button.btn-envoyer, button.btn-effacer {
 }
 
 .frais-ligne-1 .groupe-frais-picnic > label:first-of-type {
+  margin-top: 15px;
+  padding-top: 0.1px;
+  display: block;
+  font-size: 16px !important;
+  font-weight: bold;
+  margin-bottom: 0 !important;
+}
+
+.frais-ligne-1 .groupe-frais-picnic > div {
+  padding: 10px !important;
+  border: 1px solid #016630 !important;
+  background-color: transparent !important;
+  border-radius: 12px;
+  margin: 10px 0 0 0 !important;
+  display: flex;
+  align-items: center;
   gap: 10px;
   font-size: 16px !important;
   font-weight: normal;
@@ -581,9 +618,10 @@ border-radius: 12px;
   <textarea id="detailsHeures" placeholder="temps de pause ou détails du jour"></textarea>
 
   <label>Infos complémentaires pour la journée (frais)</label>
-  <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
+  <!-- <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea> -->
+  <textarea id="complementsHeures" placeholder="Ce conteneur marche encore mais entrenez-vous à utiliser le suivant"></textarea>
 
-  <label>NE PAS REMPLIR !!! Frais de la journée NE PAS REMPLIR !!!!!</label>
+  <label>Frais de la journée</label>
   <div class="conteneur-frais-journaliers" style="background-color: transparent; border: 1px solid #016630;">
     <!-- PREMIÈRE LIGNE : km, ticket repas, pique-nique -->
     <div class="frais-ligne-1">
@@ -607,7 +645,7 @@ border-radius: 12px;
     </div>
 
     <!-- DEUXIÈME LIGNE : achats autres dynamiques -->
-    <label>Achats autres</label>
+    <label>Autres achats</label>
     <div id="zoneAchatsAutres" class="conteneur-achats-autres">
       <!-- La première ligne d'achat autre -->
       <div class="ligne-achat-autre">
