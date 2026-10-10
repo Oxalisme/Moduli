@@ -617,9 +617,11 @@ border-radius: 12px;
   <label>Détails par rapport aux heures</label>
   <textarea id="detailsHeures" placeholder="temps de pause ou détails du jour"></textarea>
 
-  <label>Useless button</label>
-  <!-- <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea> -->
+  <!--
+  <label>Pointless button</label>
+  <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
   <textarea id="complementsHeures" placeholder="Ce conteneur est obsolète, merci d'utiliser le suivant"></textarea>
+  -->
 
   <label>Frais de la journée</label>
   <div class="conteneur-frais-journaliers" style="background-color: transparent; border: 1px solid #016630;">
@@ -827,7 +829,7 @@ function sendHeures() {
     debut2: document.getElementById("debut2").value,
     fin2: document.getElementById("fin2").value,
     details: document.getElementById("detailsHeures").value,
-    complements: document.getElementById("complementsHeures").value,
+    complements: "",
     km: document.getElementById("champKm").value,
     repas: document.getElementById("champTicketRepas").value,
     picnic: document.getElementById("champPicnic").checked ? 1 : 0,
