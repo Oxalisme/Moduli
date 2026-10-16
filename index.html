@@ -1134,7 +1134,7 @@ function sendChantier() {
   if (typeClient === 'select') {
     client = document.getElementById('clientSelect').value;
   } else if (typeClient === 'text') {
-    client = document.getElementById('clientText').value;
+    client = document.getElementById('clientText').value.trim();
   }
   
   const param = {
