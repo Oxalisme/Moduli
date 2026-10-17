@@ -1,7 +1,7 @@
 {
   "name": "Heures Moduli",
   "short_name": "Moduli",
-  "start_url": "./",
+  "start_url": "https://oxalisme.github.io/Moduli/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#FEF2F2",
