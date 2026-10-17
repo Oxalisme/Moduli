@@ -7,9 +7,9 @@
   "theme_color": "#FEF2F2",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/Oxalisme/Moduli/main/boite_lettre.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "https://raw.githubusercontent.com/Oxalisme/Moduli/main/IMG_9a3e9ad7-554a-4ac8-ba9e-00b8cea1e2aa.webp",
+      "sizes": "450x450",
+      "type": "image/webp",
       "purpose": "any"
     }
   ]
