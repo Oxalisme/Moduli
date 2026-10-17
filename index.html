@@ -242,6 +242,7 @@ button.btn-envoyer, button.btn-effacer {
 }
 
 /* FRAIS JOURNALIERS - Première ligne avec km, ticket repas et pique-nique */
+  /*
   .frais-ligne-1 {
   display: inline-flex;
   gap: 15px;
@@ -292,8 +293,8 @@ button.btn-envoyer, button.btn-effacer {
   font-weight: bold;
   margin-bottom: 0 !important;
 }
-
-.frais-ligne-1 .groupe-frais-picnic > div {
+  
+  .frais-ligne-1 .groupe-frais-picnic > div {
   padding: 10px !important;
   border: 1px solid #016630 !important;
   background-color: transparent !important;
@@ -325,6 +326,85 @@ font-size: 16px !important;
 .frais-ligne-1 input[type="text"] {
 width: 100%;
 margin: 10px 0 0 0 !important;
+}
+  */
+
+/* Première ligne : kilométrage, ticket repas et pique-nique */
+.frais-ligne-1 {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  width: 100% !important;
+  margin: 0 0 10px 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
+}
+
+/* Les trois colonnes ont la même structure */
+.frais-ligne-1 .groupe-frais-km,
+.frais-ligne-1 .groupe-frais-ticket,
+.frais-ligne-1 .groupe-frais-picnic {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
+}
+
+/* Les trois labels occupent la même hauteur */
+.frais-ligne-1 label {
+  display: flex;
+  align-items: flex-start;
+  height: 38px;
+  min-height: 38px;
+  margin: 15px 0 0 0 !important;
+  padding: 0.1px 0 0 0;
+  font-size: 16px !important;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+/* Les deux champs numériques commencent à la même hauteur */
+.frais-ligne-1 input[type="number"],
+.frais-ligne-1 input[type="text"] {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+/* Le conteneur du pique-nique s'aligne sur les deux champs */
+.frais-ligne-1 .groupe-frais-picnic > div {
+  width: 100%;
+  height: 50.4px;
+  min-height: 50.4px;
+  margin: 0 !important;
+  padding: 10px !important;
+  border: 1px solid #016630 !important;
+  background-color: transparent !important;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 16px !important;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+
+/* La case à cocher conserve sa taille naturelle */
+.frais-ligne-1 .groupe-frais-picnic input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Deuxième ligne pour "achats autres" avec ligne dynamique */
@@ -417,6 +497,108 @@ background-color: #ECFDF5;
 border: 1px solid #016630;
 border-radius: 12px;
 }
+
+/* Conteneur global des matériaux */
+.conteneur-materiaux {
+  width: 100% !important;
+  margin: 10px 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  overflow: visible !important;
+}
+
+/* Ensemble d'un matériau : description + détails */
+.ligne-materiau {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100% !important;
+  margin: 0 0 20px 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
+}
+
+/* Première ligne : description */
+.bloc-description-materiau {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  overflow: visible !important;
+}
+
+/* Champ de description */
+.theme-chantier .champ-texte-materiau {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 10px;
+  font-size: 24px;
+  background-color: #FEF2F2;
+  border: 1px solid #9F0712;
+  border-radius: 12px;
+  resize: none;
+  overflow: hidden;
+}
+
+/* Deuxième ligne : quantité, unité et prix */
+.ligne-details-materiau {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  font-size: unset !important;
+  overflow: visible !important;
+}
+
+/* Les trois colonnes occupent chacune un tiers de l'espace */
+.bloc-quantite-materiau,
+.bloc-unite-materiau,
+.bloc-prix-materiau {
+  flex: 1;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  overflow: visible !important;
+}
+
+/* Champs de quantité, unité et prix */
+.theme-chantier .champ-quantite-materiau,
+.theme-chantier .champ-unite-materiau,
+.theme-chantier .champ-prix-materiau {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 10px 5px;
+  font-size: 20px;
+  background-color: #FEF2F2;
+  border: 1px solid #9F0712;
+  border-radius: 12px;
+}
+
+/* La description peut devenir un textarea */
+.theme-chantier textarea.champ-texte-materiau {
+  display: block;
+  min-height: 46px;
+  height: 46px;
+  line-height: normal;
+  resize: none;
+  overflow-y: hidden;
+}
+
   
 </style>
 </head>
@@ -546,8 +728,55 @@ border-radius: 12px;
     </div>
   </div>
 
-  <label>Matériaux utilisés NE PAS UTILISER</label>label>
-  <input type="text" id="materiaux" placeholder="NE PAS UTILISER!!!   matériaux + quantité">
+  <label>Matériaux utilisés</label>
+  
+  <div id="zoneMateriaux" class="conteneur-materiaux">
+    <!-- Première ligne de matériau -->
+    <div class="ligne-materiau">
+      <!-- Ligne 1 : description -->
+      <div class="bloc-description-materiau">
+        <input
+          type="text"
+          class="champ-texte-materiau"
+          placeholder="Description du matériau"
+          oninput="gererLigneMateriaux(event)"
+        >
+      </div>
+  
+      <!-- Ligne 2 : quantité, unité et prix -->
+      <div class="ligne-details-materiau">
+        <div class="bloc-quantite-materiau">
+          <input
+            type="number"
+            class="champ-quantite-materiau"
+            placeholder="Quantité"
+            step="any"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+        <div class="bloc-unite-materiau">
+          <input
+            type="text"
+            class="champ-unite-materiau"
+            placeholder="Unité"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+        <div class="bloc-prix-materiau">
+          <input
+            type="number"
+            class="champ-prix-materiau"
+            placeholder="Prix CHF"
+            step="0.01"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <label>Matériaux utilisés NE PAS UTILISER</label>
+  <input type="text" id="materiaux" placeholder="NE PAS UTILISER!!!   matériaux + quantité + prix">
 
   <label>Volume déchets (en litres)</label>
   <input type="number" id="volume" placeholder="EN LITRES, sac noir = 200L, sac blanc = 400L, remorque = 3000L" required>
@@ -1034,6 +1263,118 @@ function gererLignesDescription(event) {
   }
 }
 
+function gererLigneMateriaux(event) {
+  const el = event.target;
+  // 1. Transformer le champ de description en textarea
+  // si le texte dépasse la largeur visible.
+  if (
+    el &&
+    el.tagName === 'INPUT' &&
+    el.classList.contains('champ-texte-materiau')
+  ) {
+    if (el.scrollWidth > el.clientWidth) {
+      const textarea = document.createElement('textarea');
+      textarea.className = el.className;
+      textarea.placeholder = el.placeholder;
+      textarea.value = el.value;
+      textarea.setAttribute(
+        'oninput',
+        'gererLigneMateriaux(event)'
+      );
+      el.parentNode.replaceChild(textarea, el);
+      // Replace le curseur à la fin du texte.
+      textarea.focus();
+      textarea.setSelectionRange(
+        textarea.value.length,
+        textarea.value.length
+      );
+
+      // Ajuste immédiatement la hauteur.
+      textarea.style.setProperty('height', 'auto', 'important');
+      textarea.style.setProperty(
+        'height',
+        textarea.scrollHeight + 'px',
+        'important'
+      );
+    }
+  }
+
+  // 2. Adapter la hauteur si le champ est déjà un textarea.
+  else if (
+    el &&
+    el.tagName === 'TEXTAREA' &&
+    el.classList.contains('champ-texte-materiau')
+  ) {
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+  }
+  // 3. Récupérer la zone contenant tous les matériaux.
+  const zone = document.getElementById('zoneMateriaux');
+  const lignes = zone.getElementsByClassName('ligne-materiau');
+  // Récupérer la dernière double-ligne.
+  const derniereLigne = lignes[lignes.length - 1];
+  if (!derniereLigne) {
+    return;
+  }
+
+  // Récupérer les quatre champs de cette ligne.
+  const texte = derniereLigne.querySelector('.champ-texte-materiau');
+  const quantite = derniereLigne.querySelector('.champ-quantite-materiau');
+  const unite = derniereLigne.querySelector('.champ-unite-materiau');
+  const prix = derniereLigne.querySelector('.champ-prix-materiau');
+
+  // 4. Dès qu'un champ de la dernière ligne est rempli,
+  // créer une nouvelle double-ligne vide.
+  if (
+    texte.value.trim() !== '' ||
+    quantite.value.trim() !== '' ||
+    unite.value.trim() !== '' ||
+    prix.value.trim() !== ''
+  ) {
+    const nouvelleLigne = document.createElement('div');
+    nouvelleLigne.className = 'ligne-materiau';
+    nouvelleLigne.innerHTML = `
+      <div class="bloc-description-materiau">
+        <input
+          type="text"
+          class="champ-texte-materiau"
+          placeholder="Description du matériau"
+          oninput="gererLigneMateriaux(event)"
+        >
+      </div>
+      <div class="ligne-details-materiau">
+        <div class="bloc-quantite-materiau">
+          <input
+            type="number"
+            class="champ-quantite-materiau"
+            placeholder="Quantité"
+            step="any"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+        <div class="bloc-unite-materiau">
+          <input
+            type="text"
+            class="champ-unite-materiau"
+            placeholder="Unité"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+        <div class="bloc-prix-materiau">
+          <input
+            type="number"
+            class="champ-prix-materiau"
+            placeholder="Prix CHF"
+            step="0.01"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+      </div>
+    `;
+    zone.appendChild(nouvelleLigne);
+  }
+}
+
   
 // 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
 function compilerDescription() {
@@ -1054,6 +1395,43 @@ function compilerDescription() {
   // Enlève le dernier retour à la ligne inutile
   return descriptionTotale.trim();
 }
+
+function compilerMateriaux() {
+  const lignes = document.querySelectorAll(
+    '#zoneMateriaux .ligne-materiau'
+  );
+  let materiauxTotal = '';
+  for (let i = 0; i < lignes.length; i++) {
+    const texte = lignes[i]
+      .querySelector('.champ-texte-materiau')
+      .value.trim();
+    const quantite = lignes[i]
+      .querySelector('.champ-quantite-materiau')
+      .value.trim();
+    const unite = lignes[i]
+      .querySelector('.champ-unite-materiau')
+      .value.trim();
+    const prix = lignes[i]
+      .querySelector('.champ-prix-materiau')
+      .value.trim();
+    // Ignorer les lignes entièrement vides.
+    if (
+      texte === '' &&
+      quantite === '' &&
+      unite === '' &&
+      prix === ''
+    ) {
+      continue;
+    }
+    // Construire la quantité avec son unité.
+    const quantiteUnite = `${quantite}${unite ? ' ' + unite : ''}`;
+    // Format : description, quantité unité [TAB] prix
+    materiauxTotal += `${texte}, ${quantiteUnite}\t${prix}\n`;
+  }
+  // Supprimer le dernier retour à la ligne.
+  return materiauxTotal.trim();
+}
+
   
 function reinitialiserZoneDescription() {
   const zone = document.getElementById('zoneDescription');
@@ -1067,6 +1445,51 @@ function reinitialiserZoneDescription() {
     </div>
   `;
 }
+
+function reinitialiserZoneMateriaux() {
+  const zone = document.getElementById('zoneMateriaux');
+  zone.innerHTML = `
+    <div class="ligne-materiau">
+      <div class="bloc-description-materiau">
+        <input
+          type="text"
+          class="champ-texte-materiau"
+          placeholder="Description du matériau"
+          oninput="gererLigneMateriaux(event)"
+        >
+      </div>
+      <div class="ligne-details-materiau">
+        <div class="bloc-quantite-materiau">
+          <input
+            type="number"
+            class="champ-quantite-materiau"
+            placeholder="Quantité"
+            step="any"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+        <div class="bloc-unite-materiau">
+          <input
+            type="text"
+            class="champ-unite-materiau"
+            placeholder="Unité"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+        <div class="bloc-prix-materiau">
+          <input
+            type="number"
+            class="champ-prix-materiau"
+            placeholder="Prix CHF"
+            step="0.01"
+            oninput="gererLigneMateriaux(event)"
+          >
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 
 // Convertit une valeur en minutes (nombre) en heures décimales
 function convertirMinutesEnHeures(idElement) {
@@ -1146,6 +1569,7 @@ function sendChantier() {
     heureDeb: document.getElementById("heureDebChant").value,
     heureFin: document.getElementById("heureFinChant").value,
     description: compilerDescription(),
+    materiaux: compilerMateriaux(),
     volume: document.getElementById("volume").value,
     broyeur: convertirMinutesEnHeures("broyeur"),
     machines: convertirMinutesEnHeures("machines")
