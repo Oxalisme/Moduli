@@ -1423,7 +1423,7 @@ function compilerMateriaux() {
     // Construire la quantité avec son unité.
     const quantiteUnite = `${quantite}${unite ? ' ' + unite : ''}`;
     // Format : description, quantité unité [TAB] prix
-    materiauxTotal += `${texte}, ${quantiteUnite}\t${prix}\n`;
+    materiauxTotal += `${texte}, ${quantiteUnite}\tCHF${prix}\n`;
   }
   // Supprimer le dernier retour à la ligne.
   return materiauxTotal.trim();
