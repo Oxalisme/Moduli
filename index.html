@@ -623,7 +623,7 @@ border-radius: 12px;
 -->
   <h3>Chantier</h3>
 
-  <label>Ton nom</label>
+  <label>Ton nom *</label>
   
   <select id="collegueChant" name="nom" required>
   <!-- Cette option sert de placeholder -->
@@ -653,10 +653,10 @@ border-radius: 12px;
   hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
   -->
 
-  <label>Avec qui tu as travaillé sur le chantier</label>
+  <label>Avec qui tu as travaillé sur le chantier *</label>
   <input type="text" id="collegueAutreChant">
 
-  <label>Nom du client</label>
+  <label>Nom du client *</label>
 
   <div class="groupe-client" style="background-color: transparent; border: 1px solid #9F0712;">
     <!-- Option 1 : Choisir parmi une liste -->
@@ -702,27 +702,27 @@ border-radius: 12px;
   <input type="text" id="client" required>
   -->
 
-  <label>Lieu</label>
+  <label>Lieu *</label>
   <input type="text" id="lieu" placeholder="adresse ou précision" required>
 
-  <label>Date</label>
+  <label>Date *</label>
   <input type="date" id="dateChant" required>
   
   <!-- DEBUT DES DEUX CHAMPS CÔTE À CÔTE -->
   <div class="ligne-champs-cote-cote">
     <div class="groupe-champ">
-      <label for="heureDebut">Début du chantier</label>
+      <label for="heureDebut">Début du chantier *</label>
       <input type="time" id="heureDebChant" min="05:00" required>
     </div>
     
     <div class="groupe-champ">
-      <label for="heureFin">Fin du chantier</label>
+      <label for="heureFin">Fin du chantier *</label>
       <input type="time" id="heureFinChant" min="08:00" required>
     </div>
   </div>
   <!-- FIN DES DEUX CHAMPS CÔTE À CÔTE -->
   
-  <label>Description du chantier par activités (marquer l'heure de fin de l'activité)</label>
+  <label>Description du chantier par activités (marquer l'heure de fin de l'activité) *</label>
   <div id="zoneDescription" class="conteneur-description-dynamique">
     <!-- La première ligne de description -->
     <div class="ligne-description">
@@ -781,13 +781,13 @@ border-radius: 12px;
     </div>
   </div>
   
-  <label>Volume déchets (en litres)</label>
+  <label>Volume déchets (en litres) *</label>
   <input type="number" id="volume" placeholder="EN LITRES, sac noir = 200L, sac blanc = 400L, remorque = 3000L" required>
 
-  <label>Temps utilisation broyeur (en minutes)</label>
+  <label>Temps utilisation broyeur (en minutes) *</label>
   <input type="number" id="broyeur" placeholder="EN MINUTES, de préférence arrondi au quart d'heure" required>
 
-  <label>Temps utilisation machines (en minutes)</label>
+  <label>Temps utilisation machines (en minutes) *</label>
   <input type="number" id="machines" placeholder="EN MINUTES, de préférence arrondi au quart d'heure" required>
 
   <button type="submit" class="btn-envoyer">Envoyer</button>
@@ -800,7 +800,7 @@ border-radius: 12px;
 <form id="formHeures" class="theme-heures" onsubmit="event.preventDefault(); sendHeures();">
   <h3>Heures</h3>
 
-  <label>Ton nom</label>
+  <label>Ton nom *</label>
   
   <select id="collegueHeures" name="nom" required>
   <!-- Cette option sert de placeholder -->
@@ -830,7 +830,7 @@ border-radius: 12px;
   hidden : Elle n'apparaît pas dans la liste déroulante une fois celle-ci ouverte. 
   -->
 
-  <label>Date</label>
+  <label>Date *</label>
   <input type="date" id="dateHeures" required>
 
   <label>Heure du début (matin)</label>
@@ -906,7 +906,7 @@ border-radius: 12px;
   <h3>Rapports</h3>
 
   
-  <label>Choix du type de rapport</label>
+  <label>Choix du type de rapport *</label>
 
   <div class="groupe-client" style="background-color: transparent; border: 1px solid #193CB8;">
     <!-- Option 1 : Consulter tes heures -->
@@ -966,10 +966,10 @@ border-radius: 12px;
   
 
 
-  <label>Date de début de la période</label>
+  <label>Date de début de la période *</label>
   <input type="date" id="dateDebComp" required>
 
-  <label>Date de fin de la période</label>
+  <label>Date de fin de la période *</label>
   <input type="date" id="dateFinComp" required>
   
   <button type="submit" class="btn-envoyer">Générer le rapport</button>
