@@ -757,19 +757,6 @@ border-radius: 12px;
   <label>Heure de fin (après-midi)</label>
   <input type="time" id="fin2" min="13:00" max="23:59" >
 
-  <label>Informations complémentaires sur la journée</label>
-
-  <div style="background-color: transparent; border: 1px solid #016630; padding: 10px; border-radius: 12px;">
-    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 5px;">
-      <input type="checkbox" id="maladie" style="width: auto; margin: 0 10px 0 0;">
-      Maladie
-    </label>
-    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
-      <input type="checkbox" id="congeMenstruel" style="width: auto; margin: 0 10px 0 0;">
-      Congé menstruel
-    </label>
-  </div>
-
   
   <!--
   <label>Détails par rapport aux heures</label>
@@ -819,6 +806,35 @@ border-radius: 12px;
       </div>
     </div>
   </div>
+
+  <div class="ligne-champs-cote-cote">
+    <div class="group-champs">
+      <label style="display: flex; align-items: center; font-weight: normal; margin-top: 5px;">
+        <input type="checkbox" id="maladie" style="width: auto; margin: 0 10px 0 0;">
+        Maladie
+      </label>
+    </div>
+    <div class="group-champs">
+      <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
+        <input type="checkbox" id="congeMenstruel" style="width: auto; margin: 0 10px 0 0;">
+        Congé menstruel
+      </label>
+    </div>
+  </div>
+
+  <!--
+  <label>Absence excusée</label>
+  <div style="background-color: transparent; border: 1px solid #016630; padding: 10px; border-radius: 12px;">
+    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 5px;">
+      <input type="checkbox" id="maladie" style="width: auto; margin: 0 10px 0 0;">
+      Maladie
+    </label>
+    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
+      <input type="checkbox" id="congeMenstruel" style="width: auto; margin: 0 10px 0 0;">
+      Congé menstruel
+    </label>
+  </div>
+  -->
 
   
   <button type="submit" class="btn-envoyer">Envoyer</button>
