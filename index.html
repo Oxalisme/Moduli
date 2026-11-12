@@ -14,7 +14,7 @@
 <link rel="manifest" href="manifest.json">
   
 <!-- Meta viewport pour s'assurer que le site s'affiche bien sur mobile -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-se=1.0">
   
 <meta name="application-name" content="Heures Moduli">
 <meta name="theme-color" content="#FEF2F2">
@@ -241,10 +241,10 @@ button.btn-envoyer, button.btn-effacer {
   margin: 0 !important; /* Supprime le margin global de 10px qui brise l'alignement flex */
 }
 
-/* Centre le champ d'heures uniquement sur son propre axe vertical */
+/* Centre le champ d'heures uniquement sur son propre axe verti */
 .ligne-description .bloc-heure input.champ-heure {
   margin: 0 !important;
-  align-self: center; /* S'assure qu'il s'aligne sur le milieu vertical de la zone initiale */
+  align-self: center; /* S'assure qu'il s'aligne sur le milieu verti de la zone initiale */
 }
 
 /* Première ligne : kilométrage, ticket repas et pique-nique */
@@ -1153,6 +1153,11 @@ border-radius: 12px;
 <!-- FORMULAIRE CALENDRIER -->
 <form id="formCalendrier" class="theme-calendrier" onsubmit="event.preventDefault(); sendCalendrier();">
   <h3>Calendrier</h3>
+  <small><p>
+    <span style="color:#000000;font-weight:bold;">Présent</span>, 
+    <span style="color:#9CA3AF;font-weight:normal;">Absent</span>, 
+    <span style="color:#EC4899;font-weight:bold;">indéfini</span>
+  </p></small>
 
   <!-- Conteneur où le script va générer les 7 tableaux -->
   <div id="zoneTableauxCalendrier" class="conteneur-tableaux-calendrier"></div>
