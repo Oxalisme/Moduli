@@ -614,7 +614,12 @@ border-radius: 12px;
 .cal-ligne-nico-titre td {
   background-color: #FEFCE8;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
+}
+
+/* Alignement de la taille de police de la 6e ligne sur celle des jours de la semaine */
+.cal-nico-jour {
+  font-size: 13px !important; /* Mettez la même valeur que .cal-ligne-jours (ex: 13px ou 14px) */
 }
 
 /* Champs texte intégrés aux lignes 2 et 6 */
@@ -1179,7 +1184,7 @@ border-radius: 12px;
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycby2GKDcWMf8Kr4atdcjHr6HO_eN7sRCW3min08bOgQOEPoB0aaG0KRbd8e6Z3KRsPEN/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby8buGEhHMOuEvhcvACsFBnOPa9k7k-LDjG1itxSDV1_YOUT-CQxSAcENNX5Q3hwUqu/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -2073,11 +2078,17 @@ function sendCalendrier() {
 
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
     .then(res => res.json())
-    .then(() => {
-      document.getElementById("message").innerText = "Calendrier enregistré avec succès !";
+    .then(data => {
+      if (data.status === "success") {
+        msg.innerText = "Calendrier enregistré ! Mise à jour de l'affichage...";
+        // Relance immédiatement la lecture du Google Sheet pour récupérer les éventuelles saisies simultanées des collègues
+        chargerDonneesCalendrier();
+      } else {
+        msg.innerText = "Erreur lors de l'enregistrement.";
+      }
     })
     .catch(() => {
-      document.getElementById("message").innerText = "Erreur lors de l'enregistrement du calendrier.";
+      msg.innerText = "Erreur de connexion.";
     });
 }
 
