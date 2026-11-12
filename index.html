@@ -1790,7 +1790,7 @@ function sendChantier() {
     headers: {
       "Content-Type": "text/plain;charset=utf-8"
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(param)
   })
   .then(res => res.text()) // Lit d'abord en texte brut pour éviter les erreurs de parsing JSON sur redirection
   .then(text => {
