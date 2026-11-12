@@ -607,7 +607,7 @@ border-radius: 12px;
 .cal-ligne-jours td {
   background-color: #FEFCE8;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* Ligne 5 : Titre Planning Nico */
@@ -646,7 +646,7 @@ border-radius: 12px;
   width: 100%;
   padding: 4px 2px !important;
   margin: 0 !important;
-  font-size: 13px !important; /* Police plus petite que le reste du tableau */
+  font-size: 12px !important; /* Police plus petite que le reste du tableau */
   border-radius: 6px !important;
   border: 1px solid #894B0A;
   background-color: white;
@@ -1162,7 +1162,7 @@ border-radius: 12px;
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwf6u-KDeX0b4HwVIM8-ZVrY__8A7VUdY90AO8i4N9_56UvT5HAS0btYb7JmXNjhCuE/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxPLbI2ZhIPTKJgdXct99J7JyeGkmicoXhqPK04Bz8U1bdLfXc7yu9GAb6WbrrdEw-f/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -1181,6 +1181,7 @@ function showForm(type) {
     document.getElementById("formComplements").style.display = "block";
   } else if (type === "calendrier") {
     document.getElementById("formCalendrier").style.display = "block";
+    chargerDonneesCalendrier(); // Recharge automatiquement depuis Google Sheets à chaque ouverture
   } else if (type === "theorie") {
     const zoneTheorie = document.getElementById("zoneTheorie");
     // N'affiche la zone que si du texte y a été ajouté
@@ -2063,6 +2064,93 @@ function sendCalendrier() {
 
 // Lance la création des 7 tableaux dès l'ouverture de la page
 initialiserCalendrier();
+
+function chargerDonneesCalendrier() {
+  const msg = document.getElementById("message");
+  msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
+
+  fetch(scriptURL)
+    .then(res => res.json())
+    .then(data => {
+      if (data.status !== "success" || !data.donnees) {
+        msg.innerText = "";
+        return;
+      }
+
+      const grille = data.donnees; // Tableau 2D [ligne][colonne]
+      const datesEnregistrees = grille[0]; // Ligne 1 : les titres de dates en colonnes B..H
+      const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+
+      // Parcourt chacun des 7 tableaux affichés à l'écran
+      document.querySelectorAll(".tableau-semaine").forEach(table => {
+        const titreActuel = table.querySelector(".cal-titre-dates").innerText.replace(" (Passée - Verrouillée)", "").trim();
+
+        // Cherche si cette semaine existe déjà dans les colonnes B..H du Sheet
+        let colIndex = -1;
+        for (let c = 1; c < datesEnregistrees.length; c++) {
+          if (String(datesEnregistrees[c]).includes(titreActuel)) {
+            colIndex = c;
+            break;
+          }
+        }
+
+        if (colIndex === -1) return; // Nouvelle semaine pas encore enregistrée : on la laisse vierge
+
+        // 1. Remplit la ligne 2 : Chantier(s) de la semaine
+        const noteInput = table.querySelector(".cal-note-semaine");
+        if (noteInput && grille[1][colIndex]) {
+          noteInput.value = grille[1][colIndex];
+          noteInput.style.height = "auto";
+          noteInput.style.height = noteInput.scrollHeight + "px";
+        }
+
+        // 2. Parcourt les lignes suivantes (collègues + Planning Nico)
+        for (let r = 2; r < grille.length; r++) {
+          const nomLigne = String(grille[r][0]).trim();
+          const valeurCellule = String(grille[r][colIndex] || "");
+
+          if (nomLigne === "Planning Nico") {
+            const textesNico = valeurCellule.split(" | ");
+            const champsNico = table.querySelectorAll(".cal-nico-jour");
+            champsNico.forEach((champ, idx) => {
+              if (textesNico[idx] !== undefined) {
+                champ.value = textesNico[idx];
+                champ.style.height = "auto";
+                champ.style.height = champ.scrollHeight + "px";
+              }
+            });
+          } else if (nomLigne !== "") {
+            // Reconstruit les 5 statuts ("1", "0", ou "") pour ce collègue
+            const statuts = valeurCellule.split(",");
+            jours.forEach((jour, idxJour) => {
+              const code = statuts[idxJour];
+              const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomLigne}"]`);
+              if (btn) {
+                btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
+                if (code === "1") {
+                  btn.setAttribute("data-statut", "present");
+                  btn.classList.add("etat-present");
+                } else if (code === "0") {
+                  btn.setAttribute("data-statut", "absent");
+                  btn.classList.add("etat-absent");
+                } else {
+                  btn.setAttribute("data-statut", "neutre");
+                  btn.classList.add("etat-neutre");
+                }
+              }
+            });
+          }
+        }
+      });
+
+      msg.innerText = "Calendrier à jour !";
+      setTimeout(() => { if (msg.innerText === "Calendrier à jour !") msg.innerText = ""; }, 2000);
+    })
+    .catch(() => {
+      msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
+    });
+}
+
   
 </script>
 
