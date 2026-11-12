@@ -517,6 +517,171 @@ border-radius: 12px;
   overflow-y: hidden;
 }
 
+/* 5. THÈME CALENDRIER (jaune comme les boutons d'envoi) & THÉORIE RÉVOLUTIONNAIRE (Gris) */
+.theme-calendrier input, 
+.theme-calendrier textarea {
+  background-color: #FEFCE8;
+  border: 1px solid #894B0A;
+}
+.theme-calendrier button.btn-envoyer { 
+  border: 1px solid #894B0A; 
+}
+
+.theme-theorie {
+  background-color: #FFFFFF;
+  border: 1px solid #C0C0C0;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* STYLES DES TABLEAUX DU CALENDRIER */
+.conteneur-tableaux-calendrier {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 15px 0 !important;
+  border: none !important;
+  background: none !important;
+}
+
+.tableau-semaine {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: #FEFCE8;
+  border: 2px solid #894B0A;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tableau-semaine th, 
+.tableau-semaine td {
+  border: 1px solid #894B0A;
+  padding: 6px 4px;
+  text-align: center;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+/* Ligne 1 : Dates */
+.cal-ligne-dates th {
+  background-color: #FEFCE8;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* Ligne 3 : Jours de la semaine */
+.cal-ligne-jours td {
+  background-color: #FEFCE8;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* Ligne 5 : Titre Planning Nico */
+.cal-ligne-nico-titre td {
+  background-color: #FEFCE8;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* Champs texte intégrés aux lignes 2 et 6 */
+.cal-input-cell {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 8px !important;
+  font-size: 16px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  min-height: 45px !important;
+  box-sizing: border-box;
+}
+
+/* Ligne 4 : Boutons des prénoms */
+.liste-prenoms-jour {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: none !important;
+  width: 100% !important;
+}
+
+.btn-prenom {
+  width: 100%;
+  padding: 4px 2px !important;
+  margin: 0 !important;
+  font-size: 13px !important; /* Police plus petite que le reste du tableau */
+  border-radius: 6px !important;
+  border: 1px solid #894B0A;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* États des prénoms */
+.btn-prenom.etat-neutre {
+  color: #EC4899; /* Rose */
+  font-weight: bold;
+}
+.btn-prenom.etat-present {
+  color: #000000; /* Noir */
+  font-weight: bold;
+}
+.btn-prenom.etat-absent {
+  color: #9CA3AF; /* Gris */
+  font-weight: normal;
+}
+
+/* FENÊTRE MODALE (MENU RADIO PRÉSENT / ABSENT) */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.modal-box {
+  background: white !important;
+  border: 2px solid #894B0A !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  width: 85% !important;
+  max-width: 350px;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.modal-box label {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px !important;
+  margin: 15px 0 !important;
+  cursor: pointer;
+}
+
+.modal-box input[type="radio"] {
+  width: auto !important;
+  margin: 0 !important;
+  transform: scale(1.3);
+}
+
   
 </style>
 </head>
@@ -527,6 +692,8 @@ border-radius: 12px;
 <button onclick="showForm('chantier')" style="background-color: #FEF2F2; border: 1px solid #9F0712;">Chantier</button>
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Rapport des heures</button>
+<button onclick="showForm('calendrier')" style="background-color: #FEFCE8; border: 1px solid #894B0A;">Calendrier</button>
+<button onclick="showForm('theorie')" style="background-color: #FFFFFF; border: 1px solid #C0C0C0;">Théorie révolutionnaire</button>
 
 <!-- FORMULAIRE CHANTIER -->
 <form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
@@ -932,6 +1099,38 @@ border-radius: 12px;
 
 </form>
 
+<!-- FORMULAIRE CALENDRIER -->
+<form id="formCalendrier" class="theme-calendrier" onsubmit="event.preventDefault(); sendCalendrier();">
+  <h3>Calendrier</h3>
+
+  <!-- Conteneur où le script va générer les 7 tableaux -->
+  <div id="zoneTableauxCalendrier" class="conteneur-tableaux-calendrier"></div>
+
+  <button type="submit" class="btn-envoyer">Enregistrer le calendrier</button>
+</form>
+
+<!-- MENU POP-UP POUR CHOISIR PRÉSENT / ABSENT -->
+<div id="modalPresence" class="modal-overlay" onclick="fermerModalPresence(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <h4 id="titreModalPresence" style="margin-top: 0; font-size: 22px; color: #6B21A8;">Statut</h4>
+    <label>
+      <input type="radio" name="choixStatutPresence" value="present" onchange="appliquerStatutPresence('present')">
+      Présent
+    </label>
+    <label>
+      <input type="radio" name="choixStatutPresence" value="absent" onchange="appliquerStatutPresence('absent')">
+      Absent
+    </label>
+    <button type="button" onclick="fermerModalPresence()" style="padding: 10px; font-size: 18px; background-color: #F3E8FF; border: 1px solid #6B21A8;">Fermer</button>
+  </div>
+</div>
+
+<!-- ZONE THÉORIE RÉVOLUTIONNAIRE -->
+<!-- Tant que cette div est vide, rien ne s'affiche quand on clique sur le bouton. -->
+<!-- À l'avenir, écrivez votre texte ou vos paragraphes <p>...</p> directement à l'intérieur. -->
+<div id="zoneTheorie" class="theme-theorie" style="display: none;"></div>
+
+
 <div id="message"></div>
 
 <script>
@@ -943,16 +1142,26 @@ function showForm(type) {
   document.getElementById("formChantier").style.display = "none";
   document.getElementById("formHeures").style.display = "none";
   document.getElementById("formComplements").style.display = "none";
+  document.getElementById("formCalendrier").style.display = "none";
+  document.getElementById("zoneTheorie").style.display = "none";
   
-  // Structure if/else nettoyée de toute écriture parasite
   if (type === "chantier") {
     document.getElementById("formChantier").style.display = "block";
   } else if (type === "heures") {
     document.getElementById("formHeures").style.display = "block";
   } else if (type === "complements") {
     document.getElementById("formComplements").style.display = "block";
+  } else if (type === "calendrier") {
+    document.getElementById("formCalendrier").style.display = "block";
+  } else if (type === "theorie") {
+    const zoneTheorie = document.getElementById("zoneTheorie");
+    // N'affiche la zone que si du texte y a été ajouté
+    if (zoneTheorie.innerHTML.trim() !== "") {
+      zoneTheorie.style.display = "block";
+    }
   }
 }
+
 
   // SCRIPT D'AUTO-AGRANDISSEMENT DES TEXTAREA
 document.querySelectorAll('textarea').forEach(textarea => {
@@ -1617,7 +1826,203 @@ function compterFrais() {
   return amount;
 }
   
+/* =========================================================
+   GESTION DU CALENDRIER (7 SEMAINES)
+   ========================================================= */
 
+// Liste exacte des prénoms du choix "collegue" dans Rapports
+const listeColleguesCalendrier = [
+  { id: "alu", nom: "Alu" },
+  { id: "delphine", nom: "Delphine" },
+  { id: "ellio", nom: "Ellio" },
+  { id: "gabriel", nom: "Gabriel" },
+  { id: "greg", nom: "Greg" },
+  { id: "juan", nom: "Juan" },
+  { id: "laura", nom: "Laura" },
+  { id: "laure", nom: "Laure" },
+  { id: "mickael", nom: "Mickaël" },
+  { id: "nico", nom: "Nico" },
+  { id: "oxa", nom: "Oxalis" },
+  { id: "sam_hannes", nom: "Sam Hannes" },
+  { id: "sam_evequoz", nom: "Sam Evéquoz" }
+];
+
+let boutonPrenomActif = null;
+
+// Calcule le libellé de dates (Lundi au Vendredi) pour la semaine +decalageSemaines
+function obtenirDatesSemaine(decalageSemaines) {
+  const aujourdhui = new Date();
+  const jourSemaine = aujourdhui.getDay(); // 0 = Dimanche, 1 = Lundi...
+  const diffLundi = aujourdhui.getDate() - jourSemaine + (jourSemaine === 0 ? -6 : 1) + (decalageSemaines * 7);
+  
+  const lundi = new Date(aujourdhui.getFullYear(), aujourdhui.getMonth(), diffLundi);
+  const vendredi = new Date(lundi.getFullYear(), lundi.getMonth(), lundi.getDate() + 4);
+  
+  const options = { day: 'numeric', month: 'long' };
+  return `Semaine du ${lundi.toLocaleDateString('fr-FR', options)} au ${vendredi.toLocaleDateString('fr-FR', options)} ${vendredi.getFullYear()}`;
+}
+
+// Génère les 7 tableaux au chargement de la page
+function initialiserCalendrier() {
+  const conteneur = document.getElementById("zoneTableauxCalendrier");
+  if (!conteneur) return;
+  
+  const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+  let htmlTotal = "";
+
+  for (let s = 0; s < 7; s++) {
+    const titreDates = obtenirDatesSemaine(s);
+    
+    // Construction des colonnes des prénoms (Ligne 4)
+    let cellulesPrenoms = "";
+    for (let j = 0; j < 5; j++) {
+      let boutonsHTML = "";
+      listeColleguesCalendrier.forEach(col => {
+        boutonsHTML += `<button type="button" class="btn-prenom etat-neutre" data-statut="neutre" data-semaine="${s}" data-jour="${jours[j]}" data-collegue="${col.nom}" onclick="ouvrirModalPresence(this)">${col.nom}</button>`;
+      });
+      cellulesPrenoms += `<td><div class="liste-prenoms-jour">${boutonsHTML}</div></td>`;
+    }
+
+    // Construction des 5 champs texte modifiables de la ligne 6 (Planning Nico)
+    let cellulesNico = "";
+    for (let j = 0; j < 5; j++) {
+      cellulesNico += `<td><textarea class="cal-input-cell cal-nico-jour" data-jour="${jours[j]}" placeholder="..." oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea></td>`;
+    }
+
+    htmlTotal += `
+      <table class="tableau-semaine" data-semaine-index="${s}">
+        <!-- Ligne 1 : 5 colonnes fusionnées affichant les dates -->
+        <tr class="cal-ligne-dates">
+          <th colspan="5" class="cal-titre-dates">${titreDates}</th>
+        </tr>
+        <!-- Ligne 2 : 5 colonnes fusionnées, champ texte modifiable -->
+        <tr>
+          <td colspan="5" style="padding: 0;">
+            <textarea class="cal-input-cell cal-note-semaine" placeholder="Notes générales de la semaine..." oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea>
+          </td>
+        </tr>
+        <!-- Ligne 3 : Jours de la semaine non modifiables -->
+        <tr class="cal-ligne-jours">
+          <td>Lundi</td>
+          <td>Mardi</td>
+          <td>Mercredi</td>
+          <td>Jeudi</td>
+          <td>Vendredi</td>
+        </tr>
+        <!-- Ligne 4 : Liste des prénoms cliquables -->
+        <tr>
+          ${cellulesPrenoms}
+        </tr>
+        <!-- Ligne 5 : 5 colonnes fusionnées non modifiables -->
+        <tr class="cal-ligne-nico-titre">
+          <td colspan="5">Ci-dessous planning de Nico si particulier</td>
+        </tr>
+        <!-- Ligne 6 : Champ texte modifiable -->
+        <tr>
+          ${cellulesNico}
+        </tr>
+      </table>
+    `;
+  }
+
+  conteneur.innerHTML = htmlTotal;
+}
+
+// Ouvre le menu radio au clic sur un prénom
+function ouvrirModalPresence(bouton) {
+  boutonPrenomActif = bouton;
+  const nom = bouton.getAttribute("data-collegue");
+  const jour = bouton.getAttribute("data-jour");
+  const statutActuel = bouton.getAttribute("data-statut");
+
+  document.getElementById("titreModalPresence").innerText = `${nom} (${jour})`;
+  
+  // Réinitialise ou coche le bouton radio correspondant
+  const radios = document.getElementsByName("choixStatutPresence");
+  radios.forEach(r => {
+    r.checked = (r.value === statutActuel);
+  });
+
+  document.getElementById("modalPresence").style.display = "flex";
+}
+
+// Applique "présent" (noir gras) ou "absent" (gris normal)
+function appliquerStatutPresence(statut) {
+  if (!boutonPrenomActif) return;
+
+  boutonPrenomActif.setAttribute("data-statut", statut);
+  boutonPrenomActif.classList.remove("etat-neutre", "etat-present", "etat-absent");
+
+  if (statut === "present") {
+    boutonPrenomActif.classList.add("etat-present");
+  } else if (statut === "absent") {
+    boutonPrenomActif.classList.add("etat-absent");
+  }
+
+  fermerModalPresence();
+}
+
+function fermerModalPresence() {
+  document.getElementById("modalPresence").style.display = "none";
+  boutonPrenomActif = null;
+}
+
+// Compile et envoie les données des 7 tableaux vers Google Sheets
+function sendCalendrier() {
+  document.getElementById("message").innerText = "Envoi du calendrier en cours...";
+
+  const tableaux = document.querySelectorAll(".tableau-semaine");
+  const donneesCalendrier = [];
+
+  tableaux.forEach((table, index) => {
+    const dates = table.querySelector(".cal-titre-dates").innerText;
+    const noteSemaine = table.querySelector(".cal-note-semaine").value.trim();
+
+    // Récupération des présences par jour
+    const presences = {};
+    const boutons = table.querySelectorAll(".btn-prenom");
+    boutons.forEach(btn => {
+      const jour = btn.getAttribute("data-jour");
+      const collegue = btn.getAttribute("data-collegue");
+      const statut = btn.getAttribute("data-statut"); // "neutre", "present", ou "absent"
+      if (!presences[jour]) presences[jour] = {};
+      presences[jour][collegue] = statut;
+    });
+
+    // Récupération du planning de Nico par jour
+    const planningNico = {};
+    const champsNico = table.querySelectorAll(".cal-nico-jour");
+    champsNico.forEach(champ => {
+      const jour = champ.getAttribute("data-jour");
+      planningNico[jour] = champ.value.trim();
+    });
+
+    donneesCalendrier.push({
+      semaineIndex: index + 1,
+      dates: dates,
+      noteSemaine: noteSemaine,
+      presences: presences,
+      planningNico: planningNico
+    });
+  });
+
+  const param = {
+    type: "calendrier",
+    semaines: donneesCalendrier
+  };
+
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
+    .then(res => res.json())
+    .then(() => {
+      document.getElementById("message").innerText = "Calendrier enregistré avec succès !";
+    })
+    .catch(() => {
+      document.getElementById("message").innerText = "Erreur lors de l'enregistrement du calendrier.";
+    });
+}
+
+// Lance la création des 7 tableaux dès l'ouverture de la page
+initialiserCalendrier();
   
 </script>
 
