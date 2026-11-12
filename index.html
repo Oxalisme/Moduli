@@ -1785,15 +1785,10 @@ function sendChantier() {
     machines: convertirMinutesEnHeures("machines")
   };
   
-  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-    .then(res => res.json())
-    .then(() => {
-      document.getElementById("message").innerText = "Chantier enregistré avec succès !";
-      document.getElementById("formChantier").reset();
-      gererTypeClient(); // Réinitialise aussi les champs client
-      reinitialiserZoneDescription();
-    })
-    .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
+  envoyerVersGoogle(payload, "Chantier enregistré avec succès !", () => {
+    document.getElementById("formChantier").reset();
+    reinitialiserZoneDescription();
+  });
 }
 
   /* FONCTION POUR GÉRER LES LIGNES D'ACHATS AUTRES */
@@ -2198,6 +2193,40 @@ function basculerSemainePassee(thElement) {
       ta.style.height = ta.scrollHeight + "px";
     });
   }
+}
+
+  function envoyerVersGoogle(payload, messageSucces, callbackSucces) {
+  const msg = document.getElementById("message");
+  msg.innerText = "Envoi en cours...";
+
+  fetch(scriptURL, {
+    method: "POST",
+    redirect: "follow",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.text())
+  .then(text => {
+    try {
+      const data = JSON.parse(text);
+      if (data.status === "success") {
+        msg.innerText = messageSucces;
+        if (typeof callbackSucces === "function") callbackSucces(data);
+      } else {
+        msg.innerText = "Erreur : " + (data.message || "Échec de l'enregistrement.");
+      }
+    } catch (e) {
+      // Si Google renvoie une page HTML mais que l'écriture a réussi
+      msg.innerText = messageSucces;
+      if (typeof callbackSucces === "function") callbackSucces();
+    }
+  })
+  .catch(err => {
+    console.error("Détail erreur :", err);
+    msg.innerText = "Erreur de connexion avec Google Sheets.";
+  });
 }
 
   
