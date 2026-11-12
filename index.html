@@ -709,6 +709,23 @@ border-radius: 12px;
   transform: scale(1.3);
 }
 
+/* ACCORDÉON POUR LES SEMAINES PASSÉES */
+.carte-semaine.semaine-passee .cal-ligne-dates th {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+/* Masque tout le contenu du tableau sauf la 1ère ligne (titre) quand la carte est repliée */
+.carte-semaine.semaine-passee.repliee .tableau-semaine tr:not(.cal-ligne-dates) {
+  display: none;
+}
+
+/* Supprime la bordure inférieure de la ligne titre quand le reste est masqué */
+.carte-semaine.semaine-passee.repliee .cal-ligne-dates th {
+  border-bottom: none;
+}
+
   
 </style>
 </head>
@@ -1162,7 +1179,7 @@ border-radius: 12px;
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxPLbI2ZhIPTKJgdXct99J7JyeGkmicoXhqPK04Bz8U1bdLfXc7yu9GAb6WbrrdEw-f/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby2GKDcWMf8Kr4atdcjHr6HO_eN7sRCW3min08bOgQOEPoB0aaG0KRbd8e6Z3KRsPEN/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -1904,10 +1921,12 @@ function initialiserCalendrier() {
 
   for (let s = -3; s <= 3; s++) {
     const estPassee = (s < 0);
-    const titreDates = obtenirDatesSemaine(s) + (estPassee ? " (Passée)" : "");
+    const titreDates = obtenirDatesSemaine(s) + (estPassee ? " (Passée) ▶" : "");
     const attributReadonly = estPassee ? "readonly" : "";
     const attributDisabled = estPassee ? "disabled" : "";
-    const classePassee = estPassee ? "semaine-passee" : "";
+    const classePassee = estPassee ? "semaine-passee repliee" : "";
+    const actionTitre = estPassee ? `onclick="basculerSemainePassee(this)"` : "";
+
     
     // Construction des colonnes des prénoms (Ligne 4)
     let cellulesPrenoms = "";
@@ -1933,7 +1952,7 @@ function initialiserCalendrier() {
         <table class="tableau-semaine" data-semaine-offset="${s}">
           <!-- Ligne 1 : 5 colonnes fusionnées affichant les dates -->
           <tr class="cal-ligne-dates">
-            <th colspan="5" class="cal-titre-dates">${titreDates}</th>
+            <th colspan="5" class="cal-titre-dates" ${actionTitre}>${titreDates}</th>
           </tr>
           <!-- Ligne 2 : 5 colonnes fusionnées, champ texte modifiable -->
           <tr>
@@ -2083,8 +2102,7 @@ function chargerDonneesCalendrier() {
 
       // Parcourt chacun des 7 tableaux affichés à l'écran
       document.querySelectorAll(".tableau-semaine").forEach(table => {
-        const titreActuel = table.querySelector(".cal-titre-dates").innerText.replace(" (Passée - Verrouillée)", "").trim();
-
+      const titreActuel = table.querySelector(".cal-titre-dates").innerText.replace(/ \(Passée.*$/, "").trim();
         // Cherche si cette semaine existe déjà dans les colonnes B..H du Sheet
         let colIndex = -1;
         for (let c = 1; c < datesEnregistrees.length; c++) {
@@ -2149,6 +2167,25 @@ function chargerDonneesCalendrier() {
     .catch(() => {
       msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
     });
+}
+  
+function basculerSemainePassee(thElement) {
+  const carte = thElement.closest(".carte-semaine");
+  if (!carte) return;
+
+  const estRepliee = carte.classList.toggle("repliee");
+
+  // Met à jour la petite flèche ▶ / ▼
+  if (estRepliee) {
+    thElement.innerText = thElement.innerText.replace(" ▼", " ▶");
+  } else {
+    thElement.innerText = thElement.innerText.replace(" ▶", " ▼");
+    // Recalcule la hauteur des champs texte maintenant que le tableau est visible
+    carte.querySelectorAll("textarea").forEach(ta => {
+      ta.style.height = "auto";
+      ta.style.height = ta.scrollHeight + "px";
+    });
+  }
 }
 
   
