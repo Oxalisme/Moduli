@@ -548,30 +548,57 @@ border-radius: 12px;
   border: none !important;
   background: none !important;
 }
-
+  
+/* Conteneur arrondi autour de chaque semaine */
+.carte-semaine {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 2px solid #894B0A !important;
+  border-radius: 12px !important;
+  overflow: hidden !important; /* Tronque proprement les coins internes */
+  background-color: #FEFCE8 !important;
+}
+  
 .tableau-semaine {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   table-layout: fixed;
-  background-color: #FEFCE8;
-  border: 2px solid #894B0A;
-  border-radius: 12px;
-  overflow: hidden;
+  border: none;
 }
 
 .tableau-semaine th, 
 .tableau-semaine td {
-  border: 1px solid #894B0A;
+  border-right: 1px solid #894B0A;
+  border-bottom: 1px solid #894B0A;
   padding: 6px 4px;
   text-align: center;
   vertical-align: top;
   font-size: 16px;
 }
 
+/* Supprime la bordure droite de la dernière colonne et du bas de la dernière ligne */
+.tableau-semaine th:last-child, 
+.tableau-semaine td:last-child {
+  border-right: none;
+}
+.tableau-semaine tr:last-child td {
+  border-bottom: none;
+}
+
+/* Style visuel pour les 3 semaines déjà écoulées (verrouillées) */
+.carte-semaine.semaine-passee {
+  opacity: 0.75;
+}
+.carte-semaine.semaine-passee .btn-prenom {
+  cursor: not-allowed;
+}
+
 /* Ligne 1 : Dates */
 .cal-ligne-dates th {
   background-color: #FEFCE8;
-  color: white;
+  color: #894B0A; /*white;*/
   font-size: 18px;
   padding: 10px;
 }
@@ -693,8 +720,9 @@ border-radius: 12px;
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Rapport des heures</button>
 <button onclick="showForm('calendrier')" style="background-color: #FEFCE8; border: 1px solid #894B0A;">Calendrier</button>
-<button onclick="showForm('theorie')" style="background-color: #FFFFFF; border: 1px solid #C0C0C0;">Théorie révolutionnaire</button>
-
+<button onclick="showForm('theorie')" style="background-color: #FFFFFF; border: 1px solid #C0C0C0; color: #FFFFFF">Théorie révolutionnaire</button>
+<!--juste effacer "color: #FFFFFF" quand je voudrai qu'on le revoit-->
+  
 <!-- FORMULAIRE CHANTIER -->
 <form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
 <!--
@@ -1830,21 +1858,21 @@ function compterFrais() {
    GESTION DU CALENDRIER (7 SEMAINES)
    ========================================================= */
 
-// Liste exacte des prénoms du choix "collegue" dans Rapports
+// 1. GESTION FACILE DES PRÉNOMS : passez "actif" à false pour masquer un prénom, et true pour le réafficher
 const listeColleguesCalendrier = [
-  { id: "alu", nom: "Alu" },
-  { id: "delphine", nom: "Delphine" },
-  { id: "ellio", nom: "Ellio" },
-  { id: "gabriel", nom: "Gabriel" },
-  { id: "greg", nom: "Greg" },
-  { id: "juan", nom: "Juan" },
-  { id: "laura", nom: "Laura" },
-  { id: "laure", nom: "Laure" },
-  { id: "mickael", nom: "Mickaël" },
-  { id: "nico", nom: "Nico" },
-  { id: "oxa", nom: "Oxalis" },
-  { id: "sam_hannes", nom: "Sam Hannes" },
-  { id: "sam_evequoz", nom: "Sam Evéquoz" }
+  { id: "alu", nom: "Alu", actif: true },
+  { id: "delphine", nom: "Delphine", actif: true },
+  { id: "ellio", nom: "Ellio", actif: true },
+  { id: "gabriel", nom: "Gabriel", actif: false },
+  { id: "greg", nom: "Greg", actif: true },
+  { id: "juan", nom: "Juan", actif: true },
+  { id: "laura", nom: "Laura", actif: false }, // Exemple masqué, passez à true pour réafficher
+  { id: "laure", nom: "Laure", actif: true },
+  { id: "mickael", nom: "Mickaël", actif: true },
+  { id: "nico", nom: "Nico", actif: true },
+  { id: "oxa", nom: "Oxalis", actif: true },
+  { id: "sam_hannes", nom: "Sam Hannes", actif: false }, // Exemple masqué
+  { id: "sam_evequoz", nom: "Sam Evéquoz", actif: true }
 ];
 
 let boutonPrenomActif = null;
@@ -1862,7 +1890,7 @@ function obtenirDatesSemaine(decalageSemaines) {
   return `Semaine du ${lundi.toLocaleDateString('fr-FR', options)} au ${vendredi.toLocaleDateString('fr-FR', options)} ${vendredi.getFullYear()}`;
 }
 
-// Génère les 7 tableaux au chargement de la page
+// 2. GÉNÉRATION DES 7 TABLEAUX (-3 semaines passées, 0 actuelle, +3 à venir)
 function initialiserCalendrier() {
   const conteneur = document.getElementById("zoneTableauxCalendrier");
   if (!conteneur) return;
@@ -1870,64 +1898,76 @@ function initialiserCalendrier() {
   const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
   let htmlTotal = "";
 
-  for (let s = 0; s < 7; s++) {
-    const titreDates = obtenirDatesSemaine(s);
+  // On filtre uniquement les collègues actifs
+  const colleguesActifs = listeColleguesCalendrier.filter(col => col.actif === true);
+
+  for (let s = -3; s <= 3; s++) {
+    const estPassee = (s < 0);
+    const titreDates = obtenirDatesSemaine(s) + (estPassee ? " (Passée - Verrouillée)" : "");
+    const attributReadonly = estPassee ? "readonly" : "";
+    const attributDisabled = estPassee ? "disabled" : "";
+    const classePassee = estPassee ? "semaine-passee" : "";
     
     // Construction des colonnes des prénoms (Ligne 4)
     let cellulesPrenoms = "";
     for (let j = 0; j < 5; j++) {
       let boutonsHTML = "";
-      listeColleguesCalendrier.forEach(col => {
-        boutonsHTML += `<button type="button" class="btn-prenom etat-neutre" data-statut="neutre" data-semaine="${s}" data-jour="${jours[j]}" data-collegue="${col.nom}" onclick="ouvrirModalPresence(this)">${col.nom}</button>`;
+      colleguesActifs.forEach(col => {
+        // Si la semaine est passée, on n'attache pas le onclick et on désactive le bouton
+        const actionClic = estPassee ? "" : `onclick="ouvrirModalPresence(this)"`;
+        boutonsHTML += `<button type="button" class="btn-prenom etat-neutre" data-statut="neutre" data-semaine="${s}" data-jour="${jours[j]}" data-collegue="${col.nom}" ${actionClic} ${attributDisabled}>${col.nom}</button>`;
       });
       cellulesPrenoms += `<td><div class="liste-prenoms-jour">${boutonsHTML}</div></td>`;
     }
 
-    // Construction des 5 champs texte modifiables de la ligne 6 (Planning Nico)
+    // Construction des 5 champs texte de la ligne 6 (Planning Nico)
     let cellulesNico = "";
     for (let j = 0; j < 5; j++) {
-      cellulesNico += `<td><textarea class="cal-input-cell cal-nico-jour" data-jour="${jours[j]}" placeholder="..." oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea></td>`;
+      cellulesNico += `<td><textarea class="cal-input-cell cal-nico-jour" data-jour="${jours[j]}" placeholder="..." ${attributReadonly} oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea></td>`;
     }
 
+    // Chaque semaine est enveloppée dans sa propre <div class="carte-semaine"> pour arrondir les coins
     htmlTotal += `
-      <table class="tableau-semaine" data-semaine-index="${s}">
-        <!-- Ligne 1 : 5 colonnes fusionnées affichant les dates -->
-        <tr class="cal-ligne-dates">
-          <th colspan="5" class="cal-titre-dates">${titreDates}</th>
-        </tr>
-        <!-- Ligne 2 : 5 colonnes fusionnées, champ texte modifiable -->
-        <tr>
-          <td colspan="5" style="padding: 0;">
-            <textarea class="cal-input-cell cal-note-semaine" placeholder="Notes générales de la semaine..." oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea>
-          </td>
-        </tr>
-        <!-- Ligne 3 : Jours de la semaine non modifiables -->
-        <tr class="cal-ligne-jours">
-          <td>Lundi</td>
-          <td>Mardi</td>
-          <td>Mercredi</td>
-          <td>Jeudi</td>
-          <td>Vendredi</td>
-        </tr>
-        <!-- Ligne 4 : Liste des prénoms cliquables -->
-        <tr>
-          ${cellulesPrenoms}
-        </tr>
-        <!-- Ligne 5 : 5 colonnes fusionnées non modifiables -->
-        <tr class="cal-ligne-nico-titre">
-          <td colspan="5">Ci-dessous planning de Nico si particulier</td>
-        </tr>
-        <!-- Ligne 6 : Champ texte modifiable -->
-        <tr>
-          ${cellulesNico}
-        </tr>
-      </table>
+      <div class="carte-semaine ${classePassee}">
+        <table class="tableau-semaine" data-semaine-offset="${s}">
+          <!-- Ligne 1 : 5 colonnes fusionnées affichant les dates -->
+          <tr class="cal-ligne-dates">
+            <th colspan="5" class="cal-titre-dates">${titreDates}</th>
+          </tr>
+          <!-- Ligne 2 : 5 colonnes fusionnées, champ texte modifiable -->
+          <tr>
+            <td colspan="5" style="padding: 0;">
+              <textarea class="cal-input-cell cal-note-semaine" placeholder="Chantier(s) de la semaine ?" ${attributReadonly} oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea>
+            </td>
+          </tr>
+          <!-- Ligne 3 : Jours de la semaine non modifiables -->
+          <tr class="cal-ligne-jours">
+            <td>Lundi</td>
+            <td>Mardi</td>
+            <td>Mercredi</td>
+            <td>Jeudi</td>
+            <td>Vendredi</td>
+          </tr>
+          <!-- Ligne 4 : Liste des prénoms cliquables -->
+          <tr>
+            ${cellulesPrenoms}
+          </tr>
+          <!-- Ligne 5 : 5 colonnes fusionnées non modifiables -->
+          <tr class="cal-ligne-nico-titre">
+            <td colspan="5">Ci-dessous planning de Nico si particulier</td>
+          </tr>
+          <!-- Ligne 6 : Champ texte modifiable -->
+          <tr>
+            ${cellulesNico}
+          </tr>
+        </table>
+      </div>
     `;
   }
 
   conteneur.innerHTML = htmlTotal;
 }
-
+  
 // Ouvre le menu radio au clic sur un prénom
 function ouvrirModalPresence(bouton) {
   boutonPrenomActif = bouton;
