@@ -747,7 +747,7 @@ border-radius: 12px;
 <!--juste effacer "color: #FFFFFF" quand je voudrai qu'on le revoit-->
   
 <!-- FORMULAIRE CHANTIER -->
-<form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); sendChantier();">
+<form id="formChantier" class="theme-chantier" onsubmit="event.preventDefault(); antier();">
 <!--
 <form id="formChantier" class="theme-chantier">
 -->
@@ -924,7 +924,7 @@ border-radius: 12px;
 
   <button type="submit" class="btn-envoyer">Envoyer</button>
   <!--
-  <button type="button" class="btn-envoyer" onclick="sendChantier()">Envoyer</button>
+  <button type="button" class="btn-envoyer" onclick="antier()">Envoyer</button>
   -->
 </form>
   
@@ -1185,7 +1185,7 @@ border-radius: 12px;
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycby8buGEhHMOuEvhcvACsFBnOPa9k7k-LDjG1itxSDV1_YOUT-CQxSAcENNX5Q3hwUqu/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxXG5t9-Rc4M4i7Ms30qG_HAxrwBwrSv8UYA4YKR4oFJ_RFwdJixtiRB3Evp13cYifc/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -1228,7 +1228,7 @@ document.querySelectorAll('textarea').forEach(textarea => {
 */
 
   /*
-function sendChantier() {
+function antier() {
   document.getElementById("message").innerText = "Envoi du chantier en cours...";
   const param = {
     type: "chantier",
@@ -1586,7 +1586,7 @@ function gererLigneMateriaux(event) {
 }
 
   
-// 2. Fonction à appeler AU DÉBUT de votre fonction existante sendChantier()
+// 2. Fonction à appeler AU DÉBUT de votre fonction existante antier()
 function compilerDescription() {
   const lignes = document.getElementsByClassName('ligne-description');
   let descriptionTotale = "";
@@ -1755,7 +1755,7 @@ function gererTypeRapport() {
 }
 
 
-// Modifie la fonction sendChantier pour récupérer le bon client
+// Modifie la fonction antier pour récupérer le bon client
 function sendChantier() {
   document.getElementById("message").innerText = "Envoi du chantier en cours...";
   
@@ -1800,8 +1800,6 @@ function sendChantier() {
       document.getElementById("formChantier").reset();
       // OPTIONNEL : Nettoyer la zone de description dynamique pour ne laisser qu'une seule ligne vide
       reinitialiserZoneDescription();
-    document.getElementById("formChantier").reset();
-    reinitialiserZoneDescription();
     } else {
   document.getElementById("message").innerText = "Erreur : " + data.message;
   }
