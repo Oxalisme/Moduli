@@ -1904,7 +1904,7 @@ function initialiserCalendrier() {
 
   for (let s = -3; s <= 3; s++) {
     const estPassee = (s < 0);
-    const titreDates = obtenirDatesSemaine(s) + (estPassee ? " (Passée - Verrouillée)" : "");
+    const titreDates = obtenirDatesSemaine(s) + (estPassee ? " (Passée)" : "");
     const attributReadonly = estPassee ? "readonly" : "";
     const attributDisabled = estPassee ? "disabled" : "";
     const classePassee = estPassee ? "semaine-passee" : "";
