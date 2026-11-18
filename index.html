@@ -1231,6 +1231,10 @@ border-radius: 12px;
       <input type="radio" name="choixStatutPresence" value="absent" onchange="appliquerStatutPresence('absent')">
       Absent
     </label>
+    <label>
+      <input type="radio" name="choixStatutPresence" value="neutre" onchange="appliquerStatutPresence('neutre')">
+      Je sais pas encore
+    </label>
     <button type="button" onclick="fermerModalPresence()" style="padding: 10px; font-size: 18px; background-color: #F3E8FF; border: 1px solid #6B21A8;">Fermer</button>
   </div>
 </div>
@@ -2140,7 +2144,7 @@ function appliquerStatutPresence(statut) {
     boutonPrenomActif.classList.add("etat-present");
   } else if (statut === "absent") {
     boutonPrenomActif.classList.add("etat-absent");
-  } else if (statut === "indefini") {
+  } else if (statut === "neutre") {
     boutonPrenomActif.classList.add("etat-neutre");
   }
 
@@ -2421,6 +2425,7 @@ function ouvrirMenuJourRegulier(btn) {
     return;
   }
 
+  /*
   // Utilise votre menu contextuel existant ou bascule proprement
   const choix = prompt(`Horaire régulier pour ${nom} (${btn.dataset.jour}) :\nTapez 1 pour Présent\nTapez 0 pour Absent\nLaissez vide pour réinitialiser`);
   if (choix === null) return; // Annulé
@@ -2434,6 +2439,38 @@ function ouvrirMenuJourRegulier(btn) {
   btn.classList.add("etat-" + nouveauStatut);
 }
 
+function ouvrirMenuJourRegulier(btn) {
+  const nom = document.getElementById("selectNomRegulier").value;
+  if (!nom) {
+    alert("Veuillez d'abord sélectionner votre prénom dans le menu « Ton nom ».");
+    return;
+  }    */
+
+  // Mémorise le bouton du jour cliqué pour que la validation de la modale le mette à jour
+  boutonPresenceActif = btn;
+
+  // Met à jour le titre de la modale existante (adaptez l'id du titre si besoin, ex: "modalPresenceTitre")
+  const titreModal = document.getElementById("modalPresenceTitre");
+  if (titreModal) {
+    titreModal.innerText = `${nom} — ${btn.dataset.jour} (Horaire régulier)`;
+  }
+
+  // Pré-coche le bouton radio correspondant à l'état actuel ("present", "absent" ou "neutre")
+  const statutActuel = btn.getAttribute("data-statut") || "neutre";
+  const radioCible = document.querySelector(`input[name="statutPresence"][value="${statutActuel}"]`);
+  if (radioCible) {
+    radioCible.checked = true;
+  } else {
+    // Si "neutre" n'a pas de radio dédié, décoche tout
+    document.querySelectorAll('input[name="statutPresence"]').forEach(r => r.checked = false);
+  }
+
+  // Affiche votre fenêtre modale existante (adaptez l'id de la modale si besoin, ex: "modalPresence")
+  const modal = document.getElementById("modalPresence");
+  if (modal) {
+    modal.style.display = "flex";
+  }
+}
 
   
 </script>
