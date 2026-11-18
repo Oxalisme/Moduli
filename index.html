@@ -2405,7 +2405,7 @@ function ouvrirMenuJourRegulier(btn) {
   boutonPrenomActif = btn;
   const jour = btn.getAttribute("data-jour");
   const statutActuel = btn.getAttribute("data-statut") || "neutre";
-  document.getElementById("titreModalPresence").innerText = ${nom} — ${jour} (Régulier);
+  document.getElementById("titreModalPresence").innerText = "${nom} — ${jour} (Régulier)";
   const radios = document.getElementsByName("choixStatutPresence");
   radios.forEach(r => {
     r.checked = (r.value === statutActuel);
