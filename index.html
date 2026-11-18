@@ -2140,6 +2140,8 @@ function appliquerStatutPresence(statut) {
     boutonPrenomActif.classList.add("etat-present");
   } else if (statut === "absent") {
     boutonPrenomActif.classList.add("etat-absent");
+  } else if (statut === "indefini") {
+    boutonPrenomActif.classList.add("etat-neutre");
   }
 
   fermerModalPresence();
