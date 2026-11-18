@@ -2450,19 +2450,19 @@ function ouvrirMenuJourRegulier(btn) {
   boutonPresenceActif = btn;
 
   // Met à jour le titre de la modale existante (adaptez l'id du titre si besoin, ex: "modalPresenceTitre")
-  const titreModal = document.getElementById("modalPresenceTitre");
+  const titreModal = document.getElementById("titreModalPresence");
   if (titreModal) {
     titreModal.innerText = `${nom} — ${btn.dataset.jour} (Horaire régulier)`;
   }
 
   // Pré-coche le bouton radio correspondant à l'état actuel ("present", "absent" ou "neutre")
   const statutActuel = btn.getAttribute("data-statut") || "neutre";
-  const radioCible = document.querySelector(`input[name="statutPresence"][value="${statutActuel}"]`);
+  const radioCible = document.querySelector(`input[name="choixStatutPresence"][value="${statutActuel}"]`);
   if (radioCible) {
     radioCible.checked = true;
   } else {
     // Si "neutre" n'a pas de radio dédié, décoche tout
-    document.querySelectorAll('input[name="statutPresence"]').forEach(r => r.checked = false);
+    document.querySelectorAll('input[name="choixStatutPresence"]').forEach(r => r.checked = false);
   }
 
   // Affiche votre fenêtre modale existante (adaptez l'id de la modale si besoin, ex: "modalPresence")
