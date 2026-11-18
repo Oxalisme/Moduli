@@ -734,6 +734,58 @@ border-radius: 12px;
   border-bottom: none;
 }
 
+  /* CARTE ACCORDÉON : HORAIRE HEBDOMADAIRE RÉGULIER */
+.carte-horaire-regulier .cal-ligne-dates th {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Masque le corps du tableau quand la carte est repliée */
+.carte-horaire-regulier.repliee .tableau-semaine tr:not(.cal-ligne-dates) {
+  display: none;
+}
+
+.carte-horaire-regulier.repliee .cal-ligne-dates th {
+  border-bottom: none;
+}
+
+/* Menu déroulant "Ton nom" */
+.select-nom-regulier {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: 1px solid #193CB8;
+  background-color: #ffffff;
+  color: #193CB8;
+  cursor: pointer;
+}
+
+/* Boutons des jours de la semaine (Lundi à Vendredi) */
+.btn-jour-regulier {
+  width: 100%;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Couleurs des 3 états (identiques aux prénoms) */
+.btn-jour-regulier.etat-neutre {
+  color: #EC4899; /* Rose */
+  font-weight: bold;
+}
+.btn-jour-regulier.etat-present {
+  color: #000000; /* Noir */
+  font-weight: bold;
+}
+.btn-jour-regulier.etat-absent {
+  color: #9CA3AF; /* Gris */
+  font-weight: normal;
+}
+
   
 </style>
 </head>
@@ -1946,6 +1998,50 @@ function initialiserCalendrier() {
   // On filtre uniquement les collègues actifs
   const colleguesActifs = listeColleguesCalendrier.filter(col => col.actif === true);
 
+  const listeCollegues = ["Alu", "Delphine", "Ellio", "Gabriel", "Greg", "Juan",
+    "Laura", "Laure", "Mickaël", "Nico", "Oxalis", "Sam Hannes", "Sam Evéquoz"];
+  const joursSemaine = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+
+  let optionsCollegues = `<option value="">Ton nom</option>`;
+  listeCollegues.forEach(nom => {
+    optionsCollegues += `<option value="${nom}">${nom}</option>`;
+  });
+
+  let boutonsJoursReguliers = "";
+  joursSemaine.forEach(jourS => {
+    boutonsJoursReguliers += `
+      <td>
+        <button type="button" class="btn-jour-regulier etat-neutre" data-jour="${jourS}" data-statut="neutre" onclick="ouvrirMenuJourRegulier(this)">
+          ${jourS}
+        </button>
+      </td>
+    `;
+  });
+
+  // Carte accordéon (repliée par défaut, même couleur que les semaines à venir)
+  htmlTotal += `
+    <div class="carte-semaine carte-horaire-regulier repliee">
+      <table class="tableau-semaine">
+        <tr class="cal-ligne-dates">
+          <th colspan="5" class="cal-titre-dates" onclick="basculerAccordéonRegulier(this)">
+            Horaire hebdomadaire régulier ▶
+          </th>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 8px;">
+            <select id="selectNomRegulier" class="select-nom-regulier" onchange="chargerProfilRegulierSelect()">
+              ${optionsCollegues}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          ${boutonsJoursReguliers}
+        </tr>
+      </table>
+    </div>
+  `;
+
+
   for (let s = -3; s <= 3; s++) {
     const estPassee = (s < 0);
     const titreDates = obtenirDatesSemaine(s) + (estPassee ? " (Passée) ▶" : "");
@@ -2093,9 +2189,18 @@ function sendCalendrier() {
     });
   });
 
+  const nomRegulier = document.getElementById("selectNomRegulier").value;
+  let joursReguliers = [];
+  if (nomRegulier) {
+    document.querySelectorAll(".btn-jour-regulier").forEach(btn => {
+      joursReguliers.push(btn.getAttribute("data-statut") || "neutre");
+    });
+  }
+
   const param = {
     type: "calendrier",
     semaines: donneesCalendrier
+    horaireRegulier: nomRegulier ? { nom: nomRegulier, statuts: joursReguliers } : null
   };
 
   fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
@@ -2194,6 +2299,33 @@ function chargerDonneesCalendrier() {
         }
       });
 
+    // 1. Mémorise les horaires réguliers reçus depuis Google Sheets
+    if (data.reguliers) {
+      horairesReguliersStockes = data.reguliers;
+      chargerProfilRegulierSelect();
+    }
+  
+    // 2. Applique les horaires réguliers sur les semaines présentes/futures non encore remplies
+    document.querySelectorAll(".carte-semaine:not(.semaine-passee):not(.carte-horaire-regulier)").forEach(carte => {
+      const table = carte.querySelector(".tableau-semaine");
+      Object.keys(horairesReguliersStockes).forEach(nomCollegue => {
+        const statutsReg = horairesReguliersStockes[nomCollegue];
+        ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"].forEach((jour, idxJour) => {
+          const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomCollegue}"]`);
+          // Ne remplit que si le bouton est encore neutre (pour ne pas écraser une exception saisie manuellement)
+          if (btn && btn.getAttribute("data-statut") === "neutre") {
+            const st = statutsReg[idxJour];
+            if (st === "present" || st === "absent") {
+              btn.setAttribute("data-statut", st);
+              btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
+              btn.classList.add("etat-" + st);
+            }
+          }
+        });
+      });
+    });
+
+
       msg.innerText = "Calendrier à jour !";
       setTimeout(() => { if (msg.innerText === "Calendrier à jour !") msg.innerText = ""; }, 2000);
     })
@@ -2255,6 +2387,51 @@ function basculerSemainePassee(thElement) {
     msg.innerText = "Erreur de connexion avec Google Sheets.";
   });
 }*/
+
+let horairesReguliersStockes = {}; // Mémorise { "Alu": ["present", "present", "absent", "neutre", "present"], ... }
+
+function basculerAccordéonRegulier(thElement) {
+  const carte = thElement.closest(".carte-horaire-regulier");
+  const estRepliee = carte.classList.toggle("repliee");
+  thElement.innerText = estRepliee
+    ? "Horaire hebdomadaire régulier ▶"
+    : "Horaire hebdomadaire régulier ▼";
+}
+
+// Quand on choisit son nom dans le menu déroulant, affiche ses réglages déjà enregistrés
+function chargerProfilRegulierSelect() {
+  const nom = document.getElementById("selectNomRegulier").value;
+  const statuts = horairesReguliersStockes[nom] || ["neutre", "neutre", "neutre", "neutre", "neutre"];
+
+  document.querySelectorAll(".btn-jour-regulier").forEach((btn, idx) => {
+    const st = statuts[idx] || "neutre";
+    btn.setAttribute("data-statut", st);
+    btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
+    btn.classList.add("etat-" + st);
+  });
+}
+
+// Ouvre la même fenêtre de choix (Présent / Absent) que sur le reste du calendrier
+function ouvrirMenuJourRegulier(btn) {
+  const nom = document.getElementById("selectNomRegulier").value;
+  if (!nom) {
+    alert("Il faut d'abord sélectionner ton nom.");
+    return;
+  }
+
+  // Utilise votre menu contextuel existant ou bascule proprement
+  const choix = prompt(`Horaire régulier pour ${nom} (${btn.dataset.jour}) :\nTapez 1 pour Présent\nTapez 0 pour Absent\nLaissez vide pour réinitialiser`);
+  if (choix === null) return; // Annulé
+
+  let nouveauStatut = "neutre";
+  if (choix.trim() === "1") nouveauStatut = "present";
+  else if (choix.trim() === "0") nouveauStatut = "absent";
+
+  btn.setAttribute("data-statut", nouveauStatut);
+  btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
+  btn.classList.add("etat-" + nouveauStatut);
+}
+
 
   
 </script>
