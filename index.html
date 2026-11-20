@@ -4,14 +4,7 @@
 <meta charset="UTF-8">
 <title>Heures Moduli</title>
   
-<!-- Images du raccourci écran d'accueil et favicon -->
-<!-- Images du raccourci écran d'accueil et favicon -->
-  <!--
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Oxalisme/Moduli/main/9a4b02e0-b721-4d43-90f4-cd531697cf13.png">
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Oxalisme/Moduli/main/9a4b02e0-b721-4d43-90f4-cd531697cf13.png">
--->
 <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/Oxalisme/Moduli/main/IMG_9a3e9ad7-554a-4ac8-ba9e-00b8cea1e2aa.webp">
-      
   
 <link rel="manifest" href="manifest.json">
   
@@ -880,11 +873,6 @@ border-radius: 12px;
       <input type="text" id="clientText" style="display: none;" placeholder="Nom du client" required>
     </div>
   </div>
-  
-  <!--
-  <label>Nom du client</label>
-  <input type="text" id="client" required>
-  -->
 
   <label>Lieu</label>
   <input type="text" id="lieu" placeholder="Description du jardin" required>
@@ -1031,18 +1019,6 @@ border-radius: 12px;
   <label>Heure de fin (après-midi)</label>
   <input type="time" id="fin2" min="13:00" max="23:59" >
 
-  
-  <!--
-  <label>Détails par rapport aux heures</label>
-  <textarea id="detailsHeures" placeholder="temps de pause ou détails du jour&#10POUR LES FRAIS UTILISER LES CHAMPS CI-DESSOUS"></textarea>
-  -->
-
-  <!--
-  <label>Pointless button</label>
-  <textarea id="complementsHeures" placeholder="km trajet, tickets repas, indemnité picnic, achats divers"></textarea>
-  <textarea id="complementsHeures" placeholder="Ce conteneur est obsolète, merci d'utiliser le suivant"></textarea>
-  -->
-
   <label>Frais de la journée</label>
   <div class="conteneur-frais-journaliers" style="background-color: transparent; border: 1px solid #016630;">
     <!-- PREMIÈRE LIGNE : km, ticket repas, pique-nique -->
@@ -1095,21 +1071,6 @@ border-radius: 12px;
       </label>
     </div>
   </div>
-
-  <!--
-  <label>Absence excusée</label>
-  <div style="background-color: transparent; border: 1px solid #016630; padding: 10px; border-radius: 12px;">
-    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 5px;">
-      <input type="checkbox" id="maladie" style="width: auto; margin: 0 10px 0 0;">
-      Maladie
-    </label>
-    <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
-      <input type="checkbox" id="congeMenstruel" style="width: auto; margin: 0 10px 0 0;">
-      Congé menstruel
-    </label>
-  </div>
-  -->
-
   
   <button type="submit" class="btn-envoyer">Envoyer</button>
   <!--
@@ -1132,7 +1093,6 @@ border-radius: 12px;
         Ton nom
       </label>
       <select id="collegueCompSelect" name="nom" style="display: none;" required>
-      <!-- Cette option sert de placeholder -->
         <option value="" disabled selected>Friedrich Engels</option>
         <option value="alu">Alu</option>
         <option value="delphine">Delphine</option>
@@ -1189,16 +1149,10 @@ border-radius: 12px;
   <input type="date" id="dateFinComp" required>
   
   <button type="submit" class="btn-envoyer">Générer le rapport</button>
-  <!--
-  <button type="button" class="btn-envoyer" onclick="sendComplements()">Envoyer</button>
-  -->
 
   <!-- Zone où le texte généré va apparaître -->
   <label>Rapport</label>
   <div id="resultatRapport">Le rapport s'affichera ici...</div>
-  <!--
-  <textarea id="resultatRapport" placeholder="Le rapport s'affichera ici..." style="background-color: #fff; border: 1px solid #ccc; min-height: 200px;" readonly></textarea>
-  -->
   
   <button type="button" class="btn-effacer" onclick="effacerRapport()">Tout effacer</button>
 
@@ -1277,7 +1231,6 @@ function showForm(type) {
   }
 }
 
-
   // SCRIPT D'AUTO-AGRANDISSEMENT DES TEXTAREA
 document.querySelectorAll('textarea').forEach(textarea => {
   textarea.addEventListener('input', function() {
@@ -1285,39 +1238,6 @@ document.querySelectorAll('textarea').forEach(textarea => {
     this.style.height = this.scrollHeight + 'px'; // Applique la hauteur réelle du contenu inséré
   });
 });
-
-/*  POUR AJOUTER LA DESCRIPTION LE CHAMPS MULTIPLE LÀ, IL FAUT REMPLACER ET METTRE
-  const description = compilerDescription();
-*/
-
-  /*
-function sendChantier() {
-  document.getElementById("message").innerText = "Envoi du chantier en cours...";
-  const param = {
-    type: "chantier",
-    nom: document.getElementById("collegueChant").value,
-    avec: document.getElementById("collegueAutreChant").value,
-    client: document.getElementById("client").value,
-    lieu: document.getElementById("lieu").value,
-    date: document.getElementById("dateChant").value,
-    heureDeb: document.getElementById("heureDebChant").value,
-    heureFin: document.getElementById("heureFinChant").value,
-    description: compilerDescription(),
-    volume: document.getElementById("volume").value,
-    broyeur: convertirMinutesEnHeures("broyeur"),
-    machines: convertirMinutesEnHeures("machines")
-  };
-  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-    .then(res => res.json())
-    .then(() => {
-      document.getElementById("message").innerText = "Chantier enregistré avec succès !";
-      document.getElementById("formChantier").reset();
-      // OPTIONNEL : Nettoyer la zone de description dynamique pour ne laisser qu'une seule ligne vide
-      reinitialiserZoneDescription();
-    })
-    .catch(() => document.getElementById("message").innerText = "Erreur lors de l'enregistrement.");
-}
-*/
     
 function sendHeures() {
   document.getElementById("message").innerText = "Envoi des heures en cours...";
@@ -1363,59 +1283,6 @@ function reinitialiserZoneAchats() {
     </div>
   `;
 }
-
-  
-  /*
-function genererRapport() {
-  
-  //alert("Étape 1 : Le bouton a bien détecté le clic !");
-  
-  const divResultat = document.getElementById("resultatRapport");
-  
-  if (!divResultat) {
-    alert("ERREUR : L'élément HTML 'resultatRapport' est introuvable dans la page !");
-    return;
-  }
-
-  //alert("Étape 2 : Les boîtes d'affichage existent bien dans la page.");
-
-  const nom = document.getElementById("collegueComp").value;
-  const debut = document.getElementById("dateDebComp").value;
-  const fin = document.getElementById("dateFinComp").value;
-
-  //alert("Étape 3 : Valeurs lues -> Nom: " + nom + " | Début: " + debut + " | Fin: " + fin);
-
-  divResultat.innerHTML = "<em>Calcul et génération du rapport quotidien en cours...</em>";
-
-  const param = {
-    action: "genererRapport",
-    nom: nom,
-    debut: debut,
-    fin: fin
-  };
-
-  //alert("Étape 4 : Connexion au Google Sheet en cours via : " + scriptURL);
-
-  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-  .then(res => {
-    alert("Étape 5 : Le serveur Google Sheet a répondu ! Traitement des données...");
-    return res.json();
-  })
-  .then(res => res.json())
-  .then(data => {
-    //alert("Étape 6 : Données reçues avec le statut : " + data.status);
-    if (data.status === "success") {
-      divResultat.innerHTML = data.html; 
-    } else {
-      divResultat.innerHTML = "<span style='color:red;'>Erreur retournée par Google : " + data.message + "</span>";
-    }
-  })
-  .catch((erreur) => {
-    //alert("Étape ÉCHEC : La connexion a échoué. Détails : " + erreur.message);
-    divResultat.innerHTML = "<span style='color:red;'>Erreur de connexion. Vérifiez le réseau.</span>";
-  });
-}
-*/
 
 function genererRapport() {
   const divResultat = document.getElementById("resultatRapport");
@@ -2412,278 +2279,6 @@ function ouvrirMenuJourRegulier(btn) {
   });
   document.getElementById("modalPresence").style.display = "flex";
 }
-
-
-
-
-
-
-
-
-    
-
-
-
-  /*
-
-  const tableaux = document.querySelectorAll(".tableau-semaine");
-  const donneesCalendrier = [];
-
-  tableaux.forEach((table, index) => {
-    const dates = table.querySelector(".cal-titre-dates").innerText;
-    const noteSemaine = table.querySelector(".cal-note-semaine").value.trim();
-
-    // Récupération des présences par jour
-    const presences = {};
-    const boutons = table.querySelectorAll(".btn-prenom");
-    boutons.forEach(btn => {
-      const jour = btn.getAttribute("data-jour");
-      const collegue = btn.getAttribute("data-collegue");
-      const statut = btn.getAttribute("data-statut"); // "neutre", "present", ou "absent"
-      if (!presences[jour]) presences[jour] = {};
-      presences[jour][collegue] = statut;
-    });
-
-    // Récupération du planning de Nico par jour
-    const planningNico = {};
-    const champsNico = table.querySelectorAll(".cal-nico-jour");
-    champsNico.forEach(champ => {
-      const jour = champ.getAttribute("data-jour");
-      planningNico[jour] = champ.value.trim();
-    });
-
-    donneesCalendrier.push({
-      semaineIndex: index + 1,
-      dates: dates,
-      noteSemaine: noteSemaine,
-      presences: presences,
-      planningNico: planningNico
-    });
-  });
-
-  const nomRegulier = document.getElementById("selectNomRegulier").value;
-  let joursReguliers = [];
-  if (nomRegulier) {
-    document.querySelectorAll(".btn-jour-regulier").forEach(btn => {
-      joursReguliers.push(btn.getAttribute("data-statut") || "neutre");
-    });
-  }
-
-  const param = {
-    type: "calendrier",
-    semaines: donneesCalendrier,
-    horaireRegulier: nomRegulier ? { nom: nomRegulier, statuts: joursReguliers } : null
-  };
-
-  fetch(scriptURL, { method: "POST", body: JSON.stringify(param) })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "success") {
-        msg.innerText = "Calendrier enregistré ! Mise à jour de l'affichage...";
-        // Relance immédiatement la lecture du Google Sheet pour récupérer les éventuelles saisies simultanées des collègues
-        chargerDonneesCalendrier();
-      } else {
-        msg.innerText = "Erreur lors de l'enregistrement.";
-      }
-    })
-    .catch(() => {
-      msg.innerText = "Erreur de connexion.";
-    });
-}
-
-// Lance la création des 7 tableaux dès l'ouverture de la page
-initialiserCalendrier();
-
-function chargerDonneesCalendrier() {
-  const msg = document.getElementById("message");
-  msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
-
-  fetch(scriptURL)
-    .then(res => res.json())
-    .then(data => {
-      if (data.status !== "success" || !data.donnees) {
-        msg.innerText = "";
-        return;
-      }
-
-      const grille = data.donnees; // Tableau 2D [ligne][colonne]
-      const datesEnregistrees = grille[0]; // Ligne 1 : les titres de dates en colonnes B..H
-      const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
-
-      // Parcourt chacun des 7 tableaux affichés à l'écran
-      document.querySelectorAll(".tableau-semaine").forEach(table => {
-      const titreActuel = table.querySelector(".cal-titre-dates").innerText.replace(/ \(Passée.*$/, "").trim();
-        // Cherche si cette semaine existe déjà dans les colonnes B..H du Sheet
-        let colIndex = -1;
-        for (let c = 1; c < datesEnregistrees.length; c++) {
-          if (String(datesEnregistrees[c]).includes(titreActuel)) {
-            colIndex = c;
-            break;
-          }
-        }
-
-        if (colIndex === -1) return; // Nouvelle semaine pas encore enregistrée : on la laisse vierge
-
-        // 1. Remplit la ligne 2 : Chantier(s) de la semaine
-        const noteInput = table.querySelector(".cal-note-semaine");
-        if (noteInput && grille[1][colIndex]) {
-          noteInput.value = grille[1][colIndex];
-          noteInput.style.height = "auto";
-          noteInput.style.height = noteInput.scrollHeight + "px";
-        }
-
-        // 2. Parcourt les lignes suivantes (collègues + Planning Nico)
-        for (let r = 2; r < grille.length; r++) {
-          const nomLigne = String(grille[r][0]).trim();
-          const valeurCellule = String(grille[r][colIndex] || "");
-
-          if (nomLigne === "Planning Nico") {
-            const textesNico = valeurCellule.split(" | ");
-            const champsNico = table.querySelectorAll(".cal-nico-jour");
-            champsNico.forEach((champ, idx) => {
-              if (textesNico[idx] !== undefined) {
-                champ.value = textesNico[idx];
-                champ.style.height = "auto";
-                champ.style.height = champ.scrollHeight + "px";
-              }
-            });
-          } else if (nomLigne !== "") {
-            // Reconstruit les 5 statuts ("1", "0", ou "") pour ce collègue
-            const statuts = valeurCellule.split(",");
-            jours.forEach((jour, idxJour) => {
-              const code = statuts[idxJour];
-              const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomLigne}"]`);
-              if (btn) {
-                btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
-                if (code === "1") {
-                  btn.setAttribute("data-statut", "present");
-                  btn.classList.add("etat-present");
-                } else if (code === "0") {
-                  btn.setAttribute("data-statut", "absent");
-                  btn.classList.add("etat-absent");
-                } else {
-                  btn.setAttribute("data-statut", "neutre");
-                  btn.classList.add("etat-neutre");
-                }
-              }
-            });
-          }
-        }
-      });
-
-    // 1. Mémorise les horaires réguliers reçus depuis Google Sheets
-    if (data.reguliers) {
-      horairesReguliersStockes = data.reguliers;
-      chargerProfilRegulierSelect();
-    }
-  
-    // 2. Applique les horaires réguliers sur les semaines présentes/futures non encore remplies
-    document.querySelectorAll(".carte-semaine:not(.semaine-passee):not(.carte-horaire-regulier)").forEach(carte => {
-      const table = carte.querySelector(".tableau-semaine");
-      Object.keys(horairesReguliersStockes).forEach(nomCollegue => {
-        const statutsReg = horairesReguliersStockes[nomCollegue];
-        ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"].forEach((jour, idxJour) => {
-          const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomCollegue}"]`);
-          // Ne remplit que si le bouton est encore neutre (pour ne pas écraser une exception saisie manuellement)
-          if (btn && btn.getAttribute("data-statut") === "neutre") {
-            const st = statutsReg[idxJour];
-            if (st === "present" || st === "absent") {
-              btn.setAttribute("data-statut", st);
-              btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
-              btn.classList.add("etat-" + st);
-            }
-          }
-        });
-      });
-    });
-
-
-      msg.innerText = "Calendrier à jour !";
-      setTimeout(() => { if (msg.innerText === "Calendrier à jour !") msg.innerText = ""; }, 2000);
-    })
-    .catch(() => {
-      msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
-    });
-}
-  
-function basculerSemainePassee(thElement) {
-  const carte = thElement.closest(".carte-semaine");
-  if (!carte) return;
-
-  const estRepliee = carte.classList.toggle("repliee");
-
-  // Met à jour la petite flèche ▶ / ▼
-  if (estRepliee) {
-    thElement.innerText = thElement.innerText.replace(" ▼", " ▶");
-  } else {
-    thElement.innerText = thElement.innerText.replace(" ▶", " ▼");
-    // Recalcule la hauteur des champs texte maintenant que le tableau est visible
-    carte.querySelectorAll("textarea").forEach(ta => {
-      ta.style.height = "auto";
-      ta.style.height = ta.scrollHeight + "px";
-    });
-  }
-}
-
-let horairesReguliersStockes = {}; // Mémorise { "Alu": ["present", "present", "absent", "neutre", "present"], ... }
-
-function basculerAccordéonRegulier(thElement) {
-  const carte = thElement.closest(".carte-horaire-regulier");
-  const estRepliee = carte.classList.toggle("repliee");
-  thElement.innerText = estRepliee
-    ? "Horaire hebdomadaire régulier ▶"
-    : "Horaire hebdomadaire régulier ▼";
-}
-
-// Quand on choisit son nom dans le menu déroulant, affiche ses réglages déjà enregistrés
-function chargerProfilRegulierSelect() {
-  const nom = document.getElementById("selectNomRegulier").value;
-  const statuts = horairesReguliersStockes[nom] || ["neutre", "neutre", "neutre", "neutre", "neutre"];
-
-  document.querySelectorAll(".btn-jour-regulier").forEach((btn, idx) => {
-    const st = statuts[idx] || "neutre";
-    btn.setAttribute("data-statut", st);
-    btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
-    btn.classList.add("etat-" + st);
-  });
-}
-
-// Ouvre la même fenêtre de choix (Présent / Absent) que sur le reste du calendrier
-function ouvrirMenuJourRegulier(btn) {
-  const nom = document.getElementById("selectNomRegulier").value;
-  if (!nom) {
-    alert("Il faut d'abord sélectionner ton nom.");
-    return;
-  }
-
-
-
-  // Mémorise le bouton du jour cliqué pour que la validation de la modale le mette à jour
-  boutonPresenceActif = btn;
-
-  // Met à jour le titre de la modale existante (adaptez l'id du titre si besoin, ex: "modalPresenceTitre")
-  const titreModal = document.getElementById("titreModalPresence");
-  if (titreModal) {
-    titreModal.innerText = `${nom} — ${btn.dataset.jour} (Horaire régulier)`;
-  }
-
-  // Pré-coche le bouton radio correspondant à l'état actuel ("present", "absent" ou "neutre")
-  const statutActuel = btn.getAttribute("data-statut") || "neutre";
-  const radioCible = document.querySelector(`input[name="choixStatutPresence"][value="${statutActuel}"]`);
-  if (radioCible) {
-    radioCible.checked = true;
-  } else {
-    // Si "neutre" n'a pas de radio dédié, décoche tout
-    document.querySelectorAll('input[name="choixStatutPresence"]').forEach(r => r.checked = false);
-  }
-
-  // Affiche votre fenêtre modale existante (adaptez l'id de la modale si besoin, ex: "modalPresence")
-  const modal = document.getElementById("modalPresence");
-  if (modal) {
-    modal.style.display = "flex";
-  }
-} */
-
   
 </script>
 
