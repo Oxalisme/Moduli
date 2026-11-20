@@ -1,0 +1,777 @@
+First Name,Last Name,Phone,Billing Address,EmailID,MobilePhone,Customer Name
+Thierry,Krebs,,"Chemin des planches 14
+1122 Romanel sur Morges",thierry.krebs@gmail.com,,Krebs Thierry
+,,021 963 19 55,"Av. du Théâtre 2-4
+1005 Lausanne",,,Pro Natura Vaud
+Olivier et Sandra,Mühlbauer-Haenni,021 861 21 82,"Route de la Vuy 2
+1305 Penthalaz",sandramuhlbauer@gmail.com,,Mühlbauer-Haenni Olivier et Sandra
+David,Clément,,"Petit-Maconnaix 4F
+1805 Jongny",dclement_ms@bluewin.ch,079 206 35 86,Clément David entreprise de multiservices
+Daisy,Clerc-Rochat,021 866 73 82,"Grand-Rue 19
+1148 Moiry",,079 789 76 04,Clerc-Rochat Daisy
+Lionel,Maumary,,"c/o
+Maumary Lionel
+chemin de Praz-Séchaud 40
+1010 Lausanne",lionel.maumary@oiseau.ch,079 323 17 03,COL
+Daniela,Ricci Ashmead,021 882 55 15,"chemin des Grands Champs 8
+1376 Eclagnens",dricciashmead@worldcom.ch,078 606 55 15,Ricci Ashmead Daniela
+Pierre,Cuendet,021 691 91 49,"rue de Bassanges 7
+1024 Ecublens",pierre.cuendet@tvtmail.ch,,Cuendet Pierre et América
+Christian,Scheurer,021 213 70 21,"Christian Scheurer
+Rue Centrale 26
+1002 Lausanne",cscheurer@domicim.ch,,Domicim
+Ruth et Yves,Debernardi,079 530 79 18,"chemin de la Jaque 61
+1093 La Conversion",ruth.debernardi@bfh.ch,079 502 30 02,Debernardi Ruth et Yves
+Michel,Baudraz,021 728 48 90,"M.
+Michel Baudraz
+chemin de la Jaque 58
+1093 La Conversion",m.baudraz@grande-caricaie.ch,079 772 48 24,Fondation Ellis Elliot
+Thierry,Krebs,021 869 71 88,"M.
+Thierry Krebs
+Chemin des Planches 14 
+1122 Romanel-sur-Morges",thierry.krebs@gmail.com,079 916 09 51,Jardin Vivant
+Laurent,Frutig,021 799 14 19,"Laurent Frutig 
+1098 Epesses",info@aubergeduvigneron.ch,079 404 27 77,Auberge du Vigneron
+Jordan, Claudine et Rémy,021 791 32 94,"chemin de la Jaque 9
+1093 La Conversion",,079 727 81 87,Jordan Claudine et Rémy
+Chantal,Bonnard, 021 729 06 30,"chemin de la Plaisante 33
+1012 Lausanne",ch.bonnard@longeraie.ch,,Chantal Bonnard
+Georges,Noceto,021 947 46 44,"chemin d'En-Quettolla 20
+1616 Attalens",g.noceto@bluewin.ch,079 799 10 47,Noceto Georges et Anne-Marie
+Jérémie,Stettler,,"rue de la Combe 12 
+1260 Nyon ",info@aiasa.ch,079 653 49 42,"Serrurerie générale Stettler  construction métallique, dépannage et serrurerie 	"
+Marc,Andenmatten, 021 869 73 49,"chemin des Grez 2
+1122 Romanel-sur-Morges",marc.andenmatten@temsa.ch,079 458 57 51,Andenmatten Marc
+Michel,Baudraz,'+41 (0)24 425 18 02,"Bureau exécutif de l'Association
+de la Grande Cariçaie
+Chemin de la Cariçaie 3
+1400 Cheseaux-Noréaz",m.baudraz@grande-caricaie.ch,,Association de la Grande Cariçaie
+Françoise,Mundler,021 691 46 16,"chemin du Champ-du-Lac 9
+1025 St-Sulpice VD",,,Mundler Françoise
+Pierre-Alain et Susanne (-Kuster),Bastardot,021 869 91 54,"Place Henri-de-Colombier 2
+1114 Colombier",,,Bastardot Pierre-Alain et Susanne (-Kuster)
+Robert,Brand,021 799 14 79,"ch. du Grabe 33
+1091 Grandvaux",,,Brand Robert et Thérèse
+Mikael,Rangnitt,021 799 31 11,"Chemin des Ecaravez 14P
+1092 Belmont-sur-Lausanne",,079 217 23 77,Rangnitt Mikael
+ Waltraud,Waechter,021 799 10 83,"chemin de la Branche 
+1091 Grandvaux",,,Waechter Waltraud
+Mikaël,Cantin,,"Ch.des Grèves1
+B.P.243
+1545 Chevroux",info@biosaule.ch,079 258 16 38,Biosaule
+Pierre,Iseli,022 364 56 29,"chemin de la Louve 5
+1196 Gland",pierre_iseli@bluewin.ch,,ELA - Escales Limicole et Agriculture
+Sandrine,Rousseau,,"Rousseau Sandrine 
+p.a. Domicim SA, Rue Centrale 26, Case postale 6951, 1002 Lausanne",srweb@bluewin.ch,079 203 89 14,Rousseau Sandrine
+Pedro,Sousa,021 544 21 02,"chemin des Chesaux 4A
+1053 Cugy VD",pedro.hellen@gmail.com,079 227 33 97,Sousa Pedro
+Gabriella,Raimondi,021 634 46 69,"chemin du Casard 33
+1023 Crissier",,,Raimondi Gabriella
+Christine,Senacq,026 925 05 30,"Chalet Polux
+chemin des Beaux Chalets 5
+1659 Rougemont",philippesenacq@aol.com,078 876 21 73,Senacq Christine
+François, Mottas,021 728 42 00,"chemin du Vigneron 18
+1009 Pully",mottas@hispeed.ch,,Mottas François
+,,'+41.(0)21 921 73 27,"route du Cyprès 17
+CH-1802 Corseaux",jacques.trub@bluewin.ch,,Jacques Trüb
+,,021 921 91 64,"chemin de la Bergère 12
+1805 Jongny",,,Vuagniaux  Eliette
+Elise,Riedo,021 691 57 33,"
+
+le Grand-Chemin 76
+1066 Epalinges",e.riedo@urbaplan.ch,078 629 20 27,Riedo Marc et Elise
+Gérard,Oehen,021 922 75 02,"chemin des Pléiades 6 
+1805 Jongny",,,Oehen Gérard
+Jacques,Horovitz,021 807 19 93,"
+
+le Moulin 27
+1128 Reverolle",,,Horovitz Jacques
+Jean-Paul et Anne,Gillioz,024 477 20 93,"route de Chenarlier 14
+1872 Troistorrents",,,Gillioz Jean-Paul et Anne
+Nathalie, Devenoge, 021 861 21 93,"route de Lussery-Villars 2
+1304 Dizy",nath.devenoge@bluewin.ch,079 797 47 89,Nathalie Devenoge
+Christian & Françoise,Dætwyler & Dubois,'+41 79 423 16 88,"en Bouley 104
+1680 Romont",daetwyler@swissonline.ch,'+41 44 954 22 88,Christian Dætwyler & Françoise Dubois
+Louis-Armand,Ponnaz,021 799 29 01,"route de l'Ancienne Poste 8
+1091 Grandvaux",,079 396 13 82,Ponnaz Louis-Armand
+ Marie-Christine,Torrenté,021 311 23 50,"chemin de Chandolin 3
+1005 Lausanne",mtcmtc@bluewin.ch,079 750 46 64,Torrenté Marie-Christine
+Jean-Jacques, Thorens (intendant), 021 944 15 88,"Ch. des Bulesses 154
+1814 La Tour-de-Peilz",jjthorens@bluewin.ch, 079 213 93 02,Domaine de La Doges
+ Vaclav et Miroslava,Pavlik, 021 922 62 51,"ch. du Petit Maconnaix 10
+1805 Jongny",,,Pavlik Vaclav et Miroslava (-Lukas)
+,,,,,,Famille Flamink
+Chloé,Weber,021 728 93 00,"Route du Burenoz 3
+1092 Belmont-sur-Lausanne",chloe_weber_honegger@outlook.com,079 445 50 02,Weber Chloé et Marc
+Anne,Devries Hemma,021 636 11 37,"chemin des Biondes 27
+1020 Renens VD",a.devries@bluewin.ch,,Devries Hemma Anne
+,,021 731 45 29,"chemin de Bellevue 5
+1053 Cugy ",g.henry@bluewin.ch,,Henry Gertrud
+Gérald,Koller,021 781 12 88,"chemin des Planches 14
+1073 Savigny",,,Koller Gérald et Consort
+Béatrice,Fischer,021 881 28 46,"avenue d'Orbe 15
+1040 Villars-le-Terroir
+ ",,079 503 42 31,Fischer Béatrice
+,,,,,,Fischer Michel
+Aurélie,Monnerat,,"chemin de Mourat 78
+1095 Lutry",aurelie@monnerat.org,076 329 07 03,Aurélie Monnerat
+ Ali,Dridi,021 731 16 34," route de Cheseaux 5
+1034 Boussens",dridi65@gmail.com,078 633 56 57,Dridi Ali
+Stéphane,Déglon,,"Général Guisan 1
+1058 Villars Tiercelin",stephan@sansinterdit.ch,079 608 00 23,Déglon Stéphane
+Laurence,Hausammann,021 731 38 47,"chemin de Prélaz 7C
+1053 Cugy",laurence.hausammann@gmail.com,079 699 67 05,Hausammann Laurence
+,,021 799 32 66,"route de Moratel 22 
+1096 Cully",nimportequoi@jensaisrien.org,,Joseph Lunn
+ Dominique,Perret,021 946 15 49 (Bureau),"chemin de la Segnire 14
+1091 Grandvaux",perret@skier.ch,079 214 34 64,Perret Dominique
+,,021 921 81 44,"chemin du Petit Maconnaix 16
+1805 Jongny",claude.cherbuin@paysdevaud.ch,079 435 36 19,Cherbuin Claude
+,,021 921 22 86,"chemin du Petit Maconnaix 18
+1805 Jongny",r-e.weiss@bluewin.ch,,Weiss Erwin et Ria
+,,,"avenue Louis- Ruchonnet 12 
+1800 Vevey",,079 577 43 74,Baumann 
+,, 021 943 21 08,"chemin du Lacuez 17
+1807 Blonay",suren.erkman@unil.ch, 079 653 51 80,Suren Erkman
+Catherine,Vasey,021 784 14 59,"Petit Maconnaix 14
+1805 Jongny",cvasey@noburnout.ch,,Bernadette Tcheau
+,,021 881 12 24,"chemin des Grands Champs 10
+1376 Eclagnens",,078 632 13 96,Geiser Jean
+,,'+41-273064166,"Chemin de la Source 12
+1955 Chamoson ",viviane.maye@gmail.com,'+41-796140427,Maye Viviane
+,,021 921 04 20,"chemin du Petit Maconnaix 12
+1805 Jongny",,,Nick Susanne
+,,021 311 82 77,"chemin de Bellevue 3 
+1053 Cugy
+",gregoirelaufer@yahoo.fr,079 253 64 07,Laufer Grégoire et Joëlle
+,,026 652 00 53,"En Bouley 106
+CH-1680 Romont",gh.valerie@ez-dev.com,,Georges-H. & Valérie Schenk
+,,021 799 18 76,"chemin de la Branche 18
+1091 Grandvaux",gaianiar@hotmail.com,079 693 76 18,Gaiani André
+,,021 921 84 41,"Champ de Ban 3
+1804 Corsier-sur-Vevey ",,079 379 36 27,Henderson-Delafontaine Irène et Allan
+,,021 881 62 85,"chemin des Grands Champs 6
+1376 Eclagnens ",,,Perreten Christine
+,,024 445 45 36,"rue des Prés-du-Lac 19
+1400 Yverdon-les-Bains",,079 508 42 58,Badan Michel
+,,021 803 18 04,"chemin du Brisecol
+1132 Lully",,,Vuurmans (-Mous) Lucas et Brigitta
+Fabian,Ruga,021 310 72 14,Fabian Ruga Administrateur PPE Groupe Cogestim Rue Étraz 5      CP- 5719                                       1002 Lausanne,fabian.ruga@cogestim.ch,079 703 65 88,PPE Coteaux 29 à Aclens
+Pascal,Harnisch,,chemin de la Douche 2 1303 Penthaz,pascal.harnisch@gmail.com,079 358 33 39,PPE Chemin de la douche
+,,021 799 16 79,"chemin de la Branche 14
+1091 Grandvaux",elizabeth.strebel@gmail.com,079 212 88 36 ,Strebel Paul et Elizabeth
+,,021 968 21 58,"chemin de la Tuilière 22
+1805 Jongny",cmo@swissonline.ch,,Heinz Oberli
+,,021 781 12 88 ,"chemin des Planches 14
+1073 Savigny ",kollergerald@bluewin.ch,,Koller Gérald
+Marc,Keller,021 791 38 95,"chemin de Fénix 136 
+1095 Lutry",info@arobeco.ch,079 204 51 52,Arobeco Sàrl
+,,021 791 44 21,"chemin de Crêt-de-Plan 40
+1095 Lutry",joann@joannrasch.com,,Rasch Marc et Jo Ann
+,,,"Chemin du Levant 4
+1804 Cossonay",claudiomarra1@gmail.com,076 329 56 06,Claudio Marra
+,,021 921 81 76,"chemin du Petit Maconnaix 26 
+1805 Jongny",,079 378 49 42,Gutmann Roland
+,,021 799 10 60," route de la Jamaire 4
+1091 Grandvaux",,076 460 32 81,Germond Lotte
+Claude,Nick,,"Claude Nick, adm.
+Petit Maconnaix 12
+1805 Jongny",c.nick@bluewin.ch,,PPE du Petit Maconnaix 10-26
+Eliane,Rasch,021 729 30 79,"chemin de Ponfilet 99
+1093 La Conversion",eliane.rasch@gmail.com,079 797 22 39,Eliane Rasch
+,,021 943 49 09 ,"chemin de Champ-Jaccoud 2
+1807 Blonay
+ ",r.hilro@bluewin.ch,079 217 42 20,Hilfiker Robert
+,Nicolas,,"Chemin de Prahis 3
+1091 Grandvaux",n.godelle@laposte.net,0033 6 72 99 38 96,Aurélia Kunt et Nicolas Godelle
+,,021 691 28 81,"chemin de Verney 5a
+1024 Ecublens",lesboutchoux@bluewin.ch,,Les Bout'choux
+,,,"les Afforets
+1860 Aigle",blisswec@bluewin.ch,,Bliss Jovita et Anthony
+,,021 799 12 52,"chemin des Auges 6
+1091 Grandvaux",,079 504 17 01,Wagnières Olga
+,Tille,,"Case Postale 66
+1090 Lac Croix-sur-Lutry",,,Mme. Tille
+,,021 922 34 55 ,"chemin de la Tuilière 32
+1805 Jongny",,079 224 52 68,Landry Marina et Stöckli Patrick
+,,,"Chemin des bois 6 
+1607 Palézieux-Village",jjm@derham.ch,792044811,Morard Jean-Jacques
+Charlotte,Bonnard,,,,,Chalet du Docteur
+,,021 921 87 16 , chemin du Centenaire 14,,,M. et Mme Jean-Pierre et Claude-Anne Maillard
+,,,"Place du Vallon 1
+1005 Lausanne",rochat.florian@bluewin.ch,079 312 28 57,Florian Rochat
+,Wells,021 944 29 28,"Chemin des Pléiades 12
+ 1805 Jongny",waimea.haven@gmail.com,,Wells John
+,,,Chemin de Champ-Jaccoud 2 1807 Blonay,r.hilro@bluewin.ch,792174220,Robert Hilfiker (nom désactivé voir sous Hilfiker)
+,,218253992,"Chemin Bauloz 14
+1032 Romanel-sur-Lausanne",vincent.clivaz@bluewin.ch,'+41-764057709,Clivaz Vincent et Edith
+,,,Route de Grandvaux 21,nairne.europe@gmail.com,796197115,Nairne Yelena
+Daniel,Cuénoud,021 784 27 17,"chemin de Richesson 2
+1000 Lausanne 26 ",cuenouddaniel@gmail.com,077 424 97 24,Daniel Cuénoud
+,,021 792 11 43,"chemin de Crêt-de-Plan 41
+1095 Lutry",,079 778 86 03,Denti Claude et Ursula
+,,021 921 79 40,"chemin des Pléiades 10
+1805 Jongny",ernst.schenk@ch.nestle.com,079 213 50 08,Schenk Ernst
+,,026 321 3738,"chemin de la Branche 8
+1091 Grandvaux",gunter.siddiqi@bfe.admin.ch,079 852 6471,Gunter Siddiqi et Jürg Schwyter
+,,,"Gaiserwaldstrasse 4
+9015 St-Gallen",office@ds-transporte.ch,079 663 92 77,Ds-transporte
+,,022 364 52 30,"chemin Bellevue 1
+1270 Trélex",mrtreyv@bluewin.ch,079 501 93 20,Marianne et Edmond Rossion Montan
+,,021 653 17 14 ,"chemin du Clos d'Amont 4
+1078 Essertes",,,Ostos-Bonilla Marcelliana
+,,021 799 21 88,"route de Lausanne 111
+1096 Cully",,,Monney Marianne
+,,'+41216242633,"route des Crêts Leyron 28
+1091 Grandvaux",,'+41764243246,Pavliv Oleg
+,,,"chemin des Grands-Champs 17
+1302 Vufflens-la-Ville",caroline_sennwald@hotmail.com,078 744 34 00,Sennwald Caroline
+,,,"Chemin de la Musardière 9
+1131 Tolochenaz",info@spoonetc.ch,763998324,Vagnières Chrisrophe
+,,,"Concerne:
+Avenue du Léman 6, Lausanne",mettrau@fischer-mettrau.ch,079 636 29 30,Georges Mettrau
+,, 021 841 13 64 ,"rue du Lac 30
+1342 Le Pont ",,079 710 46 85,Berney Hugo et Marie
+,,021 944 62 11,"Chemin des Murs-Blancs 103
+1814 La Tour-de-Peilz",m.pidoux@bluewin.ch,079 206 42 84,Pidoux Maurice
+,,021 784 17 31,"chemin du Polny 35
+1066 Epalinges",christian.ruth@bluewin.ch,,Terrier Christian et Ruth
+,, 021 791 45 62 ,"chemin du Crêt-Ministre 13
+1090 La Croix",,,Castella Gilbert
+Daniel,Cuénoud,,"chemin de Richesson 2
+1000 Lausanne 26",,,P.P.E. Chemin de Richesson 2
+,,022 362 50 27,"Chemin de la Bruyère 8
+1197 Prangins",,079 903 73 12,Tapernoux Caroline
+,,,"La Riaz 1
+1148 Mont-la-ville",,079 278 34 64,Miaz Jean-Marc
+,,,"Chemin du Couchant 26
+1007 Lausanne",jsmclement@hotmail.com,,CLEMENT FACILITY SERVICES
+,,021 791 55 31 ,"chemin de Bochat 9
+1094 Paudex ",,079 452 22 13,Esteve Ramon et Michele
+,,,"Route de Gryon 3
+1880 Bex",rafael.kolly@bluewin.ch,,WR entreprise forestière
+,,021 799 20 04 ," chemin des Daillettes
+1091 Grandvaux",,079 549 44 87,Monnier Johanna
+,,,"chemin du Champ-du-Lac 9
+1025 St-Sulpice",,,Mundler Alain
+,,,,ychem@hispeed.ch,079 510 34 52,Kern Stéphanie
+,,021 784 40 23,"Le Grand chemin 84  
+1066 Épalinge",khadija.ayer@bluewinn.ch,079 366 03 62,Ayer Khadija
+,,,,,079 741 24 42,Marie Muriser
+,,021 653 23 44,"route des Martines 29
+1052 Le Mont-sur-Lausanne",chris.interlight@etik.com,079 227 13 50,Brunner Christine
+,,076 822 53 27 Madame?,"chemin de Rennier 30
+1009 Pully",benedettopch@gmail.com,076 822 47 21,Benedetto Patrick
+,,,"chemin de Clair-Joly 49 
+1093 La Conversion",jr@darkbureau.eu,078 900 80 09,Ritter Joachim et Marzia
+,,026 652 27 11 ,"Route du Pra-Linlia 23
+1623 Semsales ",pat.vagnieres@bluewin.ch,079 206 66 86,Vagnières Patricia
+,,,"Au Vieux Village 6
+1035 Bournens",info@sgbcompta.ch,079 541 27 48,Sylvie Guignet-Bussy
+,,,"chemin de la branche 11
+1091 Grandvaux",,079 196 62 10,Bouts Nicolette
+,,021 544 73 57,"chemin des Peupliers 11
+1073 Mollie-Margot",,079 555 50 62,Domenjoz Florian
+,,021 784 16 43,"route des Corbessières 3 
+Chêne de Gland
+1000 Lausanne 25",,,Rochat Ami-Louis et Agnès
+,,021 948 03 11 ,"chemin des Bosquets 57
+1618 Châtel-St-Denis",fx.olivet@bluewin.ch,079 384 97 46,Olivet François
+,, 021 784 27 75 ,"chemin des Humberts 4
+1073 Savigny ",dramstein@gmail.com,079 429 55 38,Ramstein Denis
+,,,"Chemin du Centenaire 14
+1802 Corseaux",justmaillard@hotmail.com,079 566 22 39,Justine Maillard
+,,,,gbussy84@gmail.com,,Grégory Bussy
+,,,"Route des Crêts Leyron 26
+1091 Grandvaux",sarahstalley@msn.com,,Stalley Sarah et Jonathan
+,,,"Chemin d'Orzens 41
+1095 Lutry",vsonnay@gmail.com,078 657 65 40,Zoé Dumas et Vincent Sonnay
+Bastien,Steinmann,,Chemin des Cuarroz 28A,info@cige.ch,079 365 32 17,Cige Sàrl
+Christiane,Lang,,"Christiane Lang
+chemin de Mallieu 8
+ 1009 Pully",,,G.O.S.
+,,021 907 81 80,"chemin du Refuge 1
+1613 Maracon",didier.bettens@bluewin.ch,079 203 81 80,Didier Bettens
+,,021 903 45 85,"chemin de la Montagne 6
+1077 Servion",,079 832 83 84,Daout Bertrand et Anita
+,,021 903 28 80,"route de Servion 27
+1083 Mézières",pbottin@natures.ch,079 643 45 06,Bottin Philippe et Evelyne
+,,,"chemin de la Daumuse 4
+1073 Savigny",kmaillard@bluewin.ch,,Karin et Remi Morel-Maillard
+,,,,,,Divers
+,, 021 652 03 86,"Route des Chênes 6
+1082 Corcelles-le-Jorat ",,,Clausen Daniel
+,,021 921 70 02 ,"chemin des Pléiades 2
+1805 Jongny",,,Aasheim Claire et Per
+,,021 323 47 41,"Avenue de Naye 14
+1820 Territet",valentine.albion@gmail.com,079 625 22 16,Leu Valentine et Glinz André
+,, 021 784 17 83 ,"route de la Roche 2
+1073 Savigny",joergemch@citycable.ch,079 280 58 85,Emch Teresina
+,,021 729 03 91,"chemin du Plan 12
+1092 Belmont-sur-Lausanne",,'+417882 59918,Kohler-Hauf Manuela
+,,,"Avenue des Désertes 16c
+1009 Pully",sidonie.mayor@gmail.com,076 533 07 75,Mayor Baumann Sidonie
+,,021 791 18 15 ,"chemin d'Orzens 45
+1095 Lutry ",,,Schwab Liliane
+,,217910746,"chemin d'Orzens 19
+1095 Lutry ",jeremypilkington@hotmail.co.uk,447836322007,Pilkington Jeremy
+,,024 459 17 59,"rue des Chenevières 4
+1446 Baulmes",christine.hohlmoinat@protonmail.com,,Christine Hohl Moinat
+,, 021 903 53 43 ,"chemin de la Cornaz 4 
+1080 Les Cullayes",jean-blaise.curchod@bluewin.ch,076 326 30 01,Curchod Jean-Blaise
+,,,"Chemin d'Orzens 54
+1095 Lutry",cheryl_miles@yahoo.com,'+41 78 824 27 28,Cheryl Miles
+,,021 312 16 17,"Chemin des Côtes-de-Montmoiret 14
+1012 Lausanne",jimmy.villard@gmail.com,079 539 49 59,Villard Jimmy
+,, 021 807 35 28 ,"petite Rue 5
+1165 Allaman",,079 153 98 68,Duplain Michel et Monique
+,,,"Route de Cully 52
+1091 Grandvaux",francis.munier@fa2.ch,079 127 03 66,Munier Francis
+,,,"Avenue de l'Ésplanade 13
+1012 Lausanne",corinna_reisen@hotmail.com,,Kimmel Corinna
+,,022 368 01 02,"Chemin de la Papéterie 7
+1145 Bière",annechris21@hotmail.com,,Camus Christian
+,,021 961 15 08,"route de Glion 95
+1823 Glion",cl.hischenhuber@bluewin.ch,079 394 71 35,Hischenhuber Claudia
+,, 021 653 61 23,"chemin de la Porat 10
+1073 Savigny",marjorie.koller@yahoo.fr,078 648 68 19,Koller-Tinoco Marjorie
+,,021 535 44 10,"Chemin du Plan 23
+1092 Belmont-sur-Lausanne",,,Adler Jasna
+,,021 535 69 21,"Route de Lavaux 478
+1095 Lutry",birgitte@theemborgs.com,,Emborg Birgitte et Torben
+,,058 280 30 00,"Helvetia Assurances Suisse
+St. Alban-Anlage 26 CH-4002 Bâle",vehicule.sinistres@helvetia.ch,,Helvetia
+,,,"Sur les Moulins 18
+1026 Denges",,079 541 71 63,Franck Lehmans
+,, 	021 728 93 31,"route des Monts-de-Lavaux 22BIS
+1092 Belmont-sur-Lausanne",tatiana.honegger@hispeed.ch,079 272 29 79,Tatiana Honegger
+,,,Chemin de la Tuilière 22,milagroselisa@icloud.com,079 483 51 85,Milagros Elisa Salgado Leirado
+,,,"Chemin des Mélampyres 4
+1805 Jongny",,078 900 50 00,Cohen Michael
+Céline,Kupferschmid,,"Rue de l'Église 8
+1141 Sévery",webmaster@eficlean.ch,079 630 60 08,EFICLEAN SNC
+,,,"Édouard Rod 16 
+1007 Lausanne.",annikvuffray@hotmail.com,079 310 85 30,Vuffray Annik
+,, 022 369 11 46 ,"chemin du Bois de Bamp 4
+1270 Trélex",natap@bluewin.ch,079 211 50 43,Natacha Poulianovsky
+,,,"Route de Corbeyrier 3 
+1856 Corbeyrier",daniela.cochard@bluewin.ch,079 448 97 03,Cochard Daniela
+,,,,joyce@diversitylab.org,079 514 94 89,Binder Joyce
+,,,Bois de Ban 6 1270 Trélex,,'+41 79 664 38 63,Sylvie Calvo
+,,022 700 19 16,"chemin du Gros-Chêne 3
+1270 Trélex",cbrc@bluewin.ch,,De Castellanne Raymond
+,,,"Chemin du Bois de Bamp 6
+1270 Trélex",,079 664 38 63,Calvo Sylvie
+,,,"Route de Crétaz 16 D
+1091 Grandvaux",p.duca@bluewin.ch,079 250 65 34,Duca Philippe
+,, 021 781 25 24,"Route du Martinet 2
+1073 Savigny",mm.rod@citycable.ch,786235104,Michel  Rod
+,,,"route du Flonzaley 4
+1070 Puidoux",diane-baldin@bluewin.ch,079 4730637 ,Baldin Diane
+,,076 587 07 06,"chemin du Champ-du-Lac 17
+1025 St-Sulpice",,021 691 43 78,Lopez Margrit
+Eléonore,JEANMONOD,021 320 34 78,"rue Grand-St-Jean 16
+1003 Lausanne
+Case postale
+1002 Lausanne",eleonore.jeanmonod@mbsa.ch,,M&B gérance immobilière SA
+,,,"Chemin de Pernessy 9
+1052 Le Mont-sur-Lausanne",,,Roelen Astrid
+,,,"Chemin de Ponfilet 42
+1093 LaConversion",violetteparzin@outlook.com,079 541 12 42,Parzin Violette
+,,,,,,Tridel SA
+,,,"Ch. des Alouettes 2
+1052 Cugy",sylvain.amaudruz@gmail.com,076 344 00 97,Amaudruz Sylvain
+Damiel,Bachmann,,"Rue des Moulins 31
+1800 Vevey",info@arbor-essence.ch,077 469 35 83,Arbor'essence
+Susana,Freire,,"Route de Clémenty 60
+CH-1260 Nyon",,,BS+R Bernard Schenk SA – Ingénieurs conseils
+Patricia,Vagnières,,"Chemin de la Musardière 9
+1131 Tolochenaz",pat.vagnieres@bluewin.ch,,Françoise Maier-Payot
+,,'+41 24 459 23 47,Rue des Chenevières 7,,'+41774289970,Blanc Arianne et Philippe
+,,'+41218010188,Grand-Rue 34,,'+41 79 785 56 62,Corinne Longchamp
+,,,"Rue du pont 3
+1820 Montreux",susanne.stuber@mabox.ch,'+41795839167,Stuber Susanne
+,,021 480 25 44,"Chemin de Fénix 37
+1095 Lutry",helene.miauton@miauton-mgt.ch,079 210 21 94,Miauton Hélène
+,,,"Chemin de Richesson 21
+1000 Lausanne 26",annieschnitzler@hotmail.com,'+41788917779,Schnitzler Annie
+,,,"Chemin de la Cavenettaz 15
+1053 Cugy",nolynec@gmail.com,078 695 25 20,Olynec Natalia
+,,,,,'+41796895683,Sardet-Pichard Nathalie et Frédéric
+,,,"Route de Lavaux 254 
+1095 Lutry",,'+41 79 663 54 30,Bauer Werner et Gabriela
+,,,Route du Signal 20 Allamant,,796728647,Crottaz Claude
+,,,"Chemin de Jolimont 3
+1091 Grandvaux",,792379464,Sylvie Ruedi
+Anne-Sophie,Cornu,021 616 39 68,"Avenue du Léman 6 
+1005 Lausanne",as_cornu@hotmail.com,,Cornu Anne-Sophie
+,,,"Chemin du Languedoc 19
+1007 Lausanne",,079 689 56 83,Pichard Nathalie
+,,,"Chemin de Jolimont 23
+1091 Grandvaux",,079 816 94 13,Åke Ohlsson
+,,217991091,"Chemin de Jolimont 3, 1091 Grandvaux",,793537484,Dubois O.
+,,,"Route des Monts de Lavaux 488 
+1090 La Croix",herterichanoma@gmail.com,,Herterich Anoma
+,,,"Avenue de Tramenaz 29
+1814 La Tout-de-Peilz",martine.aviolat@bluewin.ch,'+41 78 908 28 12,Martine Aviolat
+,,,"Route du Chome 14
+1148 Mont-la-Ville",martinwjd@bluewin.ch,799587464,Martin Wagner
+,,,"Chemin de Montagny 16, 1095 Lutry",,,Gfeller César et Martine
+,,,"Grand-Rue 34
+1302 Vufflens-la-Ville",,,Guillaume De Buren
+,,,"Route de la Trossière 18
+1091 Grandvaux",,'+41 76 444 70 19,Serge et Iris Konter-Breida
+,,,"Rue de l'Ancienne Poste 1
+1040 Echallens",ac.plumettaz@bluewin.ch,,Plumettaz Anne-Claude
+,,,"Chemin de Clair-Joly 42
+1093 La Conversion",,,Norma Cardinaux
+,,,"31 chemin Moïse-Duboule
+1209 Genève",rita.chou@yahoo.fr,,Schuvalov Natalia
+,,,"Chemin de Fénix 37
+1095 Lutry",,,Thomas Marc
+Laurent ,,,"Chemin de la Grangette 49a, 1010 Lausanne ",,792998421,Decrouy Valérie et Laurent 
+,,,"Avenue de Senalèche 35 
+1009 Pully",,,Jérôme Pellet
+,,022 363 07 18,"Chemin du Gros Chêne 2
+1270 Trélex",,078 613 85 01,Steinbuch-Gérodolle Sylvia
+,,,"Chemin de Ponfilet 81
+1093 La Conversion",schafteroger@bluewin.ch,,Schafter Roger et Paula
+,,,"Avenue Samson-Raymondin 17
+1009 Pully",ninag.ninag@gmail.com,'+41 79 139 59 43,Nina Giustiniani
+,,,"Route de Cully 4
+1091 Grandvaux",salwa.rizzo@gmail.com,,Rizzo Salwa
+,,021 320 15 20,"Avenue d'Ouchy 26
+1006 Lausanne",,078 641 81 49,Nedeljka Loncarevic
+Deneriaz,,,Chemin de la Jaque 80,,792937000,Deneriaz
+,,,"Chemin du Raidillon 1
+1090 La Croix s/Lutry",,079 459 39 42,Huguenin Luana-Crista
+,,'+41218612467,"Route de Cuarnens 4
+1308 La Chaux",jf-guex@outlook.com,,Guex Jean-François et Tavel Denise
+Marie-France,Blanc,216830871,Chemin de la Cassinette 18,blanc@regieathome.ch,791743643,At Home Régie Immobilière
+,,,"Chemin du Gros-Chêne 3
+1270 Trélex",,076 454 00 65,Vlacich Mattia et Eloïse Lefebvre
+,,,,,,Dépôt
+,,,"Chemin du Devin 2
+1092 Belmont-sur-Lausanne",,774342668,Grandchamp Christine
+,,,"Chemin du Belvédère 19
+1030 Bussigny",schutz@mathgen.ch,774190036,Schütz Frédéric et Joëlle (-Michaud)
+,,,"Route d'En-Quettolla 41
+1616 Attalens",,'+41 79 821 98 70,Cochard Jimmy
+,,," Route de Pampigny 3
+ 1141 Sévery",,,Céline Bastardot
+,,,"Impasse de la Combe 2
+1037 Etagnières",,'+41 79 227 44 48,Gallaz Landri et Anne-Lise
+,,,"Chemin des Loes 2
+1270 Trélex",,'+41 79 482 96 36,Zieri Raphaël et Diana
+,,,"Ch. de l'Oche l'Abbé 1
+1112 Echichens",,796171754,Lilianne Tonacini
+Patricia,Lecoultre,,"Envergure Immobilier SA
+Rue Centrale 9
+1003 Lausanne",patricia.lecoultre@envergureimmobilier.ch,079 259 49 22,P.P.E des Ecaravez 14
+,,,"Chemin de Pra Pélisson 5
+1072 Forel",,792564213,Favret Alain
+,,'+41 21 791 17 18,"Chemin des Bannerettes 7
+1095 Lutry",,,Masson Odette
+,,,"Chemin du Belvédère 19
+1030 Bussigny",olivier.leu@outlook.com,,Olivier Leu
+,,021 791 20 22,"Route du Lac 4
+1094 Paudex",,077 472 42 55,Bovey Denise
+,,,"Grand'Rue 24
+1091 Grandvaux",,,Parisod Alain
+,,,,,,Masson Odette
+,,,"Route de Grandvaux 14
+1096 Cully",albanesi@accueil-lavaux.ch,,Fondation Piccolino
+,,,"Mont du lac 8
+1342 Le Pont",ile.aux.babils@gmail.com,077 429 35 36,Martine Wagen-Jaussi
+,,,"Route du Pra-Linlia 23 
+1623 Semsales",,,Ruffieux Sylviane
+,,021 781 17 74,"Chemin des Peupliers 10
+1073 Mollie-Margot",,,Galster Erika
+,,,"Route du Verger 16
+1608 Chapelle (Glâne)",marcel.ha.2025@ik.me,079 503 76 93,Haller Marcel
+,,219462413,"Chemin de Publoz 28A
+1070 Puidoux",,765010244,Ponnaz Laurette
+,,,"Chemin du Marais Bresson 10
+1270 Trélex",lteekens@gmail.com,'+41 79 353 67 36,Liesbeth et Alain Steiner
+,,,"Route des Crêts Leyron 73b, 1091 Grandvaux",balesi@mac.com,'+41796726318,Balesi Julien et Céline
+,,,,,,Inconnu
+,,,"Chemin de la Louve
+1196 Gland",pierre_iseli@bluewin.ch,,Pierre Iseli
+,,,"Sentier d'en-vaux 46
+1090 La Croix",,076 328 17 00,Saal  Eva et Urs
+,,,"Chemin des Cygnes 12
+1007 Lausanne",,077 444 91 51,Sacha Faoro
+,,,"Chemin des Miguettes 24
+1073 Savigny",alain@caasa.ch,079 219 49 56,Aboudarham Alain
+,,'+41218011423,"Chemin de la Déserte 12
+1023 Crissier",,'+41 79 741 80 58,Laurent et Annick Vuilleumier
+,,,"22 Route des Miguettes SA
+p.a.
+Ronald Zacharias DT
+Chalet des Merles
+Chemin de Plan-Pra 105
+1936 Verbier",ronald@zacharias2013.ch,079 200 65 17,Ronald Zacharias
+,,'+41223642484,"Chemin du Gros-Chêne 1
+1270 Trélex",dessauxfabienne@gmail.com,'+41 79 601 98 31,Dessaux Fabienne
+,,,"Chemin des Peupliers 10
+1073 Mollie-Margot",claire-lise.galster@terres-et-legendes.ch,078 734 14 03,Galster Claire-Lise
+,,,"Grand Pâquier 1
+1373 Chavornay",,'+41 78 734 22 82,Maumary Laélia
+Torsten,Koster,,"Chemin de Baussan 17
+1091 Grandvaux",t.koster@baussan.ch,797772147,Koster Torsten
+,,,,,'+41795079842,Barnett Éliane
+,,,"Chemin du Marais-Bresson 4
+1270 Trélex",,,Suzan Martin
+,,,"Rue de la Justice 9
+1096 Cully",tmsports@bluewin.ch,079 311 73 76,Tardy Martial
+,,,"Rue des Mouettes 16
+1400 Yverdon-les-Bains",,,Muriset Jean-Claude et Françoise
+,,022 368 14 78,"Chemin des vignes 31b
+1027 Lonay",,'+41 79 882 50 75,Mermillod Georges
+Olivier,Graf,,"Chemin de Jolimont 5
+1091 Grandvaux",sofol@bluewin.ch,079 348 98 69,Verger Forel
+,,,"Au Chalin 1
+1624 Progens",,'+41 79 543 28 52,Deschenaux Damien
+,,,"Rue de l'Ancienne-Poste 1
+1040 Echallens",francois.clot@bluewin.ch,,François Clot
+,,,"Rebaterel 1
+1032 Romanel-sur-Lausanne",,,Antonietti Monika
+Laurent,Payer,021 525 51 75,"Grand’Rue 5 
+1071 Chexbres",lpayer@lp-im.ch,076 822 24 42,LP Immobilier
+,,021 711 41 69,"Avenue des Peupliers 30 
+1009 Pully",manuel.ducosson@gmail.com,076 481 28 08,Ducosson Manuel
+,,021 799 28 58,"Route de Puidoux 1
+1091 Grandvaux",g.demarta@bluewin.ch,,Demarta Gérard
+,, 024 453 18 62 ,"Route de Vaulion 31
+1323 Romainmôtier",gioiachristen@yahoo.com,079 250 40 71,Christen Gioia
+Thierry,Stierli,,"Avenue de Beaulieu 7
+1004 Lausanne",caraibe2@gmail.com,078 690 01 83,Propriété Chanel
+Marcel,Haller,,"Route du Verger 16
+1608 Chapelle",marcel.haller@chapelle.ch,'+41 79 503 76 93,Commune de Chapelle (Glâne)
+,,021 652 28 51,"Chemin du Saux 51 
+1052 Le Mont-sur-Lausanne",,079 791 75 50,Catherine Mahler
+,,,"Chemin de Jolimont 5
+1091 Grandvaux",sofol@bluewin.ch,,Sophie Reymondin et Olivier Graf
+,,,"Impasse Notre Dame 23 
+1608 Chapelle",stephaneborel@bluewin.ch,'+41-786471294,Borel Stéphane
+Marc Alexandre,Uldry,021 807 09 31,"Chemin de la Daumuse 6
+ 1073 Savigny",,,Uldry Marc Alexandre
+,,'+41216252148,"Chemin de Porat 1
+1073 Savigny",mireille.leberre@bluewin.ch,'+41 77 478 25 75,Le Berre Éric et Mireille
+Alexandre,Megalo,,Ch. des Fleurettes 43,,,Bureau jlem SA. Jean-lou Rivier
+,,,"Route de Blessens 56
+1675 Vauderens ",isabelle@satellites.ch,,Pestalozzi Isabelle 
+,,'+41795301224,"Avenue de Naye 14
+1820 Territet",voytek.chelkowski@chelkowski.com,'+41 79 897 00 77,Voytek Chelkowski
+,,,"Chemin des Terreaux 8
+1032 Romanel-sur-Lausanne",,'+41 79 721 88 61,Rufi Serge et Laurence
+Anne,Schüller,,"Chemin de Bahyse-Dessus 12
+1091 Grandvaux",,'+41765026820,Schuler Anne
+,,,"Route de Cremin 37
+1528 Praratoud",damienlachat@bluewin.ch,789382202,Lachat Damien
+,,,"Route du signal 9
+1091 Grandvaux",,793739620,Etienne Delacrétaz et Anne Zanchi
+,,,"Chemin des Vignes 27
+1009 Pully",gautheyb@bluewin.ch,'+41 79 258 76 52,Gauthey Claude
+,,,,,'+41763239090,Wagner Sorana et Julian
+Nicolas ,Pilkington,788750939,,,,Pilkington Nicolas (Beau-fils)
+,,,"Chemin du Ravin 13
+1012 Lausanne",arnaud.roulie@yahoo.fr,'+41 79 370 92 22,Roulier Arnaud
+,,,"Chemin de Curtenaux 21a
+1023 Crissier",sylviane@ottet.name,'+41787396464,Ottet Sylviane
+,,,"Ch. des Boveresses 146
+1066 Epalinges",manfredo.quadroni@gmail.com,'+41792780476,Quadroni Manfredo
+,, 021 799 17 04 ,"Route de Lausanne 195
+1096 Villette",victor.veri@bluewin.ch,079 698 28 54,Veri Victor et Eliane (-Duboux)
+Bastien,Ehrbar,078 639 58 80,"Route du Jorat 196K 
+1000 Lausanne",basti.ehrbar@gmail.com,078 639 58 80,"Association Sur le Pra
+Commission jardin"
+,,,"Route du Signal 7
+1091 Grandvaux",natandcyr@gmail.com,079 299 27 51,Sauvain Natalie et Cyrille
+,,,"Route de Tantérine9
+1073 Savigny",viviane.capt@gmail.com,'+41786444139,Viviane Socquet Capt
+,,'+41217010476,"Chemin de Grandvignes 17
+1030 Bussigny",fiechter.mvnj@bluewin.ch,'+41793742073,Fiechter Véronique
+René,Amstutz,,"Dornacherstrasse 192
+4053 Basel",,,M. René Amstutz Pro Natura
+,,,"Rte de Pré-la-Pierre 19
+1073 Savigny",,'+41797901021,Carmen Décombaz-Blanco 
+Diana,Velho,'+4122 365 22 33,"p.a. Pierre de Blonay
+Avenue Gaspard-Valette 9
+1206 Genève",Diana.Velho@glatz-delachaux.ch,,Fondation du Château de Blonay
+,,,"Impasse du Bois de Ponty 8
+1522 Lucens",delfabbrobenoit@gmail.com,774841569,Del Fabbro Christel et Benoît
+,,,"Chemin des Auges 4
+1091 Grandvaux",Benedict.brown@medtronic.com,798332481,Benedict Brown
+Aurélie,Hoareau,'+41 21 925 52 71,"Rue du Simplon 16 
+Case postale
+CH-1800 Vevey",aurelie.hoareau@vevey.ch,079 966 52 71,"Ville de Vevey – Service Bâtiments, Gérance et Energie"
+Joanna,Pulawska,,Route du Signal 9,joanna.pulawska@gmx.ch,'+41792392328,Joanna Pulawska
+,,'+41 21 702 32 03,"Chemin de la Violette 28
+1030 Busssigny",,'+41787483191,François et Isabelle Gottraux
+,,,"Route de Lavaux 360
+1095 Lutry",,'+41 79 410 65 98,Krueger Thorsten
+,,,"Impasse Notre-Dame 29
+1608 Chapelle",pierre.crevoisier@gmail.com,'+41795990908,Crevoisier Pierre
+,, 	+4121 791 55 28,"Route Claie-aux-Moines 239
+1090 La Croix",laurent.bridel@vtx.ch,'+41774238052,Bridel Laurent et Catherine
+,,,"Chemin de la segnire 24
+1091 Grandvaux",lenoil@bluewin.ch,'+41793789203,Bustini Lionel
+,,,"Avenue de Naye 15
+1820 Territet",rjbasde@protonmail.com,'+41767178735,De Bas Robert
+Claude,Ischi,,"Route de la Jamaire 3
+1091 Grandvaux",cccla@bluewin.ch,'+41788420462,Ischi Claude et Carole
+,,'+41223665170,1188 Saint-George,info@parcjuravaudois.ch,,Association du Parc naturel régional Jura vaudois
+Raynald,Muheim,,"CH. DE LA VERNE 15
+1513 HERMENCHES",,'+41787615676,DB gestion – immobilier – architecture - s.à r.l.
+Julian,Reymond,,"Chemin de Biondes 27
+1020 Renens",,'+41788805608,Julian Reymond et Germain Brisson
+,,,"Chemin de Grange-Grèche 2
+1184 Luins",dg@gubler-rey.ch,'+41 79 955 10 46,Daniel Gubler
+,,,,,,Levi Simone
+,,'+41217912846,"Route de la Croix 163
+1095 Lutry",timhof25@bluewin.ch,'+41793291404,Imhof Thomas et Doris
+,,,"Chemin du Suchet 5 
+1024 Ecublens",n.koller@fondationbataillard.ch,,Fondation Pierre et Nouky Bataillard
+,,,"Ch. du Petit-Maconnaix 6a
+1805 Jongny",xiaopa75@gmail.com,'+41772681981,Bangerter Patrick
+,,,"Chemin de Jolimont 3
+1091 Grandvaux",,'+41791241244,Sylvain Gruson
+,,'+41 21 921 88 56,"Rue Centrale 23 
+1804 Corsier-sur-Vevey",roger.barbey@outlook.com,'+41 79 630 91 57,Barbey Roger et Marlyse
+,,'+4121 922 14 36,"Chemin du Petit Maconnaix 4C
+1805 Jongny",pamonney@hispeed.ch,'+4179 663 86 85,Monney Pierre-André
+,,,"Chemin du Grand-Clos 5
+1092 Belmont-sur-Lausanne",fdutoit@bluewin.ch,'+41 79 637 48 45,Thooris Antoine et Dutoit Thooris Fabienne
+,,'+41217993309,"Chemin de la Criblette 6
+1091 Grandvaux",clement_grandvaux@hotmail.com,'+41796236609,PPE Route du Signal 9
+,,'+41217915030,"Grand-Rue 58
+1095 Lutry",amelie@ramoni.ch,'+41 76 375 07 37,Perret Sylvie
+,,,,,'+41 78 758 73 20,Christelle Bonvin
+,,,"Route du Jorat 3
+1073 Mollie-Margot",immo.rufenacht@bluewin.ch,,Immobilier Rufenacht SA
+Fabienne,Thooris Dutoit,,"p.a. Rilsa SA
+Rue du Lion d'Or 6
+1003 Lausanne",,'+41-79 637 48 45,PPE Chemin du Grand-Clos 5
+Peter,Svensson,,,svensson.ps@gmail.com,'+41797587124,PPE Planvaudaire
+William,Dantchakoff,,"Route de Lausanne 5a-b
+1041 Poliez-Pittet",wdantchakoff@gmail.com,,PPE Les Sauges
+,,,"Route de la Croix 41
+1095 Lutry",,'+41795881453,Edrea Onstad
+,,,Riex,chdemierre@gmail.com,'+41794196056,Demierre Christophe
+,,,"Ch. de Sallin 8
+1092 Belmont-sur-Lausanne",,'+41 79 735 04 11,Guth Gabrielle et François
+,,'+41216460287,"Chemin des Moures 3
+1080 Les Cullayes",samirguesmia@yahoo.fr,'+41 79 556 63 69,Samir Guesmia
+,,'+41 21 318 79 21-,"Chemin du Viaduc 1
+
+Case postale 155
+
+1000 Lausanne 16 Malley
+",,,Naef Immobilier Lausanne SA⁹
+,,'+41 24 459 10 75,"Rue des Scies 18
+1446 Baulmes",chrisandcath@bluewin.ch,'+41 79 715 14 43,Buffat Catherine
+Tristan,Hofmann,,"Avenue de Valmont 30b
+CH-1014 Lausanne",,,DGE-BIODIV
+,,'+41 22 361 47 34,"Chemin de la Redoute 41
+1197 Prangins",,'+41 79 339 12 20,Meylan Marlène
+,,,,cyril.baumann@erne.net,'+41793448374,Baumann Cyril
+,,'+4121 634 89 02,"Chemin de Belmont 6
+1008 Prilly",jean-pierre.frauche@bluewin.ch,'+4179 475 82 20,Jean-Pierre Frauche
+Luce,Willommet,,"Avenue de Chamossaire 19
+1860 Aigle",,,PPE Les Terrasse du Chablais
+,,'+41 21 799 38 91,"Route de la Jamaire 2 
+1091 Grandvaux",,'+41765853891,Jean-Marc et Josiane Moret- Mauron
+,,,"Rue des Terreaux 15
+1804 Corsier-sur-Vevey",,'+41 79 511 39 63,Surchat Françoise
+,,,"Chemin le Deven 11
+1091 Grandvaux",milearnold@bluewin.ch,,Milla Arnold
+Markus,Meury,,"P.a. Meury Markus
+Chemin de Bochardon 13 
+1012 Lausanne",markusmeury@gmx.ch,'+41787225586,Association des HabitantEs de Bochardon 11-13
+,,,"Chemin de Mézery 13
+1008 Jouxtens-Mézery",fevrier.julie@paje-immo.ch,'+41768044140,Février Julie
+,,'+41217910414,"Route de Lavaux 362 
+1095 Lutry",,'+41795327991,Fangio Frédéric
+,,,"Chemin du Grand-Clos 9
+1092 Belmont-sur-Lausanne",jeremy.claivaz@gmail.com,'+4179 532 79 91,Claivaz Jeremy
+Jeremy,Claivaz,,"Ch. du Grand-Clos 9
+1092 Belmont-sur-Lausanne",jeremy.claivaz@gmail.com,'+4179 532 79 91,PPE Chemin du Grand-Clos 9
+,,,"En Moille-Saulaz 3
+1808 Les Monts-de-Corsier",frittmeyer@hotmail.com,'+4178 605 28 57,Rittmeyer François
+,,,"Chemin des Colombaires 13
+1096 Cully",rboichat@gmail.com,'+41 78 613 52 43,Romain Boichat et Félicie Reinhardt
+Anne,Créo,,"Route des Cerisiers 22
+3963 Crans-Montana",avuillemin.prive@gmail.com,'+41-782096030,Créo Anne
+,,,"Chemin de la Branche 32
+1091 Grandvaux ",,'+41 78 840 62 42,Erica Perrin-Sauter
+,,,"Route de Lavaux 360
+1095 Lutry",kkrueger@krueger-architecture.ch,,Krueger Architecture
+,,,"Chemin du Collège 60
+Cheseaux-Noréaz",cle.giry@gmail.com,077 423 95 94,Clélia Giry
+,,,Moudon,jcspring@bluewin.ch,,Spring Jean-Charles
+Frédéric,Lambiel,'+41-213167614,,frederic.lambiel@vd.ch,'+41-79777124,Direction générale de la mobilité et des routes
+,,,"Route du Stand 20
+1880 Bex",samuel.schaer@ik.me,'+41-774251140,Schaer Samuel
+,,,,,,Yverdon
+Matthieu,Jordil,'+41-795675929,"Chemin de Bahyse-Dessus 22
+1091 Bourg-en-Lavaux",matthieu.jordil@bluewin.ch,,Matthieu Jordil
+Anne,Rodigari,245346835,Rue des Jordils 41,,,Anne Rodigari
+Malika,Touzani,,Route de Servion 6,malikatouz@gmail.com,'+41763324277,Malika Touzani
+Edgar,Haldimann-Sandell,,"Route des Crêts Leyron 56
+1091 Grandvaux",edgar.haldimann@gmail.com,,Edgar Haldimann-Sandell
+Marc,Bastardot,'+41-795155587,"Place Henri-de-Colombier 2
+1114 Colombier-sur-Morges",marcbastardot@hotmail.com,,Marc Bastardot
+,,'+41-799492869,"Chemin de l'Haut-Bozon 6
+1801 Le Mont-pèlerin",info@libertilia.ch,,Fondation Libertilia
+,,,"Chemin du Levant 75
+1005 Lausanne",f.mottier@sunrise.ch,'+41-765012562,Mottier François
+,,,"Rue du Chêne 28
+1315 La Sarraz",,'+41-789610007,Ivanhoé Koog
+,,,"Grand-Rue 56
+1095 Lutry",sandra.baechtiger@hotmail.com,'+41-787105856,Chavannes Sandra
+,Valceschini,,"Avenue du Général Guisan 40
+1009 Pully",valceschinimarco@gmail.com,,Valceschini Marco
+,,,"Route de la Corniche 13
+1097 Riex",eliane.pillevuit@gmail.com,'+41-796581248,Eliane Pillevuit Jarne
+,,'+41-218661510,"Rapille-Dessus 27,
+1312 Eclépens",nicole@comsi.ch,'+41-796335571,Nicole Ammann
+Anthony,Kern,'+41-797850073,"Chemin de Bois-Gentil 17
+1091 Grandvaux",aykn85@gmail.com,,Kern Anthony
+Gilles,,,1096 Cully,gilles.dana@bluewin.ch,,Bel Arbre
+,,,,Wendyks@bluewin.ch,'+41-+41797348764,Schaub Kurt et Wendy
+Marina,De Wattewille,'+41-217293101,"Route des Monts-de-Lavaux 22
+1092 Belmont-sur-Lausanne",mdewatt@gmail.com,,Marina et Renaud De Wattewille
+Marie-Anne,Codourey,'+41-217992463,"Chemin de Prahis 8
+1091 Grandvaux",,'+41-792407534,Marie-Anne Codourey
+Esther,Kiss,,,esther.k766@gmail.com,'+41-786595875,Esther Kiss
+Christiane,Torny,,,ch.torny@gmail.com,,Christiane Torny
+,,'+41-219031891,"Chemin de la montagne 4
+1077 Servion",,,Edney Siss
+François,Stenger,,"Route de Coinsin 42
+1167 Lussy-sur-Morges",,,"Stenger, François"
+Andy,Boschung,'+41-585104906,"MOVE Mobility
+Route du Jura 37B
+1700 Fribourg",andy.boschung@move.ch,,MOVE Mobility
+François,Rappaz,'+41-219214590,"Chemin du Crépon 44
+1815 Clarens",rappazf@gmail.com,,François Rappaz
+Isabelle,Haldemann,,"Avenue du Temple 13
+1462 Yvonand",isabellehaldemann@bluewin.ch,'+41-78 848 26 38,Isabelle Haldemann
+,,,"Chemin de Ponfilet 7
+1093 La Conversion",gauravsaxena.lu@gmail.com,'+41-796639712,Gaurav Saxena
+Alain,Walker,'+41-217991427,"Chemin du Bois-Gentil 7
+1091 Grandvaux",alainwalker@bluewin.ch,'+41-788266985,"Walker, Alain"
+Françoise,Hoffer,,"Avenue de Florimont 9
+1006 Lausanne",francoisehoffer@yahoo.fr,,Hoffer Françoise
+Marco,Pilati,,"Schweizerische Vogelwarte
+Seerose 1
+6204 Sempach",,,Station ornithologique Suisse
+Philip et Jenny,Wang,,"Chemin de Jolimont 23
+1091 Grandvaux",,'+41-788858966,"Wang, Philip et Jenny"
+Nelly,,,,,'+41-766463436,Nelly (bouts de bois spécial pour bricolage)
+Barbara,Strübin,'+41-217994202,"Route des Auges 2
+1091 Grandvaux",info@keola.com,'+41-796824093,Chinta Barbara Strübin
+,,,"Chemin de Prahis 38
+1091 Grandvaux",sryvlin@yahoo.fr,'+41-799093248,Ryvlin Sabrina
+Marc,Mundler,'+41-795853560,"Rte des Monts 5
+1880 Bex",marcmundler@bluewin.ch,,Marc Mundler
