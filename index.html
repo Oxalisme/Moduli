@@ -779,6 +779,86 @@ border-radius: 12px;
   font-weight: normal;
 }
 
+/* BOUTON "CLIENTS" SUR LA PAGE D'ACCUEIL */
+  /*
+.btn-accueil-clients {
+  background-color: #EEF2FF;
+  border: 2px solid #372AAC;
+  color: #372AAC;
+  font-weight: bold;
+}   */
+
+/* SECTION DE RECHERCHE CLIENTS */
+.theme-clients {
+  border-color: #372AAC;
+}
+
+#inputRechercheClient {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #372AAC;
+  border-radius: 8px;
+  background-color: #EEF2FF;
+  color: #1E1B4B;
+  margin-bottom: 12px;
+}
+
+/* LISTE DES PROPOSITIONS CLIQUABLES EN LIVE */
+.liste-propositions-clients {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.item-proposition-client {
+  text-align: left;
+  padding: 10px 12px;
+  background-color: #FFFFFF;
+  border: 1px solid #372AAC;
+  border-radius: 6px;
+  color: #1E1B4B;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.item-proposition-client:hover {
+  background-color: #EEF2FF;
+}
+
+/* FICHE / PARAGRAPHE D'UN CLIENT SÉLECTIONNÉ */
+.fiche-client-paragraphe {
+  background-color: #FFFFFF;
+  border-left: 4px solid #372AAC;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Titre du paragraphe = Customer Name */
+.fiche-client-titre {
+  font-weight: bold;
+  font-size: 18px;
+  color: #372AAC;
+  margin-bottom: 10px;
+}
+
+/* Chaque information (espacement plus grand entre les infos, serré à l'intérieur d'une même info) */
+.fiche-client-info {
+  margin-bottom: 8px;
+  line-height: 1.25;
+  font-size: 15px;
+  color: #1F2937;
+}
+
+.fiche-client-info:last-child {
+  margin-bottom: 0;
+}
+
+
   
 </style>
 </head>
@@ -790,6 +870,8 @@ border-radius: 12px;
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
 <button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Rapport des heures</button>
 <button onclick="showForm('calendrier')" style="background-color: #FEFCE8; border: 1px solid #894B0A;">Calendrier</button>
+<button onclick="ouvrirSectionClients()" style="background-color: #EEF2FF; border: 1px solid #372AAC;">Clients</button>
+  <!-- type="button" class="btn-accueil-clients">Clients</button> -->
 <button onclick="showForm('theorie')" style="background-color: #FFFFFF; border: 1px solid #C0C0C0; color: #FFFFFF">Théorie révolutionnaire</button>
 <!--juste effacer "color: #FFFFFF" quand je voudrai qu'on le revoit-->
   
@@ -1198,6 +1280,25 @@ border-radius: 12px;
 <!-- À l'avenir, écrivez votre texte ou vos paragraphes <p>...</p> directement à l'intérieur. -->
 <div id="zoneTheorie" class="theme-theorie" style="display: none;"></div>
 
+<!-- ZONE DE CLIENTS -->
+  <div id="sectionClients" class="theme-clients" style="display: none;">
+  <h3 style="color: #372AAC;">Recherche Clients</h3>
+  
+  <input 
+    type="text" 
+    id="inputRechercheClient" 
+    placeholder="Taper un nom, prénom ou client..." 
+    oninput="filtrerClientsLive()"
+    autocomplete="off"
+  >
+
+  <!-- Propositions cliquables pendant la frappe -->
+  <div id="propositionsClients" class="liste-propositions-clients"></div>
+
+  <!-- Fiche(s) détaillée(s) affichée(s) en paragraphe -->
+  <div id="resultatFicheClient"></div>
+</div>
+
 
 <div id="message"></div>
 
@@ -1211,6 +1312,7 @@ function showForm(type) {
   document.getElementById("formHeures").style.display = "none";
   document.getElementById("formComplements").style.display = "none";
   document.getElementById("formCalendrier").style.display = "none";
+  document.getElementById("sectionClients").style.display = "none";
   document.getElementById("zoneTheorie").style.display = "none";
   
   if (type === "chantier") {
@@ -2267,6 +2369,206 @@ function ouvrirMenuJourRegulier(btn) {
   });
   document.getElementById("modalPresence").style.display = "flex";
 }
+
+/* =========================================================
+   RECHERCHE EN LIVE DANS Contacts_cleared.csv
+   ========================================================= */
+let baseClientsCSV = [];
+let csvDejaCharge = false;
+
+// Ouvre le panneau Clients (adapte le masquage des autres panneaux si tu as déjà une fonction dédiée)
+function ouvrirSectionClients() {
+  // Masque les autres formulaires principaux s'ils sont visibles
+  ["formChantier", "formHeures", "formComplements", "formCalendrier", "formRapports"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
+
+  const sec = document.getElementById("sectionClients");
+  if (sec) sec.style.display = "block";
+
+  // Charge le fichier CSV une seule fois à l'ouverture
+  if (!csvDejaCharge) {
+    chargerFichierContactsCSV();
+  }
+
+  const input = document.getElementById("inputRechercheClient");
+  if (input) input.focus();
+}
+
+// Télécharge et analyse Contacts_cleared.csv depuis le même dépôt GitHub
+function chargerFichierContactsCSV() {
+  const zonePropositions = document.getElementById("propositionsClients");
+  zonePropositions.innerHTML = "<em>Chargement du fichier clients...</em>";
+
+  fetch("Contacts_cleared.csv")
+    .then(response => {
+      if (!response.ok) throw new Error("Fichier Contacts_cleared.csv introuvable");
+      return response.text();
+    })
+    .then(texteCSV => {
+      baseClientsCSV = parserCSVComplet(texteCSV);
+      csvDejaCharge = true;
+      zonePropositions.innerHTML = "";
+      filtrerClientsLive();
+    })
+    .catch(err => {
+      console.error(err);
+      zonePropositions.innerHTML = "<em style='color:#DC2626;'>Impossible de charger Contacts_cleared.csv.</em>";
+    });
+}
+
+// Parseur CSV robuste (gère les virgules, points-virgules et sauts de ligne entre guillemets)
+function parserCSVComplet(texte) {
+  // Détecte automatiquement le séparateur (, ou ;) sur la première ligne
+  const premiereLigne = texte.split(/\r?\n/)[0] || "";
+  const separateur = (premiereLigne.split(";").length > premiereLigne.split(",").length) ? ";" : ",";
+
+  const lignes = [];
+  let ligneCourante = [];
+  let celluleCourante = "";
+  let dansGuillemets = false;
+
+  for (let i = 0; i < texte.length; i++) {
+    const c = texte[i];
+    const suivant = texte[i + 1];
+
+    if (c === '"') {
+      if (dansGuillemets && suivant === '"') {
+        celluleCourante += '"';
+        i++;
+      } else {
+        dansGuillemets = !dansGuillemets;
+      }
+    } else if (c === separateur && !dansGuillemets) {
+      ligneCourante.push(celluleCourante.trim());
+      celluleCourante = "";
+    } else if ((c === "\r" || c === "\n") && !dansGuillemets) {
+      if (c === "\r" && suivant === "\n") i++;
+      ligneCourante.push(celluleCourante.trim());
+      if (ligneCourante.some(val => val !== "")) {
+        lignes.push(ligneCourante);
+      }
+      ligneCourante = [];
+      celluleCourante = "";
+    } else {
+      celluleCourante += c;
+    }
+  }
+  if (celluleCourante !== "" || ligneCourante.length > 0) {
+    ligneCourante.push(celluleCourante.trim());
+    lignes.push(ligneCourante);
+  }
+
+  if (lignes.length < 2) return [];
+
+  const entetes = lignes[0].map(h => h.replace(/^\uFEFF/, "").trim()); // Nettoie le BOM éventuel
+  const resultat = [];
+
+  for (let r = 1; r < lignes.length; r++) {
+    const obj = {};
+    entetes.forEach((col, idx) => {
+      obj[col] = lignes[r][idx] || "";
+    });
+    resultat.push(obj);
+  }
+  return resultat;
+}
+
+// Filtre en temps réel pendant la saisie
+function filtrerClientsLive() {
+  const saisie = document.getElementById("inputRechercheClient").value.trim().toLowerCase();
+  const zonePropositions = document.getElementById("propositionsClients");
+  const zoneFiche = document.getElementById("resultatFicheClient");
+
+  zonePropositions.innerHTML = "";
+  zoneFiche.innerHTML = "";
+
+  if (saisie === "") return;
+
+  // Recherche dans Customer Name, First Name et Last Name
+  const correspondances = baseClientsCSV.filter(client => {
+    const cName = (client["Customer Name"] || "").toLowerCase();
+    const fName = (client["First Name"] || "").toLowerCase();
+    const lName = (client["Last Name"] || "").toLowerCase();
+    const nomComplet = `${fName} ${lName}`.trim();
+
+    return cName.includes(saisie) || fName.includes(saisie) || lName.includes(saisie) || nomComplet.includes(saisie);
+  });
+
+  if (correspondances.length === 0) {
+    zonePropositions.innerHTML = "<em>Aucun client trouvé.</em>";
+    return;
+  }
+
+  // Affiche jusqu'à 15 propositions cliquables
+  correspondances.slice(0, 15).forEach(client => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "item-proposition-client";
+
+    const customerName = client["Customer Name"] || "";
+    const prenomNom = `${client["First Name"] || ""} ${client["Last Name"] || ""}`.trim();
+
+    // Affiche le nom du client et le prénom/nom s'ils sont différents
+    if (customerName && prenomNom && customerName.toLowerCase() !== prenomNom.toLowerCase()) {
+      btn.innerHTML = `<strong>${customerName}</strong> — ${prenomNom}`;
+    } else {
+      btn.innerHTML = `<strong>${customerName || prenomNom}</strong>`;
+    }
+
+    btn.onclick = () => afficherFicheClient(client);
+    zonePropositions.appendChild(btn);
+  });
+}
+
+// Affiche le paragraphe détaillé du client sélectionné
+function afficherFicheClient(client) {
+  const zonePropositions = document.getElementById("propositionsClients");
+  const zoneFiche = document.getElementById("resultatFicheClient");
+
+  // Vide les propositions pour laisser toute la place à la fiche choisie
+  zonePropositions.innerHTML = "";
+
+  const customerName = client["Customer Name"] || "Client sans nom";
+  const prenomNom = `${client["First Name"] || ""} ${client["Last Name"] || ""}`.trim();
+  const phone = client["Phone"] || "";
+  const mobile = client["MobilePhone"] || "";
+  const email = client["EmailID"] || "";
+  const adresse = client["Billing Address"] || "";
+
+  let html = `<div class="fiche-client-paragraphe">`;
+  
+  // Titre du paragraphe en gras : Customer Name
+  html += `<div class="fiche-client-titre">${customerName}</div>`;
+
+  // Contact (First Name + Last Name) s'il apporte une info supplémentaire
+  if (prenomNom && prenomNom.toLowerCase() !== customerName.toLowerCase()) {
+    html += `<div class="fiche-client-info">Contact : ${prenomNom}</div>`;
+  }
+
+  if (mobile) {
+    html += `<div class="fiche-client-info">Mobile : <a href="tel:${mobile.replace(/\s+/g, '')}">${mobile}</a></div>`;
+  }
+
+  if (phone) {
+    html += `<div class="fiche-client-info">Téléphone : <a href="tel:${phone.replace(/\s+/g, '')}">${phone}</a></div>`;
+  }
+
+  if (email) {
+    html += `<div class="fiche-client-info">Email : <a href="mailto:${email}">${email}</a></div>`;
+  }
+
+  if (adresse) {
+    // Conserve les retours à la ligne serrés à l'intérieur de l'adresse
+    const adresseFormatee = adresse.replace(/\r?\n/g, "<br>");
+    html += `<div class="fiche-client-info">Adresse :<br>${adresseFormatee}</div>`;
+  }
+
+  html += `</div>`;
+  zoneFiche.innerHTML = html;
+}
+
   
 </script>
 
