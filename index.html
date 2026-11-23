@@ -1202,7 +1202,7 @@ border-radius: 12px;
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxfMZCzkBjKmvRp5Rbs_hiLXOFH4H7ZO7MN9IoSuUwJUvGZ-Qf6LsAoG0e22GZbdeTg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzWHO32wmCWfZ7hVQ_gUzGq1ZvKU1U5u1NIJAC4-KvPeEs5b2DZLoRwxTY6ioAZscVR/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -2005,15 +2005,14 @@ function appliquerStatutPresence(statut) {
   if (!boutonPrenomActif) return;
 
   boutonPrenomActif.setAttribute("data-statut", statut);
-  boutonPrenomActif.classList.remove("etat-neutre", "etat-present", "etat-absent");
-
-  if (statut === "present") {
-    boutonPrenomActif.classList.add("etat-present");
-  } else if (statut === "absent") {
-    boutonPrenomActif.classList.add("etat-absent");
-  } else {
-    boutonPrenomActif.classList.add("etat-neutre");
+  
+  // Si c'est un prénom dans une semaine (pas un jour de l'horaire régulier), on note que c'est un choix manuel
+  if (boutonPrenomActif.classList.contains("btn-prenom")) {
+    boutonPrenomActif.setAttribute("data-exception", "true");
   }
+
+  boutonPrenomActif.classList.remove("etat-neutre", "etat-present", "etat-absent");
+  boutonPrenomActif.classList.add("etat-" + statut);
 
   fermerModalPresence();
 }
@@ -2028,26 +2027,12 @@ function sendCalendrier() {
   const msg = document.getElementById("message");
   msg.innerText = "Envoi du calendrier en cours...";
 
-   // 1. Récupère d'abord l'horaire hebdomadaire régulier s'il est sélectionné
+  // 1. Récupère uniquement l'horaire hebdomadaire régulier s'il est sélectionné (sans toucher aux tableaux de semaines)
   const nomRegulier = document.getElementById("selectNomRegulier").value;
   let joursReguliers = [];
   if (nomRegulier) {
     document.querySelectorAll(".btn-jour-regulier").forEach(btn => {
       joursReguliers.push(btn.getAttribute("data-statut") || "neutre");
-    });
-
-    // Applique immédiatement cet horaire régulier sur toutes les semaines présentes et futures affichées à l'écran
-    const joursNoms = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
-    document.querySelectorAll(".carte-semaine:not(.semaine-passee):not(.carte-horaire-regulier)").forEach(carte => {
-      joursNoms.forEach((jour, idxJour) => {
-        const btn = carte.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomRegulier}"]`);
-        if (btn) {
-          const st = joursReguliers[idxJour];
-          btn.setAttribute("data-statut", st);
-          btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
-          btn.classList.add("etat-" + st);
-        }
-      });
     });
   }
 
@@ -2066,6 +2051,12 @@ function sendCalendrier() {
       const jour = btn.getAttribute("data-jour");
       const collegue = btn.getAttribute("data-collegue");
       const statut = btn.getAttribute("data-statut");
+
+      // Si le collègue a forcé "Je sais pas encore" sur un jour où il a un horaire régulier
+      if (statut === "neutre" && btn.getAttribute("data-exception") === "true") {
+        statut = "neutre_force";
+      }
+      
       if (!presences[jour]) presences[jour] = {};
       presences[jour][collegue] = statut;
     });
@@ -2117,7 +2108,6 @@ let horairesReguliersStockes = {};
 // Lance la création des tableaux dès l'ouverture de la page
 initialiserCalendrier();
 
-// (Note : Pour qu'un changement dans HorairesReguliers écrase aussi les anciennes valeurs 1/0 de la feuille Calendrier lors du chargement, il suffit de retirer le && (code === "1" || code === "0") à la fin — mais avec l'ordre ci-dessus, sendCalendrier() met déjà à jour les deux feuilles en même temps dès qu'on clique sur Enregistrer !)
 function chargerDonneesCalendrier() {
   const msg = document.getElementById("message");
   msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
@@ -2132,7 +2122,7 @@ function chargerDonneesCalendrier() {
 
       const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
 
-      // 1. CONSULTE D'ABORD "HorairesReguliers" ET APPLIQUE SUR LES SEMAINES PRÉSENTES / FUTURES
+      // 1. LIT D'ABORD "HorairesReguliers" PAR PRÉNOM ET PRÉ-REMPLIT LES SEMAINES PRÉSENTES / FUTURES
       if (data.reguliers) {
         horairesReguliersStockes = data.reguliers;
         chargerProfilRegulierSelect();
@@ -2154,7 +2144,7 @@ function chargerDonneesCalendrier() {
         });
       }
 
-      // 2. APPLIQUE ENSUITE LES DONNÉES DE L'ONGLET "Calendrier" (remplace si une valeur spécifique a été enregistrée)
+      // 2. LIT ENSUITE LA FEUILLE "Calendrier" : SI UN STATUT SPÉCIFIQUE ("1" OU "0") Y EST ENREGISTRÉ, IL REMPLACE L'HORAIRE RÉGULIER
       const grille = data.donnees || [];
       if (grille.length > 0) {
         const datesEnregistrees = grille[0];
@@ -2197,14 +2187,18 @@ function chargerDonneesCalendrier() {
               jours.forEach((jour, idxJour) => {
                 const code = (statuts[idxJour] || "").trim();
                 const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomLigne}"]`);
-                // Remplace uniquement si "1" ou "0" est explicitement enregistré dans Calendrier
-                if (btn && (code === "1" || code === "0")) {
-                  const st = (code === "1") ? "present" : "absent";
+                if (btn && (code === "1" || code === "0" || code === "?")) {
+                  let st = "neutre";
+                  if (code === "1") st = "present";
+                  else if (code === "0") st = "absent";
+
                   btn.setAttribute("data-statut", st);
+                  btn.setAttribute("data-exception", "true"); // Conserve le statut d'exception
                   btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
                   btn.classList.add("etat-" + st);
                 }
               });
+
             }
           }
         });
@@ -2217,115 +2211,6 @@ function chargerDonneesCalendrier() {
       msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
     });
 }
-
-  /*
-function chargerDonneesCalendrier() {
-  const msg = document.getElementById("message");
-  msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
-
-  fetch(scriptURL)
-    .then(res => res.json())
-    .then(data => {
-      if (data.status !== "success") {
-        msg.innerText = "";
-        return;
-      }
-
-      const grille = data.donnees || [];
-      const datesEnregistrees = grille.length > 0 ? grille[0] : [];
-      const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
-
-      // 1. Charge les 7 semaines enregistrées dans l'onglet "Calendrier"
-      if (grille.length > 0) {
-        document.querySelectorAll(".carte-semaine:not(.carte-horaire-regulier) .tableau-semaine").forEach(table => {
-          const titreActuel = table.querySelector(".cal-titre-dates").innerText.replace(/ \(Passée.*$/, "").trim();
-          let colIndex = -1;
-          for (let c = 1; c < datesEnregistrees.length; c++) {
-            if (String(datesEnregistrees[c]).includes(titreActuel)) {
-              colIndex = c;
-              break;
-            }
-          }
-
-          if (colIndex === -1) return;
-
-          const noteInput = table.querySelector(".cal-note-semaine");
-          if (noteInput && grille[1][colIndex]) {
-            noteInput.value = grille[1][colIndex];
-            noteInput.style.height = "auto";
-            noteInput.style.height = noteInput.scrollHeight + "px";
-          }
-
-          for (let r = 2; r < grille.length; r++) {
-            const nomLigne = String(grille[r][0]).trim();
-            const valeurCellule = String(grille[r][colIndex] || "");
-
-            if (nomLigne === "Planning Nico") {
-              const textesNico = valeurCellule.split(" | ");
-              const champsNico = table.querySelectorAll(".cal-nico-jour");
-              champsNico.forEach((champ, idx) => {
-                if (textesNico[idx] !== undefined) {
-                  champ.value = textesNico[idx];
-                  champ.style.height = "auto";
-                  champ.style.height = champ.scrollHeight + "px";
-                }
-              });
-            } else if (nomLigne !== "") {
-              const statuts = valeurCellule.split(",");
-              jours.forEach((jour, idxJour) => {
-                const code = statuts[idxJour];
-                const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomLigne}"]`);
-                if (btn) {
-                  btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
-                  if (code === "1") {
-                    btn.setAttribute("data-statut", "present");
-                    btn.classList.add("etat-present");
-                  } else if (code === "0") {
-                    btn.setAttribute("data-statut", "absent");
-                    btn.classList.add("etat-absent");
-                  } else {
-                    btn.setAttribute("data-statut", "neutre");
-                    btn.classList.add("etat-neutre");
-                  }
-                }
-              });
-            }
-          }
-        });
-      }
-
-      // 2. Mémorise les horaires réguliers et les applique sur toute case encore "neutre" des semaines à venir
-      if (data.reguliers) {
-        horairesReguliersStockes = data.reguliers;
-        chargerProfilRegulierSelect();
-
-        document.querySelectorAll(".carte-semaine:not(.semaine-passee):not(.carte-horaire-regulier)").forEach(carte => {
-          const table = carte.querySelector(".tableau-semaine");
-          Object.keys(horairesReguliersStockes).forEach(nomCollegue => {
-            const statutsReg = horairesReguliersStockes[nomCollegue];
-            jours.forEach((jour, idxJour) => {
-              const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomCollegue}"]`);
-              if (btn && btn.getAttribute("data-statut") === "neutre") {
-                const st = statutsReg[idxJour];
-                if (st === "present" || st === "absent") {
-                  btn.setAttribute("data-statut", st);
-                  btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
-                  btn.classList.add("etat-" + st);
-                }
-              }
-            });
-          });
-        });
-      }
-
-      msg.innerText = "Calendrier à jour !";
-      setTimeout(() => { if (msg.innerText === "Calendrier à jour !") msg.innerText = ""; }, 2000);
-    })
-    .catch(() => {
-      msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
-    });
-}
-  */
   
 function basculerSemainePassee(thElement) {
   const carte = thElement.closest(".carte-semaine");
