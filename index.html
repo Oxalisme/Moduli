@@ -63,7 +63,7 @@ button {
   cursor: pointer;
 }
   
-input, textarea, select, div, #resultatRapport {
+input, textarea, select, div, #resultatRapport, #inputRechercheClient {
   font-family: 'Ubuntu Sans', regular;
   width: 100%;
   padding: 10px;
@@ -793,6 +793,7 @@ border-radius: 12px;
   border-color: #372AAC;
 }
 
+  /*
 #inputRechercheClient {
   width: 100%;
   box-sizing: border-box;
@@ -803,6 +804,10 @@ border-radius: 12px;
   background-color: #EEF2FF;
   color: #1E1B4B;
   margin-bottom: 12px;
+}*/
+#inputRechercheClient {
+  background-color: #EEF2FF;
+  color: #372AAC;
 }
 
 /* LISTE DES PROPOSITIONS CLIQUABLES EN LIVE */
@@ -1282,7 +1287,8 @@ border-radius: 12px;
 
 <!-- ZONE DE CLIENTS -->
   <div id="sectionClients" class="theme-clients" style="display: none;">
-  <h3 style="color: #372AAC;">Recherche Clients</h3>
+  <!-- <h3 style="color: #372AAC;">Recherche Clients</h3>  -->
+  <h3>Clients</h3>
   
   <input 
     type="text" 
