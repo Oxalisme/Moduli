@@ -1202,7 +1202,7 @@ border-radius: 12px;
 <div id="message"></div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxmWFwDc48CORdSM9340YhN9o_AnVxpA0nRoPMsMPtlPzif3GLTaKQr3cFZU7qr49HD/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxfMZCzkBjKmvRp5Rbs_hiLXOFH4H7ZO7MN9IoSuUwJUvGZ-Qf6LsAoG0e22GZbdeTg/exec";
 
 function showForm(type) {
   // Masquage propre de tous les blocs
@@ -2117,6 +2117,108 @@ let horairesReguliersStockes = {};
 // Lance la création des tableaux dès l'ouverture de la page
 initialiserCalendrier();
 
+// (Note : Pour qu'un changement dans HorairesReguliers écrase aussi les anciennes valeurs 1/0 de la feuille Calendrier lors du chargement, il suffit de retirer le && (code === "1" || code === "0") à la fin — mais avec l'ordre ci-dessus, sendCalendrier() met déjà à jour les deux feuilles en même temps dès qu'on clique sur Enregistrer !)
+function chargerDonneesCalendrier() {
+  const msg = document.getElementById("message");
+  msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
+
+  fetch(scriptURL)
+    .then(res => res.json())
+    .then(data => {
+      if (data.status !== "success") {
+        msg.innerText = "";
+        return;
+      }
+
+      const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+
+      // 1. CONSULTE D'ABORD "HorairesReguliers" ET APPLIQUE SUR LES SEMAINES PRÉSENTES / FUTURES
+      if (data.reguliers) {
+        horairesReguliersStockes = data.reguliers;
+        chargerProfilRegulierSelect();
+
+        document.querySelectorAll(".carte-semaine:not(.semaine-passee):not(.carte-horaire-regulier)").forEach(carte => {
+          const table = carte.querySelector(".tableau-semaine");
+          Object.keys(horairesReguliersStockes).forEach(nomCollegue => {
+            const statutsReg = horairesReguliersStockes[nomCollegue];
+            jours.forEach((jour, idxJour) => {
+              const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomCollegue}"]`);
+              if (btn) {
+                const st = statutsReg[idxJour] || "neutre";
+                btn.setAttribute("data-statut", st);
+                btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
+                btn.classList.add("etat-" + st);
+              }
+            });
+          });
+        });
+      }
+
+      // 2. APPLIQUE ENSUITE LES DONNÉES DE L'ONGLET "Calendrier" (remplace si une valeur spécifique a été enregistrée)
+      const grille = data.donnees || [];
+      if (grille.length > 0) {
+        const datesEnregistrees = grille[0];
+
+        document.querySelectorAll(".carte-semaine:not(.carte-horaire-regulier) .tableau-semaine").forEach(table => {
+          const titreActuel = table.querySelector(".cal-titre-dates").innerText.replace(/ \(Passée.*$/, "").trim();
+          let colIndex = -1;
+          for (let c = 1; c < datesEnregistrees.length; c++) {
+            if (String(datesEnregistrees[c]).includes(titreActuel)) {
+              colIndex = c;
+              break;
+            }
+          }
+
+          if (colIndex === -1) return;
+
+          const noteInput = table.querySelector(".cal-note-semaine");
+          if (noteInput && grille[1][colIndex]) {
+            noteInput.value = grille[1][colIndex];
+            noteInput.style.height = "auto";
+            noteInput.style.height = noteInput.scrollHeight + "px";
+          }
+
+          for (let r = 2; r < grille.length; r++) {
+            const nomLigne = String(grille[r][0]).trim();
+            const valeurCellule = String(grille[r][colIndex] || "");
+
+            if (nomLigne === "Planning Nico") {
+              const textesNico = valeurCellule.split(" | ");
+              const champsNico = table.querySelectorAll(".cal-nico-jour");
+              champsNico.forEach((champ, idx) => {
+                if (textesNico[idx] !== undefined) {
+                  champ.value = textesNico[idx];
+                  champ.style.height = "auto";
+                  champ.style.height = champ.scrollHeight + "px";
+                }
+              });
+            } else if (nomLigne !== "") {
+              const statuts = valeurCellule.split(",");
+              jours.forEach((jour, idxJour) => {
+                const code = (statuts[idxJour] || "").trim();
+                const btn = table.querySelector(`.btn-prenom[data-jour="${jour}"][data-collegue="${nomLigne}"]`);
+                // Remplace uniquement si "1" ou "0" est explicitement enregistré dans Calendrier
+                if (btn && (code === "1" || code === "0")) {
+                  const st = (code === "1") ? "present" : "absent";
+                  btn.setAttribute("data-statut", st);
+                  btn.classList.remove("etat-neutre", "etat-present", "etat-absent");
+                  btn.classList.add("etat-" + st);
+                }
+              });
+            }
+          }
+        });
+      }
+
+      msg.innerText = "Calendrier à jour !";
+      setTimeout(() => { if (msg.innerText === "Calendrier à jour !") msg.innerText = ""; }, 2000);
+    })
+    .catch(() => {
+      msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
+    });
+}
+
+  /*
 function chargerDonneesCalendrier() {
   const msg = document.getElementById("message");
   msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
@@ -2223,6 +2325,7 @@ function chargerDonneesCalendrier() {
       msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
     });
 }
+  */
   
 function basculerSemainePassee(thElement) {
   const carte = thElement.closest(".carte-semaine");
