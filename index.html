@@ -131,8 +131,8 @@ select:user-invalid {
 .theme-complements textarea, 
 .theme-complements select,
 #resultatRapport {
-  background-color: #EFF6FF;
-  border: 1px solid #193CB8;
+  background-color: #FFFBEB;
+  border: 1px solid #973C08;
 }
 
 /* 4. BOUTONS D'ENVOI (Jaune) */
@@ -143,7 +143,7 @@ button.btn-envoyer, button.btn-effacer {
 .theme-chantier button.btn-envoyer { border: 1px solid #9F0712; }
 .theme-heures button.btn-envoyer { border: 1px solid #016630; }
 .theme-complements button.btn-envoyer, 
-.theme-complements button.btn-effacer { border: 1px solid #193CB8; }
+.theme-complements button.btn-effacer { border: 1px solid #973C08; }
 
 /* Permet de mettre deux champs côte à côte */
 .ligne-champs-cote-cote {
@@ -515,11 +515,11 @@ border-radius: 12px;
 /* 5. THÈME CALENDRIER (jaune comme les boutons d'envoi) & THÉORIE RÉVOLUTIONNAIRE (Gris) */
 .theme-calendrier input, 
 .theme-calendrier textarea {
-  background-color: #FEFCE8;
-  border: 1px solid #894B0A;
+  background-color: ##F0FDFA;
+  border: 1px solid #075F5A;
 }
 .theme-calendrier button.btn-envoyer { 
-  border: 1px solid #894B0A; 
+  border: 1px solid #075F5A; 
 }
 
 .theme-theorie {
@@ -549,10 +549,10 @@ border-radius: 12px;
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
-  border: 2px solid #894B0A !important;
+  border: 2px solid #075F5A !important;
   border-radius: 12px !important;
   overflow: hidden !important; /* Tronque proprement les coins internes */
-  background-color: #FEFCE8 !important;
+  background-color: ##F0FDFA !important;
 }
   
 .tableau-semaine {
@@ -565,8 +565,8 @@ border-radius: 12px;
 
 .tableau-semaine th, 
 .tableau-semaine td {
-  border-right: 1px solid #894B0A;
-  border-bottom: 1px solid #894B0A;
+  border-right: 1px solid #075F5A;
+  border-bottom: 1px solid #075F5A;
   padding: 6px 4px;
   text-align: center;
   vertical-align: top;
@@ -592,22 +592,22 @@ border-radius: 12px;
 
 /* Ligne 1 : Dates */
 .cal-ligne-dates th {
-  background-color: #FEFCE8;
-  color: #894B0A; /*white;*/
+  background-color: #F0FDFA;
+  color: #075F5A; /*white;*/
   font-size: 18px;
   padding: 10px;
 }
 
 /* Ligne 3 : Jours de la semaine */
 .cal-ligne-jours td {
-  background-color: #FEFCE8;
+  background-color: #F0FDFA;
   font-weight: bold;
   font-size: 14px;
 }
 
 /* Ligne 5 : Titre Planning Nico */
 .cal-ligne-nico-titre td {
-  background-color: #FEFCE8;
+  background-color: #F0FDFA;
   font-weight: bold;
   font-size: 14px;
 }
@@ -649,7 +649,7 @@ border-radius: 12px;
   margin: 0 !important;
   font-size: 12px !important; /* Police plus petite que le reste du tableau */
   border-radius: 6px !important;
-  border: 1px solid #894B0A;
+  border: 1px solid #075F5A;
   background-color: white;
   cursor: pointer;
   text-align: center;
@@ -686,7 +686,7 @@ border-radius: 12px;
 
 .modal-box {
   background: white !important;
-  border: 2px solid #894B0A !important;
+  border: 2px solid #075F5A !important;
   border-radius: 12px !important;
   padding: 20px !important;
   width: 85% !important;
@@ -748,9 +748,9 @@ border-radius: 12px;
   font-size: 14px;
   font-weight: bold;
   border-radius: 6px;
-  border: 1px solid #193CB8;
+  border: 1px solid #973C08;
   background-color: #ffffff;
-  color: #193CB8;
+  color: #973C08;
   cursor: pointer;
 }
 
@@ -868,8 +868,8 @@ border-radius: 12px;
 
 <button onclick="showForm('chantier')" style="background-color: #FEF2F2; border: 1px solid #9F0712;">Chantier</button>
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 1px solid #016630;">Heures</button>
-<button onclick="showForm('complements')" style="background-color: #EFF6FF; border: 1px solid #193CB8;">Rapport des heures</button>
-<button onclick="showForm('calendrier')" style="background-color: #FEFCE8; border: 1px solid #894B0A;">Calendrier</button>
+<button onclick="showForm('complements')" style="background-color: #FFFBEB; border: 1px solid #973C08;">Rapport des heures</button>
+<button onclick="showForm('calendrier')" style="background-color: #F0FDFA; border: 1px solid #075F5A;">Calendrier</button>
 <button onclick="ouvrirSectionClients()" style="background-color: #EEF2FF; border: 1px solid #372AAC;">Clients</button>
   <!-- type="button" class="btn-accueil-clients">Clients</button> -->
 <button onclick="showForm('theorie')" style="background-color: #FFFFFF; border: 1px solid #C0C0C0; color: #FFFFFF">Théorie révolutionnaire</button>
@@ -1167,7 +1167,7 @@ border-radius: 12px;
   
   <label>Choix du type de rapport</label>
 
-  <div class="groupe-client" style="background-color: transparent; border: 1px solid #193CB8;">
+  <div class="groupe-client" style="background-color: transparent; border: 1px solid #973C08;">
     <!-- Option 1 : Consulter tes heures -->
     <div style="margin-bottom: 10px;">
       <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
