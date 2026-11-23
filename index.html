@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-se=1.0">
   
 <meta name="application-name" content="Heures Moduli">
-<meta name="theme-color" content="#FEF2F2">
+<meta name="theme-color" content="#FFF1F2">
 
 <!-- Couleur de la barre d'état iOS -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -63,7 +63,7 @@ button {
   cursor: pointer;
 }
   
-input, textarea, select, div, #resultatRapport, #inputRechercheClient {
+input, textarea, select, div, #resultatRapport {
   font-family: 'Ubuntu Sans', regular;
   width: 100%;
   padding: 10px;
@@ -112,8 +112,8 @@ select:user-invalid {
 .theme-chantier input, 
 .theme-chantier textarea, 
 .theme-chantier select {
-  background-color: #FEF2F2;
-  border: 2px solid #9F0712;
+  background-color: #FFF1F2;
+  border: 2px solid #A50C36;
 }
 
 /* 2. THÈME HEURES (Vert) */
@@ -140,7 +140,7 @@ button.btn-envoyer, button.btn-effacer {
   background-color: #FEFCE8 !important;
 }
 /* On force la bordure du bouton d'envoi à correspondre à son formulaire parent */
-.theme-chantier button.btn-envoyer { border: 2px solid #9F0712; }
+.theme-chantier button.btn-envoyer { border: 2px solid #A50C36; }
 .theme-heures button.btn-envoyer { border: 2px solid #016630; }
 .theme-complements button.btn-envoyer, 
 .theme-complements button.btn-effacer { border: 2px solid #9F2D01; }
@@ -230,8 +230,8 @@ button.btn-envoyer, button.btn-effacer {
 /* Force les inputs de la description à respecter le thème sans marges gênantes */
 .theme-chantier .ligne-description input.champ-texte,
 .theme-chantier .ligne-description textarea.champ-texte {
-  background-color: #FEF2F2;
-  border: 2px solid #9F0712;
+  background-color: #FFF1F2;
+  border: 2px solid #A50C36;
   width: 100%;
   margin: 0 !important; /* Supprime le margin global de 10px qui brise l'alignement flex */
 }
@@ -453,8 +453,8 @@ border-radius: 12px;
   margin: 0 !important;
   padding: 10px;
   font-size: 24px;
-  background-color: #FEF2F2;
-  border: 2px solid #9F0712;
+  background-color: #FFF1F2;
+  border: 2px solid #A50C36;
   border-radius: 12px;
   resize: none;
   overflow: hidden;
@@ -497,8 +497,8 @@ border-radius: 12px;
   margin: 0 !important;
   padding: 10px 5px;
   font-size: 24px;
-  background-color: #FEF2F2;
-  border: 2px solid #9F0712;
+  background-color: #FFF1F2;
+  border: 2px solid #A50C36;
   border-radius: 12px;
 }
 
@@ -805,9 +805,17 @@ border-radius: 12px;
   color: #1E1B4B;
   margin-bottom: 12px;
 }*/
-#inputRechercheClient {
+
+  font-family: 'Ubuntu Sans', regular;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 24px;
+  border-radius: 12px;
+  resize: none; /* Désactive la poignée manuelle pour laisser le script gérer la hauteur */
+  overflow-y: hidden; 
+  border: 2px solid #372AAC;
   background-color: #EEF2FF;
-  border: #372AAC;
 }
 
 /* LISTE DES PROPOSITIONS CLIQUABLES EN LIVE */
@@ -871,7 +879,7 @@ border-radius: 12px;
 
 <h2>Choisir un formulaire</h2>
 
-<button onclick="showForm('chantier')" style="background-color: #FEF2F2; border: 2px solid #9F0712;">Chantier</button>
+<button onclick="showForm('chantier')" style="background-color: #FFF1F2; border: 2px solid #A50C36;">Chantier</button>
 <button onclick="showForm('heures')" style="background-color: #ECFDF5; border: 2px solid #016630;">Heures</button>
 <button onclick="showForm('complements')" style="background-color: #FFF7ED; border: 2px solid #9F2D01;">Rapport des heures</button>
 <button onclick="showForm('calendrier')" style="background-color: #F0FDFA; border: 2px solid #075F5A;">Calendrier</button>
@@ -922,7 +930,7 @@ border-radius: 12px;
 
   <label>Nom du client</label>
 
-  <div class="groupe-client" style="background-color: transparent; border: 2px solid #9F0712;">
+  <div class="groupe-client" style="background-color: transparent; border: 2px solid #A50C36;">
     <!-- Option 1 : Choisir parmi une liste -->
     <div style="margin-bottom: 10px;">
       <label style="display: flex; align-items: center; font-weight: normal; margin-top: 10px;">
