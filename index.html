@@ -664,6 +664,7 @@ border-radius: 12px;
 .btn-prenom.etat-present {
   color: #000000; /* Noir */
   font-weight: bold;
+  background-color: #F7FEE7;
 }
 .btn-prenom.etat-absent {
   color: #9CA3AF; /* Gris */
@@ -774,6 +775,7 @@ border-radius: 12px;
 .btn-jour-regulier.etat-present {
   color: #000000; /* Noir */
   font-weight: bold;
+  background-color: #F7FEE7;
 }
 .btn-jour-regulier.etat-absent {
   color: #9CA3AF; /* Gris */
@@ -2228,7 +2230,7 @@ initialiserCalendrier();
 
 function chargerDonneesCalendrier() {
   const msg = document.getElementById("message");
-  msg.innerText = "Synchronisation du calendrier avec Google Sheets...";
+  msg.innerText = "Synchronisation du calendrier avec les données enregistrées...";
 
   fetch(scriptURL)
     .then(res => res.json())
@@ -2326,7 +2328,7 @@ function chargerDonneesCalendrier() {
       setTimeout(() => { if (msg.innerText === "Calendrier à jour !") msg.innerText = ""; }, 2000);
     })
     .catch(() => {
-      msg.innerText = "Impossible de charger le calendrier depuis Google Sheets.";
+      msg.innerText = "Impossible de charger le calendrier !";
     });
 }
   
